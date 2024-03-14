@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import stratagemsData from './stratagemsData.json';
+import Stratagem, { ArrowCombos } from './components/Stratagem';
 
 const ALPHA_TO_ARROW = {
   'U': '▲',
@@ -38,9 +39,7 @@ const App = () => {
       if (!event.shiftKey && event.key === 'Shift') {
         setGameInProgress(false);
         if (exactMatchIndex > -1) {
-          toast.success(
-            <h4>{stratagemsData[exactMatchIndex].name}</h4>
-          )
+          toast(<Stratagem stratagem={stratagemsData[exactMatchIndex]} />, { pauseOnFocusLoss: false, autoClose: stratagemsData[exactMatchIndex].cooldown * 1000 })
         }
       }
     };
@@ -129,7 +128,13 @@ const App = () => {
                     <img className="icon" src={`./img/${stratagem.icon}`} />
                     {stratagem?.name}
                   </div>
-                  <div className="arrow-combo">
+                  <ArrowCombos
+                    code={stratagem.code}
+                    isStillValid={isStillValid}
+                    index={sgIndex}
+                    inputSequence={inputSequence}
+                  />
+{/*                     
                     {stratagem?.code?.map((alpha, index) => {
                       const arrowClassName = isStillValid
                         ? index + 1 === inputSequence.length
@@ -140,8 +145,7 @@ const App = () => {
                       <span key={index} className={arrowClassName}>
                         {ALPHA_TO_ARROW[alpha]}
                       </span>
-                    )})}
-                  </div>
+                    )})} */}
                 </li>
               )
             })}
