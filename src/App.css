@@ -4,10 +4,18 @@
   padding: 2rem;
 }
 
-.highlight {
-  font-weight: 200;
+.invalid-arrow {
+  color: lightgrey;
 }
 
 .matching-arrow {
   color: greenyellow;
+}
+
+.matched-arrow {
+  color: darkgray;
+}
+
+.exact-match {
+  background-color: purple;
 }

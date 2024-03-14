@@ -4,10 +4,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import stratagemsData from './stratagemsData.json';
 
+const ALPHA_TO_ARROW = {
+  'U': '▲',
+  'L': '◀',
+  'D': '▼',
+  'R': '▶',
+};
+
+const KEY_TO_ALPHA = {
+  'w': 'U',
+  'a': 'L',
+  's': 'D',
+  'd': 'R',
+};
+
 const App = () => {
   const [inputSequence, setInputSequence] = useState('');
-  const [matchingStratagems, setMatchingStratagems] = useState({});
-  const [exactMatch, setExactMatch] = useState(null);
+  const [matchingStratagems, setMatchingStratagems] = useState([]);
+  const [exactMatchIndex, setExactMatchIndex] = useState(-1);
   const [shouldReset, setShouldReset] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
 
@@ -23,9 +37,9 @@ const App = () => {
       event.preventDefault();
       if (!event.shiftKey && event.key === 'Shift') {
         setGameInProgress(false);
-        if (exactMatch) {
+        if (exactMatchIndex > -1) {
           toast.success(
-            <h4>exactMatch.</h4>
+            <h4>{stratagemsData[exactMatchIndex].name}</h4>
           )
         }
       }
@@ -33,28 +47,14 @@ const App = () => {
     if (gameInProgress) {
       const handleKeyPress = (event) => {
         event.preventDefault();
-        switch (event.key.toLowerCase()) {
-          case 'w':
-            setInputSequence((prev) => prev + '▲');
-            break;
-          case 'a':
-            setInputSequence((prev) => prev + '◀');
-            break;
-          case 's':
-            setInputSequence((prev) => prev + '▼');
-            break;
-          case 'd':
-            setInputSequence((prev) => prev + '▶');
-            break;
-          default:
-            break;
-        }
+        const alpha = KEY_TO_ALPHA[event.key.toLowerCase()];
+        alpha && setInputSequence((prev) => prev + alpha);
       };
-      
+
       console.log('game started, recording input');
       window.addEventListener('keyup', handleShiftKeyUp);
       window.addEventListener('keypress', handleKeyPress);
-      
+
       return () => {
         console.debug('removing Shift keyup and keypress');
         window.removeEventListener('keyup', handleShiftKeyUp);
@@ -68,30 +68,24 @@ const App = () => {
       return () => {
         window.removeEventListener('keydown', handleShiftKeyDown);
       };
-      
+
     }
-  }, [exactMatch, gameInProgress, inputSequence, matchingStratagems.length]);
+  }, [exactMatchIndex, gameInProgress, inputSequence, matchingStratagems.length]);
 
   useEffect(() => {
     if (inputSequence && gameInProgress) {
-      console.log(inputSequence);
       const checkMatchingStratagems = () => {
-        const newMatchingStratagems = {};
-        for (const categoryKey in stratagemsData) {
-          const category = stratagemsData[categoryKey];
-          for (const stratagemKey in category) {
-            const stratagem = category[stratagemKey];
-            console.log(stratagem.length, inputSequence.length);
-            if (stratagem?.join('') === inputSequence) {
-              console.log(stratagem);
-              setExactMatch({category: categoryKey, stratagem: stratagemKey, arrows: stratagem });
-            }
-            // if the current input sequence matches the beginning of a stratagem
-            if (stratagem?.join('').indexOf(inputSequence) === 0 && stratagem.length >= inputSequence.length) {
-              newMatchingStratagems[categoryKey] = { ...newMatchingStratagems[categoryKey], [stratagemKey]: category[stratagemKey] };
-            }
+        let newMatchingStratagems = [];
+        stratagemsData.forEach((stratagem,index) => {
+          const stratagemStr = stratagem?.code?.join('');
+          if (stratagemStr === inputSequence) {
+            setExactMatchIndex(index);
           }
-        }
+          // if the current input sequence matches the beginning of a stratagem
+          if (stratagemStr.indexOf(inputSequence) === 0 && stratagemStr.length >= inputSequence.length) {
+            newMatchingStratagems.push(index);
+          }
+        });
         setMatchingStratagems(newMatchingStratagems);
       };
       checkMatchingStratagems();
@@ -100,9 +94,9 @@ const App = () => {
 
   const resetGame = () => {
     setInputSequence('');
-    setMatchingStratagems({});
+    setMatchingStratagems([]);
     setShouldReset(false);
-    setExactMatch(null);
+    setExactMatchIndex(-1);
     setGameInProgress(false);
     console.log('Game reset!');
   };
@@ -120,35 +114,38 @@ const App = () => {
 
   return (
     <div className="App">
-      {Object.entries(stratagemsData).map(([categoryKey, category]) => (
-        <div key={categoryKey}>
-          <h2>{categoryKey}</h2>
-          <ul>
-            {Object.entries(category).map(([stratagemKey, arrows]) =>  {
-              let isStillValid = matchingStratagems && matchingStratagems[categoryKey] && arrows.join('').indexOf(matchingStratagems[categoryKey][stratagemKey]?.join('')) === 0;
-              return (
-              <li
-                key={stratagemKey}
-                className={isStillValid ? 'highlight' : ''}
-              >
-                <span className="arrow-combo">
-                  {arrows?.map((arrow, index) => (
-                    <span
-                      key={index}
-                      className={isStillValid && inputSequence && index < inputSequence.length ? 'matching-arrow' : ''}
-                    >
-                      {arrow}
-                    </span>
-                  ))}
-                </span>
-                <span>
-                  {stratagemKey}
-                </span>
-              </li>
-            )})}
-          </ul>
-        </div>
-      ))}
+      <ul>
+      {stratagemsData?.map((stratagem, sgIndex) => {
+        const stratagemStr = stratagem?.code?.join('');
+        const isStillValid = stratagemStr && inputSequence.length > 0 && stratagemStr.indexOf(inputSequence) === 0 && inputSequence.length <= stratagemStr.length;
+        const isExactMatch = sgIndex === exactMatchIndex;
+
+        return (
+                <li
+                  key={stratagem.name}
+                  className={`${isStillValid ? 'highlight' : ''} ${isExactMatch ? 'exact-match' : ''}`}
+                >
+                  <div>
+                    <img className="icon" src={`./img/${stratagem.icon}`} />
+                    {stratagem?.name}
+                  </div>
+                  <div className="arrow-combo">
+                    {stratagem?.code?.map((alpha, index) => {
+                      const arrowClassName = isStillValid
+                        ? index + 1 === inputSequence.length
+                          ? 'matching-arrow'
+                          : 'matched-arrow'
+                        : 'invalid-arrow';
+                      return (
+                      <span key={index} className={arrowClassName}>
+                        {ALPHA_TO_ARROW[alpha]}
+                      </span>
+                    )})}
+                  </div>
+                </li>
+              )
+            })}
+        </ul>
       <ToastContainer />
     </div>
   );
