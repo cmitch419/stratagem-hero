@@ -1,0 +1,71 @@
+{
+    "General": {
+      "Reinforcement": ["▲", "▼", "▶", "◀", "▲"],
+      "Resupply": ["▼", "▼", "▲", "▶"],
+      "SOS Beacon": ["▲", "▼", "▶", "▲"],
+      "SEAF Artillery": ["▶", "▲", "▲", "▼"],
+      "Hellbomb": ["▼", "▲", "◀", "▼", "▲", "▶", "▼", "▲"],
+      "Super Earth Flag": ["▼", "▲", "▼", "▲"]
+    },
+    "Patriotic Administration Center": {
+      "Machine Gun": ["▼", "◀", "▼", "▲", "▶"],
+      "Anti-Material Rifle": ["▼", "◀", "▶", "▲", "▼"],
+      "Stalwart": ["▼", "◀", "▼", "▲", "▲", "◀"],
+      "Expendable Anti-Tank": ["▼", "▼", "◀", "▲", "▶"],
+      "Recoiless Rifle": ["▼", "◀", "▶", "▶", "◀"],
+      "Flamethrower": ["▼", "◀", "▲", "▼", "▲"],
+      "Auto-Canon": ["▼", "◀", "▼", "▲", "▲", "▶"],
+      "Railgun": ["▼", "▶", "▼", "▲", "◀", "▶"],
+      "Spear": ["▼", "▼", "▲", "▼", "▼"]
+    },
+    "Orbital Cannons": {
+      "Orbital Gatling Barrage": ["▶", "▼", "◀", "▲", "▲"],
+      "Orbital Airburst Strike": ["▶", "▶", "▶"],
+      "Orbital 120MM HE Barrage": ["▶", "▶", "▼", "◀", "▶", "▼"],
+      "Orbital 380MM HE Barrage": ["▶", "▼", "▲", "▲", "◀", "▼", "▼"],
+      "Orbital Walking Barrage": ["▶", "▼", "▶", "▼", "▶", "▼"],
+      "Orbital Laser": ["▶", "▼", "▲", "▶", "▼"],
+      "Orbital Railgun Strike": ["▶", "▲", "▼", "▼", "▶"]
+    },
+    "Hangar": {
+      "Eagle Straffing Run": ["▲", "▶", "▶"],
+      "Eagle Airstrike": ["▲", "▶", "▼", "▶"],
+      "Eagle Cluster Bomb": ["▲", "▶", "▼", "▼", "▶"],
+      "Eagle Napalm Strike": ["▲", "▶", "▼", "▲"],
+      "Jump Pack": ["▼", "▲", "▲", "▼", "▲"],
+      "Eagle Smoke Strike": ["▲", "▶", "▼", "▲"],
+      "Eagle 110MM Rocket Pods": ["▲", "▶", "▲", "◀"],
+      "Eagle 500KG Bomb": ["▲", "▶", "▼", "▼", "▼"],
+      "Eagle Rearm": ["▲", "▲", "◀", "▲", "▶"]
+    },
+    "Bridge": {
+      "Orbital Precision Strike": ["▶", "▶", "▲"],
+      "Orbital Gas Strike": ["▶", "▶", "▼", "▶"],
+      "Orbital EMS Strike": ["▶", "▶", "◀", "▼"],
+      "Orbital Smoke Strike": ["▶", "▶", "▼", "▲"],
+      "HMG Placement": ["▼", "▲", "◀", "▶", "▶", "◀"],
+      "Shield Generator": ["▼", "▼", "◀", "▶", "◀", "▶"],
+      "Tesla Tower": ["▼", "▲", "▶", "▲", "◀", "▶", "▶", "▼", "◀", "▲", "◀"]
+    },
+    "Engineering Bay": {
+      "Anti-Personnel Minefield": ["▼", "◀", "▲", "▶"],
+      "Supply Pack": ["▼", "◀", "▼", "▲", "▲", "▼"],
+      "Grenade Launcher": ["▼", "◀", "▲", "◀", "▼"],
+      "Laser Canon": ["▼", "◀", "▼", "▲", "◀"],
+      "Incendiary Mines": ["▼", "◀", "◀", "▼"],
+      "Guard Dog Rover": ["▲", "▼", "◀", "▲", "▶", "▶"],
+      "Ballistic Shield": ["▼", "◀", "▼", "▼", "▲", "◀"],
+      "Arc Thrower": ["▼", "▶", "▼", "▲", "◀", "◀"],
+      "Shield Generator Pack": ["▼", "▲", "◀", "▶", "◀", "▶"]
+    },
+    "Robotic Workshop": {
+      "Machine Gun Sentry": ["▼", "▲", "▶", "▶", "▲"],
+      "Gatling Sentry": ["▼", "▲", "▶", "◀"],
+      "Mortar Sentry": ["▼", "▲", "▶", "▶", "▼"],
+      "Guard Dog": ["▼", "▲", "◀", "▲", "▶", "▼"],
+      "Autocanon Sentry": ["▼", "▲", "▶", "▲", "◀", "▲"],
+      "Rocket Sentry": ["▼", "▲", "▶", "▶", "◀"],
+      "EMS Mortar Sentry": ["▼", "▲", "▶", "▼", "▶"]
+    }
+  }
+  
