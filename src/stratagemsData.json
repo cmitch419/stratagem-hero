@@ -25,7 +25,7 @@
       "Orbital 380MM HE Barrage": ["▶", "▼", "▲", "▲", "◀", "▼", "▼"],
       "Orbital Walking Barrage": ["▶", "▼", "▶", "▼", "▶", "▼"],
       "Orbital Laser": ["▶", "▼", "▲", "▶", "▼"],
-      "Orbital Railgun Strike": ["▶", "▲", "▼", "▼", "▶"]
+      "Orbital Railcannon Strike": ["▶", "▲", "▼", "▼", "▶"]
     },
     "Hangar": {
       "Eagle Straffing Run": ["▲", "▶", "▶"],
