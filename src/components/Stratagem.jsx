@@ -26,8 +26,9 @@ import { ALPHA_TO_ROTATION } from "../constants";
 
 function Stratagem({
     stratagem,
-    isStillValid,
+    valid,
     inputSequence,
+    matched,
 }) {
     const {
         icon,
@@ -40,17 +41,17 @@ function Stratagem({
             <Stack direction="row" spacing={1} alignItems="center">
                 <Box component="img" src={`./img/${icon}`} />
                 <Stack flex={1}>
-                    <Typography variant="h6" fontFamily={"unset"}>
+                    <Typography variant="h6">
                         {name?.toUpperCase()}
                     </Typography>
-                    <ArrowCombo code={code} valid={isStillValid} inputSequence={inputSequence} />
+                    <ArrowCombo code={code} valid={valid} inputSequence={inputSequence} matched={matched} />
                 </Stack>
             </Stack>
         </Box>
     )
 }
 
-export function ArrowCombo({ code, valid, inputSequence }) {
+export function ArrowCombo({ code, valid, inputSequence, matched }) {
     const length = inputSequence?.length;
     return (
         <Stack direction="row">
@@ -64,6 +65,9 @@ export function ArrowCombo({ code, valid, inputSequence }) {
                     } else {
                         arrowColor = 'yellow';
                     }
+                }
+                if (matched) {
+                    arrowColor = 'yellow';
                 }
                 return (<Arrow key={i} alpha={c} color={arrowColor} />)
 

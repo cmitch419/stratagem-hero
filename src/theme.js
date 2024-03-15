@@ -2,10 +2,14 @@ import { createTheme } from "@mui/material";
 
 export const hd2ThemeOptions = {
     typography: {
+        root: {
+            textTransform: "uppercase"
+        },
         fontFamily: [
+            'LT Binary Neue',
             'Uni Sans Demo',
             'sans-serif',
-        ].join(''),
+        ].join(','),
     },
     palette: {
         mode: 'dark',

@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import Stratagem, { StratagemInfo } from "./components/Stratagem";
 import stratagemsData from "./stratagemsData.json";
 import { KEY_TO_ALPHA } from "./constants";
+import useGamepad from "./hooks/useGamepad";
 
 const Game = () => {
     const [inputSequence, setInputSequence] = useState('');
@@ -11,6 +12,16 @@ const Game = () => {
     const [shouldReset, setShouldReset] = useState(false);
     const [gameInProgress, setGameInProgress] = useState(false);
   
+    const gamepads = useGamepad();
+
+    useEffect(() => {
+      if (gamepads) {
+        console.log('GAMEPAD CONNECTED! ',gamepads);
+      } else {
+        console.log('GAMEPAD DISCONNECTED!');
+      }
+    }, [gamepads])
+
     useEffect(() => {
       const handleShiftKeyDown = (event) => {
         event.preventDefault();
@@ -100,20 +111,19 @@ const Game = () => {
         <ul>
           {stratagemsData?.map((stratagem, sgIndex) => {
             const stratagemStr = stratagem?.code?.join('');
-            const isStillValid = stratagemStr && inputSequence.length > 0 && stratagemStr.indexOf(inputSequence) === 0 && inputSequence.length <= stratagemStr.length;
+            const isStillValid = stratagemStr && stratagemStr.indexOf(inputSequence) === 0;
             const isExactMatch = sgIndex === exactMatchIndex;
 
             return (
               <li
-                key={stratagem.name}
-                className={`${isStillValid ? 'highlight' : ''} ${isExactMatch ? 'exact-match' : ''}`}
+                key={sgIndex}
               >
-                <StratagemInfo stratagem={stratagem} />
                 <Stratagem
                   inputSequence={inputSequence}
                   stratagem={stratagem}
-                  isStillValid={isStillValid}
+                  valid={isStillValid}
                   key={stratagem.name}
+                  matched={isExactMatch}
                 />
               </li>
             )

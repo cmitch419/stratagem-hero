@@ -1,34 +1,19 @@
 #root {
-  /* font-family: 'Web Serveroff', sans-serif; */
-  /* font-family: 'LT Binary Neue', sans-serif; */
-  /* font-family: 'Uni Sans Demo', sans-serif; */
-  /* font-family: 'Panton', sans-serif; */
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  text-transform: uppercase;
 }
-/**
+
 ul {
   list-style-type: none;
 }
+
 li {
   margin-bottom: 1rem;
 }
 
-.invalid-arrow {
-  color: lightgrey;
+.invalid {
+  display: none;
+  visibility: hidden;
 }
-
-.matching-arrow {
-  color: greenyellow;
-}
-
-.matched-arrow {
-  color: darkgray;
-}
-
-.exact-match {
-  background-color: purple;
-}
-
-*/
