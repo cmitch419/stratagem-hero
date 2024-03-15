@@ -398,7 +398,7 @@
       "L",
       "U"
     ],
-    "cooldown": "120s (2m)  (when depleted)",
+    "cooldown": 120,
     "uses": "5 per Person",
     "activation": 5
   },
@@ -414,7 +414,7 @@
       "R",
       "U"
     ],
-    "cooldown": "N/A",
+    "cooldown": null,
     "uses": 1,
     "activation": 5
   },
@@ -450,9 +450,9 @@
       "D",
       "U"
     ],
-    "cooldown": "",
+    "cooldown": null,
     "uses": -1,
-    "activation": ""
+    "activation": null
   },
   {
     "permitTypes": [
@@ -467,9 +467,9 @@
       "U",
       "U"
     ],
-    "cooldown": "N/A",
+    "cooldown": null,
     "uses": -1,
-    "activation": ""
+    "activation": null
   },
   {
     "permitTypes": [
@@ -485,7 +485,7 @@
       "D",
       "D"
     ],
-    "cooldown": "N/A",
+    "cooldown": null,
     "uses": 1,
     "activation": 9
   },
@@ -502,9 +502,9 @@
       "U",
       "U"
     ],
-    "cooldown": "N/A",
+    "cooldown": null,
     "uses": -1,
-    "activation": "N/A"
+    "activation": null
   },
   {
     "permitTypes": [
@@ -521,7 +521,7 @@
     ],
     "cooldown": "2 minutes (rearms all Eagles)",
     "uses": -1,
-    "activation": "N/A"
+    "activation": null
   },
   {
     "permitTypes": [

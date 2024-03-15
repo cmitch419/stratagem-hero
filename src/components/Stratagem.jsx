@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  *   {
       "categories": [
@@ -21,60 +22,124 @@
 
 import { Box, Stack, Typography } from "@mui/material"
 import { Forward } from "@mui/icons-material";
-import { useEffect } from "react";
+import { ALPHA_TO_ROTATION } from "../constants";
 
-function Stratagem({ stratagem, isStillValid, inputSequence }) {
-    const { categories, icon, name, code, cooldown, uses, activation } = stratagem;
-    useEffect(() => {
-        
-    },[]);
+function Stratagem({
+    stratagem,
+    isStillValid,
+    inputSequence,
+}) {
+    const {
+        icon,
+        name,
+        code,
+    } = stratagem;
+
     return (
-        // <Card sx={{ display: 'flex' }}>
-        <Stack direction="row" spacing={1} alignItems="center">
-            <Box component="img" src={`./img/${icon}`} />
-            <Stack flex={1}>
-                <Typography variant="h6" fontFamily={"unset"}>
-                    {name?.toUpperCase()}
-                </Typography>
-                <ArrowCombos code={code} isStillValid={isStillValid} inputSequence={inputSequence} />
+        <Box padding={1} border="2px solid white">
+            <Stack direction="row" spacing={1} alignItems="center">
+                <Box component="img" src={`./img/${icon}`} />
+                <Stack flex={1}>
+                    <Typography variant="h6" fontFamily={"unset"}>
+                        {name?.toUpperCase()}
+                    </Typography>
+                    <ArrowCombo code={code} valid={isStillValid} inputSequence={inputSequence} />
+                </Stack>
             </Stack>
-        </Stack>
-        // </Card>
+        </Box>
     )
 }
 
-export function ArrowCombos({ code, isStillValid, inputSequence }) {
+export function ArrowCombo({ code, valid, inputSequence }) {
     const length = inputSequence?.length;
-    return (<Stack direction="row">
-        {code.map((c, i) => {
-            let arrowColor = 'grey';
-            if (isStillValid) {
-                if (length < i + 1) {
-                    arrowColor = 'darkgrey';
-                } else if (length === i + 1) {
-                    arrowColor = 'greenyellow';
-                } else {
-                    arrowColor = 'yellow';
+    return (
+        <Stack direction="row">
+            {code.map((c, i) => {
+                let arrowColor = 'grey';
+                if (valid) {
+                    if (length < i + 1) {
+                        arrowColor = 'darkgrey';
+                    } else if (length === i + 1) {
+                        arrowColor = 'greenyellow';
+                    } else {
+                        arrowColor = 'yellow';
+                    }
                 }
-            }
-            return (<Arrow alpha={c} color={arrowColor} />)
+                return (<Arrow key={i} alpha={c} color={arrowColor} />)
 
-        })}
-    </Stack>
+            })}
+        </Stack>
     )
 }
 
 function Arrow({ alpha, color }) {
-    const ALPHA_TO_ROTATION = {
-        'R': 0,
-        'D': 90,
-        'L': 180,
-        'U': 270,
-    };
     return <Box component={Forward} sx={{
         transform: `rotate(${ALPHA_TO_ROTATION[alpha]}deg)`,
         color,
     }} />
+}
+
+export function StratagemInfo({ stratagem }) {
+    const {
+        permitTypes = [],
+        description = 'ERROR: Description information missing.',
+        name,
+        uses = uses === -1 ? 'Unlimited' : uses,
+        activation = activation === 0 ? 'Immediate' : activation,
+        cooldown = 'N/A',
+        traits = [],
+    } = stratagem;
+
+    return (
+        <Box padding={1} border="2px solid white">
+            <Stack>
+                <Typography variant="h6">{permitTypes.length > 0 ? `${permitTypes.join(' ')} ` : ''}Stratagem Permit</Typography>
+                <Typography variant="h4">{name}</Typography>
+                <Typography>{description}</Typography>
+
+                <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
+                    <Box>
+                        <Stack alignItems="flex-start">
+                            {activation && <Stack direction="row" alignItems="center" justifyContent="space-between">
+                                <Typography>
+                                    Call-in time:
+                                </Typography>
+                                <Typography>
+                                    {activation}
+                                </Typography>
+                            </Stack>}
+                            {uses && <Stack direction="row" alignItems="center" justifyContent="space-between">
+                                <Typography>
+                                    Uses:
+                                </Typography>
+                                <Typography>
+                                    {uses}
+                                </Typography>
+                            </Stack>}
+                            {cooldown && <Stack direction="row" alignItems="center" justifyContent="space-between">
+                                <Typography>
+                                    Cooldown Time:
+                                </Typography>
+                                <Typography>
+                                    {cooldown} sec
+                                </Typography>
+                            </Stack>}
+                        </Stack>
+
+                    </Box>
+
+                    <Box height="100%">
+                        <Stack alignItems="flex-start">
+                            {traits && traits.map((trait, i) =>
+                                <Typography key={i}>
+                                    | {trait}
+                                </Typography>)}
+                        </Stack>
+                    </Box>
+                </Stack>
+            </Stack>
+        </Box >
+    )
 }
 
 export default Stratagem
