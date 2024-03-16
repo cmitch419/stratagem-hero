@@ -1,28 +1,41 @@
 /* eslint-disable react/prop-types */
-/**
- *   {
-      "categories": [
-          "Offensive",
-          "Eagle"
-      ],
-      "icon": "EagleClusterbombicon.png",
-      "name": "Eagle Cluster Bomb",
-      "code": [
-          "U",
-          "R",
-          "D",
-          "D",
-          "R"
-      ],
-      "cooldown": 8,
-      "uses": 4,
-      "activation": 3
-  },
- */
-
-import { Box, Stack, Typography } from "@mui/material"
+import { Box, Divider, Stack, Typography } from "@mui/material"
 import { Forward } from "@mui/icons-material";
 import { ALPHA_TO_ROTATION } from "../constants";
+
+
+const STRATAGEM_INFO_BASE = {
+    display: 'grid',
+    gridTemplateRows: 'auto',
+};
+
+const STRATAGEM_INFO = {
+    ...STRATAGEM_INFO_BASE,
+    gap: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    gridTemplateColumns: 'repeat(1, 1fr)',
+    gridTemplateAreas:
+        `"stratagemInfo1"
+        "stratagemInfo2"`
+};
+
+const STRATAGEM_INFO_1 = {
+    ...STRATAGEM_INFO_BASE,
+    gridTemplateColumns: '1rem, repeat(4, 1fr)',
+    gridTemplateAreas:
+        `"vert  category  category    category    category"
+        "vert   name      name        name        name"
+        "vert   desc      desc        desc        desc"`
+};
+
+const STRATAGEM_INFO_2 = {
+    ...STRATAGEM_INFO_BASE,
+    display: 'grid',
+    gap: 1,
+    gridTemplateRows: 'auto',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gridTemplateAreas:  `"stats traits"`
+};
 
 function Stratagem({
     stratagem,
@@ -37,11 +50,11 @@ function Stratagem({
     } = stratagem;
 
     return (
-        <Box padding={1} border="2px solid white">
+        <Box padding={1} border="2px solid white" sx={{
+            backgroundColor: "rgba(0,0,0,0.5)"
+        }}>
             <Stack direction="row" spacing={1} alignItems="center">
-                <Box border="2px solid" height="3rem" width="3rem">
-                    { icon && <Box display="block" height="inherit" maxWidth="100%" component="img" src={`./img/${icon}`} /> }
-                </Box>
+                <StratagemIcon {...stratagem} />
                 <Stack flex={1}>
                     <Typography variant="h6">
                         {name?.toUpperCase()}
@@ -50,7 +63,7 @@ function Stratagem({
                 </Stack>
             </Stack>
         </Box>
-    )
+    );
 }
 
 export function ArrowCombo({ code, valid, inputSequence, matched }) {
@@ -85,67 +98,168 @@ function Arrow({ alpha, color }) {
     }} />
 }
 
-export function StratagemInfo({ stratagem }) {
+export function StratagemLine({ stratagem }) {
+    if (!stratagem) return <></>;
     const {
-        permitTypes = [],
-        description = 'ERROR: Description information missing.',
+        icon,
         name,
-        uses = uses === -1 ? 'Unlimited' : uses,
-        activation = activation === 0 ? 'Immediate' : activation,
-        cooldown = 'N/A',
-        traits = [],
+        permitType,
     } = stratagem;
 
     return (
-        <Box padding={1} border="2px solid white">
-            <Stack>
-                <Typography variant="h6">{permitTypes.length > 0 ? `${permitTypes.join(' ')} ` : ''}Stratagem Permit</Typography>
-                <Typography variant="h4">{name}</Typography>
-                <Typography>{description}</Typography>
-
-                <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
-                    <Box>
-                        <Stack alignItems="flex-start">
-                            {activation && <Stack direction="row" alignItems="center" justifyContent="space-between">
-                                <Typography>
-                                    Call-in time:
-                                </Typography>
-                                <Typography>
-                                    {activation}
-                                </Typography>
-                            </Stack>}
-                            {uses && <Stack direction="row" alignItems="center" justifyContent="space-between">
-                                <Typography>
-                                    Uses:
-                                </Typography>
-                                <Typography>
-                                    {uses}
-                                </Typography>
-                            </Stack>}
-                            {cooldown && <Stack direction="row" alignItems="center" justifyContent="space-between">
-                                <Typography>
-                                    Cooldown Time:
-                                </Typography>
-                                <Typography>
-                                    {cooldown} sec
-                                </Typography>
-                            </Stack>}
-                        </Stack>
-
-                    </Box>
-
-                    <Box height="100%">
-                        <Stack alignItems="flex-start">
-                            {traits && traits.map((trait, i) =>
-                                <Typography key={i}>
-                                    | {trait}
-                                </Typography>)}
-                        </Stack>
-                    </Box>
+        <Box padding={1} border="2px solid white" sx={{
+            backgroundColor: "rgba(0,0,0,0.5)"
+        }}>
+            <Stack direction="row" spacing={1} alignItems="center">
+                <StratagemIcon {...stratagem} />
+                <Stack flex={1}>
+                    <Typography variant="h6">
+                        {name?.toUpperCase()}
+                    </Typography>
                 </Stack>
             </Stack>
-        </Box >
-    )
+        </Box>
+    );
 }
 
-export default Stratagem
+export function StratagemInfo({ stratagem }) {
+    if (!stratagem) return <></>;
+    let {
+        permitType,
+        description,
+        name,
+        model,
+        uses,
+        activation,
+        cooldown,
+        traits,
+    } = stratagem;
+
+    return (<Box padding={1} border="2px solid white" sx={{
+        backgroundColor: "rgba(0,0,0,0.5)",
+        ...STRATAGEM_INFO
+    }}>
+        <Box padding={1} sx={{
+            gridArea: "stratagemInfo1",
+            ...STRATAGEM_INFO_1
+        }}>
+            <Box sx={{ gridArea: 'vert', width: '20px', borderLeft: "6px solid yellow"}}></Box>
+            <Box sx={{ gridArea: 'category' }}>
+                <Typography flex={1} variant="h6">{permitType ? `${permitType} ` : ''}Stratagem Permit</Typography>
+            </Box>
+            <Box sx={{ gridArea: 'name' }}>
+                <Typography flex={1} variant="h4" fontWeight={600}>{model ? `${model} ` : ''}{name}</Typography>
+            </Box>
+            <Box sx={{ gridArea: 'desc' }}>
+                <Typography flex={1} textTransform="none">{description ? description : 'No description provided.'}</Typography>
+            </Box>
+        </Box>
+        <Box padding={1} sx={{
+            gridArea: "stratagemInfo2",
+            ...STRATAGEM_INFO_2
+        }}>
+            <Box component="fieldset" sx={{ gridArea: 'stats', border: "2px solid white", p: 1 }}>
+                <Box component="legend">Stats</Box>
+                <Stack alignItems="flex-start">
+                    <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                        <Typography>
+                            Call-in time:
+                        </Typography>
+                        <Typography>
+                            {activation === 0 ? 'Immediate' : activation ? `${activation} sec` : ''}
+                        </Typography>
+                    </Stack>
+                    <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                        <Typography>
+                            Uses:
+                        </Typography>
+                        <Typography>
+                            {uses === -1 ? 'Unlimited' : uses}
+                        </Typography>
+                    </Stack>
+                    <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                        <Typography>
+                            Cooldown Time:
+                        </Typography>
+                        <Typography>
+                            {cooldown !== null && `${cooldown} sec`}
+                        </Typography>
+                    </Stack>
+                </Stack>
+            </Box>
+            <Box component="fieldset" sx={{ gridArea: 'traits', border: "2px solid white", p: 1 }}>
+                <Box component="legend">Stratagem Traits</Box>
+                <Stack>
+                    {traits && traits.map((trait, i) =>
+                        <Typography key={i}>
+                            | {trait}
+                        </Typography>)}
+                </Stack>
+            </Box>
+        </Box >
+    </Box>);
+}
+
+const StratagemIcon = ({ icon, permitType }) => {
+    const ICON_COLOR = {
+        "supply": "#4eb3cf",
+        "offensive": "#c94b3d",
+        "defensive": "#52823e",
+        "mission": "#bfa355",
+    };
+    return (<Box border={`2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}`} height="3rem" width="3rem">
+    {icon && <Box display="block" height="inherit" maxWidth="100%" component="img" src={`./img/${icon}`} />}
+</Box>)
+}
+
+export default Stratagem;
+
+/**
+ * 
+        <Stack flex={1}>
+            <Typography flex={1} variant="h6">{permitType.length > 0 ? `${permitType.join(' ')} ` : ''}Stratagem Permit</Typography>
+            <Typography flex={1} variant="h4">{model ? `${model} ` : ''}{name}</Typography>
+            <Typography flex={1}>{description}</Typography>
+
+            <Stack direction="row" flex={1} spacing={1} alignItems="flex-start" justifyContent="space-between">
+                <Box border="2px solid white" p={1} flex={1}>
+                    <Stack alignItems="flex-start">
+                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                            <Typography>
+                                Call-in time:
+                            </Typography>
+                            <Typography>
+                                {activation}
+                            </Typography>
+                        </Stack>
+                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                            <Typography>
+                                Uses:
+                            </Typography>
+                            <Typography>
+                                {uses === -1 ? 'Unlimited' : uses}
+                            </Typography>
+                        </Stack>
+                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
+                            <Typography>
+                                Cooldown Time:
+                            </Typography>
+                            <Typography>
+                                {cooldown} sec
+                            </Typography>
+                        </Stack>
+                    </Stack>
+
+                </Box>
+
+                <Box flex={1} p={1} border="2px solid white">
+                    <Stack>
+                        {traits && traits.map((trait, i) =>
+                            <Typography key={i}>
+                                | {trait}
+                            </Typography>)}
+                    </Stack>
+                </Box>
+            </Stack>
+        </Stack>
+*/

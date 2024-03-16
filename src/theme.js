@@ -6,8 +6,7 @@ export const hd2ThemeOptions = {
             textTransform: "uppercase"
         },
         fontFamily: [
-            'LT Binary Neue',
-            'Uni Sans Demo',
+            'Armata',
             'sans-serif',
         ].join(','),
     },

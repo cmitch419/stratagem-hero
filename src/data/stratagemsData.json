@@ -1,8 +1,6 @@
 [
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "hellpod",
       "backpack"
@@ -24,9 +22,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "hellpod",
       "backpack"
@@ -50,9 +46,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "hellpod",
       "backpack"
@@ -75,9 +69,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "hellpod",
       "backpack"
@@ -100,9 +92,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "hellpod",
       "backpack"
@@ -126,9 +116,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "hellpod",
       "backpack"
@@ -152,9 +140,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -176,9 +162,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -200,9 +184,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -211,7 +193,7 @@
     "icon": "M-105icon.png",
     "name": "Stalwart",
     "model": "M-105",
-    "description":"A compact, low caliber machine gun. Trades power for ease of use, with faster reloading than heavier machine guns.",
+    "description": "A compact, low caliber machine gun. Trades power for ease of use, with faster reloading than heavier machine guns.",
     "code": [
       "D",
       "L",
@@ -225,9 +207,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -249,9 +229,7 @@
     "activation": 2
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -273,9 +251,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -285,7 +261,7 @@
     "name": "Flamethrower",
     "model": "FLAM-40",
     "altName": "Incinerator",
-    "description":"An incendiary weapon for close range. Will ignite targets, terrain, and any flammable teammates.",
+    "description": "An incendiary weapon for close range. Will ignite targets, terrain, and any flammable teammates.",
     "code": [
       "D",
       "L",
@@ -298,9 +274,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -323,9 +297,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -348,9 +320,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -372,9 +342,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod",
@@ -397,9 +365,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -421,9 +387,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "support weapon",
       "hellpod"
@@ -446,9 +410,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "Reinforceicon.png",
     "name": "Reinforce",
     "code": [
@@ -463,9 +425,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "SOSicon.png",
     "name": "SOS Beacon",
     "code": [
@@ -479,9 +439,7 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "ResupplyIcon.png",
     "name": "Resupply",
     "code": [
@@ -495,9 +453,7 @@
     "activation": 12
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "",
     "name": "Hellbomb",
     "model": "NUX-223",
@@ -516,9 +472,7 @@
     "activation": null
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "DeliverSSSDicon.png",
     "name": "SSSD Delivery",
     "code": [
@@ -533,9 +487,7 @@
     "activation": null
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "Seismic probe icon.png",
     "name": "Seismic Probe",
     "code": [
@@ -551,9 +503,7 @@
     "activation": 9
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "DeliverSSSDicon.png",
     "name": "Upload Data",
     "code": [
@@ -568,9 +518,7 @@
     "activation": null
   },
   {
-    "permitTypes": [
-      "mission"
-    ],
+    "permitType": "mission",
     "icon": "HD2 Eagle Rearm Icon.jpg",
     "name": "Eagle Rearm",
     "code": [
@@ -585,9 +533,7 @@
     "activation": null
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod"
     ],
@@ -609,9 +555,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod"
     ],
@@ -632,11 +576,10 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
-      "hellpod", "sentry"
+      "hellpod",
+      "sentry"
     ],
     "category": "Bridge",
     "icon": "Teslaicon.png",
@@ -656,9 +599,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "explosive"
@@ -679,9 +620,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "explosive"
@@ -702,9 +641,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "sentry"
@@ -726,9 +663,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "supply"
-    ],
+    "permitType": "supply",
     "traits": [
       "explosive",
       "vehicle"
@@ -738,15 +673,21 @@
     "name": "Patriot Exosuit",
     "model": "EXO-45",
     "description": "A heavily-armored walking exosuit equipped with a rocket launcher and a heavy machine gun.",
-    "code": ["L","D","R","U","L","D","D"],
+    "code": [
+      "L",
+      "D",
+      "R",
+      "U",
+      "L",
+      "D",
+      "D"
+    ],
     "cooldown": 600,
     "uses": 2,
     "activation": 0
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "sentry"
@@ -767,9 +708,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "sentry"
@@ -791,9 +730,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "sentry"
@@ -816,9 +753,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "explosive",
@@ -841,9 +776,7 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "defensive"
-    ],
+    "permitType": "defensive",
     "traits": [
       "hellpod",
       "explosive",
@@ -866,10 +799,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Orbital Cannons",
     "icon": "OrbitalGatlingicon.png",
     "name": "Orbital Gatling Barrage",
@@ -886,10 +820,11 @@
     "activation": 1
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Orbital Cannons",
     "icon": "OrbitalAirbursticon.png",
     "name": "Orbital Airburst Strike",
@@ -904,10 +839,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Orbital Cannons",
     "icon": "Orbital120icon.png",
     "name": "Orbital 120MM HE Barrage",
@@ -925,10 +861,11 @@
     "activation": 4
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Orbital Cannons",
     "icon": "Orbital380icon.png",
     "name": "Orbital 380MM HE Barrage",
@@ -947,10 +884,11 @@
     "activation": 5
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Orbital Cannons",
     "icon": "OrbitalWalkingicon.png",
     "name": "Orbital Walking Barrage",
@@ -968,10 +906,10 @@
     "activation": 2
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital"
     ],
-    "traits": ["orbital"],
     "category": "Orbital Cannons",
     "icon": "OrbitalLasericon.png",
     "name": "Orbital Laser",
@@ -988,10 +926,10 @@
     "activation": 1
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital"
     ],
-    "traits": ["orbital"],
     "category": "Orbital Cannons",
     "icon": "OrbitalRailcannonicon.png",
     "name": "Orbital Railcannon Strike",
@@ -1008,10 +946,11 @@
     "activation": 2
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Bridge",
     "icon": "OrbitalPrecisionicon.png",
     "name": "Orbital Precision Strike",
@@ -1026,10 +965,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Bridge",
     "icon": "OrbitalGasicon.png",
     "name": "Orbital Gas Strike",
@@ -1045,10 +985,10 @@
     "activation": 1
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital"
     ],
-    "traits": ["orbital"],
     "category": "Bridge",
     "icon": "OrbitalEMSicon.png",
     "name": "Orbital EMS Strike",
@@ -1064,10 +1004,11 @@
     "activation": 1
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "orbital",
+      "explosive"
     ],
-    "traits": ["orbital", "explosive"],
     "category": "Bridge",
     "icon": "OrbitalSmokeicon.png",
     "name": "Orbital Smoke Strike",
@@ -1083,10 +1024,10 @@
     "activation": 1
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "eagle"
     ],
-    "traits": ["eagle"],
     "category": "Hangar",
     "icon": "EagleStrafingicon.png",
     "name": "Eagle Strafing Run",
@@ -1101,10 +1042,11 @@
     "activation": 1
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "eagle",
+      "explosive"
     ],
-    "traits": ["eagle", "explosive"],
     "category": "Hangar",
     "icon": "EagleAirstrikeicon.png",
     "name": "Eagle Airstrike",
@@ -1120,10 +1062,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "eagle",
+      "explosive"
     ],
-    "traits": ["eagle", "explosive"],
     "category": "Hangar",
     "icon": "EagleClusterbombicon.png",
     "name": "Eagle Cluster Bomb",
@@ -1140,10 +1083,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "eagle",
+      "explosive"
     ],
-    "traits": ["eagle", "explosive"],
     "category": "Hangar",
     "icon": "EagleNapalmicon.png",
     "name": "Eagle Napalm Airstrike",
@@ -1160,10 +1104,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "eagle",
+      "explosive"
     ],
-    "traits": ["eagle", "explosive"],
     "category": "Hangar",
     "icon": "EagleSmokeicon.png",
     "name": "Eagle Smoke Strike",
@@ -1179,10 +1124,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "eagle",
+      "explosive"
     ],
-    "traits": ["eagle", "explosive"],
     "category": "Hangar",
     "icon": "EagleRocketpodicon.png",
     "name": "Eagle 110MM Rocket Pods",
@@ -1198,10 +1144,11 @@
     "activation": 3
   },
   {
-    "permitTypes": [
-      "offensive"
+    "permitType": "offensive",
+    "traits": [
+      "eagle",
+      "explosive"
     ],
-    "traits": ["eagle", "explosive"],
     "category": "Hangar",
     "icon": "Eagle500icon.png",
     "name": "Eagle 500kg Bomb",
