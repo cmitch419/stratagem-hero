@@ -39,7 +39,9 @@ function Stratagem({
     return (
         <Box padding={1} border="2px solid white">
             <Stack direction="row" spacing={1} alignItems="center">
-                <Box component="img" src={`./img/${icon}`} />
+                <Box border="2px solid" height="3rem" width="3rem">
+                    { icon && <Box display="block" height="inherit" maxWidth="100%" component="img" src={`./img/${icon}`} /> }
+                </Box>
                 <Stack flex={1}>
                     <Typography variant="h6">
                         {name?.toUpperCase()}

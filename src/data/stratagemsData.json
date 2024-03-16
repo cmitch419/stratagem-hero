@@ -4,10 +4,14 @@
       "supply"
     ],
     "traits": [
+      "hellpod",
       "backpack"
     ],
+    "category": "Hangar",
     "icon": "LIFT-850icon.png",
-    "name": "LIFT-850 Jump Pack",
+    "name": "Jump Pack",
+    "model": "LIFT-850",
+    "description": "Enables the user to jump higher than 'gravity' and 'safety' would normally allow. Must be charged before use.",
     "code": [
       "D",
       "U",
@@ -24,11 +28,15 @@
       "supply"
     ],
     "traits": [
+      "hellpod",
       "backpack"
     ],
+    "category": "Engineering Bay",
     "icon": "B-1icon.png",
-    "name": "B-1 Supply Pack",
+    "name": "Supply Pack",
+    "model": "B-1",
     "altName": "Resupply Pack",
+    "description": "Supply boxes containing ammunition, with a backpack that allows the user to distribute boxes to fellow Helldivers.",
     "code": [
       "D",
       "L",
@@ -46,10 +54,14 @@
       "supply"
     ],
     "traits": [
+      "hellpod",
       "backpack"
     ],
+    "category": "Engineering Bay",
     "icon": "AX-LAS-5icon.png",
-    "name": "AX/LAS-5 \"Guard Dog\" Rover",
+    "name": "\"Guard Dog\" Rover",
+    "model": "AX/LAS-5",
+    "description": "An autonomous drone equipped with a laser rifle, providing 360° cover. Returns to backpack to cool down.",
     "code": [
       "D",
       "U",
@@ -67,10 +79,14 @@
       "supply"
     ],
     "traits": [
+      "hellpod",
       "backpack"
     ],
+    "category": "Engineering Bay",
     "icon": "SH-20icon.png",
-    "name": "SH-20 Ballistic Shield Backpack",
+    "name": "Ballistic Shield Backpack",
+    "model": "SH-20",
+    "description": "A backpack which can be wielded as a one-handed ballistic shield, protecting against small arms fire.",
     "code": [
       "D",
       "L",
@@ -88,11 +104,15 @@
       "supply"
     ],
     "traits": [
+      "hellpod",
       "backpack"
     ],
+    "category": "Engineering Bay",
     "icon": "SH-32icon.png",
-    "name": "SH-32 Shield Generator Pack",
+    "name": "Shield Generator Pack",
+    "model": "SH-32",
     "altName": "SH-20 Shield Generator Pack",
+    "description": "Encloses the wearer in a spherical shield which blocks high-speed projectiles. Has a limited lifetime once deployed.",
     "code": [
       "D",
       "U",
@@ -110,11 +130,15 @@
       "supply"
     ],
     "traits": [
+      "hellpod",
       "backpack"
     ],
+    "category": "Robotic Workshop",
     "icon": "AX-AR-23icon.png",
-    "name": "AX/AR-23 \"Guard Dog\"",
+    "name": "\"Guard Dog\"",
+    "model": "AX/AR-23",
     "altName": "AD-334 Guard Dog",
+    "description": "An autonomous drone equipped with a Liberator assault rifle, providing 360° cover. Returns to backpack to rearm.",
     "code": [
       "D",
       "U",
@@ -135,8 +159,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "MG-43icon.png",
-    "name": "MG-43 Machine Gun",
+    "name": "Machine Gun",
+    "model": "MG-43",
+    "description": "A machine gun designed for stationary use. Trades higher power for increased recoil and reduced accuracy.",
     "code": [
       "D",
       "L",
@@ -156,8 +183,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "APW-1icon.png",
-    "name": "APW-1 Anti-Materiel Rifle",
+    "name": "Anti-Materiel Rifle",
+    "model": "APW-1",
+    "description": "A high-caliber sniper rifle effective over long distances against light vehicle armor. This rifle must be aimed downscope.",
     "code": [
       "D",
       "L",
@@ -177,8 +207,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "M-105icon.png",
-    "name": "M-105 Stalwart",
+    "name": "Stalwart",
+    "model": "M-105",
+    "description":"A compact, low caliber machine gun. Trades power for ease of use, with faster reloading than heavier machine guns.",
     "code": [
       "D",
       "L",
@@ -199,9 +232,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "EAT-17icon.png",
-    "name": "EAT-17 Expendable Anti-tank",
-    "altName": "EAT-17",
+    "name": "Expendable Anti-tank",
+    "model": "EAT-17",
+    "description": "A single-use weapon specialized for damaging vehicle armor. Discarded after every use.",
     "code": [
       "D",
       "D",
@@ -221,8 +256,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "GR-8icon.png",
-    "name": "GR-8 Recoilless Rifle",
+    "name": "Recoilless Rifle",
+    "model": "GR-8",
+    "description": "A recoilless rifle effective against vehicle armor. Includes support backpack required for reloading.",
     "code": [
       "D",
       "L",
@@ -242,9 +280,12 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "FLAM-40icon.png",
-    "name": "FLAM-40 Flamethrower",
-    "altName": "FLAM-40 Incinerator",
+    "name": "Flamethrower",
+    "model": "FLAM-40",
+    "altName": "Incinerator",
+    "description":"An incendiary weapon for close range. Will ignite targets, terrain, and any flammable teammates.",
     "code": [
       "D",
       "L",
@@ -264,8 +305,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "AC-8icon.png",
-    "name": "AC-8 Autocannon",
+    "name": "Autocannon",
+    "model": "AC-8",
+    "description": "A fully-automatic cannon effective against light vehicle armor. Includes support backpack required for reloading.",
     "code": [
       "D",
       "L",
@@ -286,8 +330,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "RS-422icon.png",
-    "name": "RS-422 Railgun",
+    "name": "Railgun",
+    "model": "RS-422",
+    "description": "An experimental weapon which prioritizes armor penetration. Must be charged between shots - so choose targets carefully.",
     "code": [
       "D",
       "R",
@@ -308,8 +355,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Patriotic Administration Center",
     "icon": "FAF-14icon.png",
-    "name": "FAF-14 SPEAR Launcher",
+    "name": "SPEAR Launcher",
+    "model": "FAF-14",
+    "description": "An anti-tank homing missile which must lock onto its target before launch. Effective against large and armored enemies.",
     "code": [
       "D",
       "D",
@@ -327,10 +377,14 @@
     ],
     "traits": [
       "support weapon",
-      "hellpod"
+      "hellpod",
+      "explosive"
     ],
+    "category": "Engineering Bay",
     "icon": "GL-21icon.png",
-    "name": "GL-21 Grenade Launcher",
+    "name": "Grenade Launcher",
+    "model": "GL-21",
+    "description": "A grenade launcher effective against armored infantry. Not intended for use against vehicle armor or fortified buildings.",
     "code": [
       "D",
       "L",
@@ -350,8 +404,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Engineering Bay",
     "icon": "LAS-98icon.png",
-    "name": "LAS-98 Laser Cannon",
+    "name": "Laser Cannon",
+    "model": "LAS-98",
+    "description": "A laser weapon firing a continuous beam. Doesn't require ammunition, but will need heat sink replaced if it overheats.",
     "code": [
       "D",
       "L",
@@ -371,8 +428,11 @@
       "support weapon",
       "hellpod"
     ],
+    "category": "Engineering Bay",
     "icon": "ARC-3icon.png",
-    "name": "ARC-3 Arc Thrower",
+    "name": "Arc Thrower",
+    "model": "ARC-3",
+    "description": "Projects an arc of lightning at close range. Charges up to project bolts, and may discharge through multiple targets.",
     "code": [
       "D",
       "R",
@@ -387,7 +447,7 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
     "icon": "Reinforceicon.png",
     "name": "Reinforce",
@@ -404,7 +464,7 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
     "icon": "SOSicon.png",
     "name": "SOS Beacon",
@@ -420,7 +480,7 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
     "icon": "ResupplyIcon.png",
     "name": "Resupply",
@@ -436,10 +496,11 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
-    "icon": "Strat_NUX-223_Hellbomb_mk1.png",
-    "name": "NUX-223 Hellbomb",
+    "icon": "",
+    "name": "Hellbomb",
+    "model": "NUX-223",
     "code": [
       "D",
       "U",
@@ -456,7 +517,7 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
     "icon": "DeliverSSSDicon.png",
     "name": "SSSD Delivery",
@@ -473,7 +534,7 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
     "icon": "Seismic probe icon.png",
     "name": "Seismic Probe",
@@ -491,7 +552,7 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
     "icon": "DeliverSSSDicon.png",
     "name": "Upload Data",
@@ -508,7 +569,7 @@
   },
   {
     "permitTypes": [
-      "Mission"
+      "mission"
     ],
     "icon": "HD2 Eagle Rearm Icon.jpg",
     "name": "Eagle Rearm",
@@ -527,8 +588,14 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod"
+    ],
+    "category": "Bridge",
     "icon": "HMGTurreticon.png",
-    "name": "E/MG-101 HMG Emplacement",
+    "name": "HMG Emplacement",
+    "model": "E/MG-101",
+    "description": "A manned fortification offering superior firepower against lightly armored targets. Slow to turn, so place it wisely.",
     "code": [
       "D",
       "U",
@@ -545,8 +612,13 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod"
+    ],
+    "category": "Bridge",
     "icon": "Shieldrelayicon.png",
-    "name": "FX-12 Shield Generator Relay",
+    "name": "Shield Generator Relay",
+    "model": "FX-12",
     "code": [
       "D",
       "D",
@@ -563,8 +635,14 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod", "sentry"
+    ],
+    "category": "Bridge",
     "icon": "Teslaicon.png",
-    "name": "A/ARC-3 Tesla Tower",
+    "name": "Tesla Tower",
+    "model": "A/ARC-3",
+    "description": "A turret which fires electrical charges at targets in close range. To avoid friendly fire, remain prone.",
     "code": [
       "D",
       "U",
@@ -581,8 +659,15 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "explosive"
+    ],
+    "category": "Engineering Bay",
     "icon": "Minefieldicon.png",
-    "name": "MD-6 Anti-Personnel Minefield",
+    "name": "Anti-Personnel Minefield",
+    "model": "MD-6",
+    "description": "Deploys a defensive anti-personnel minefield, to halt enemy advance.",
     "code": [
       "D",
       "L",
@@ -597,8 +682,15 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "explosive"
+    ],
+    "category": "Engineering Bay",
     "icon": "Fireminefieldicon.png",
-    "name": "MD-I4 Incendiary Mines",
+    "name": "Incendiary Mines",
+    "model": "MD-I4",
+    "description": "Deploys a defensive anti-personnel minefield, which will set both terrain and targets alight when triggered.",
     "code": [
       "D",
       "L",
@@ -613,8 +705,15 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "sentry"
+    ],
+    "category": "Robotic Workshop",
     "icon": "MGsentryicon.png",
-    "name": "A/MG-43 Machine Gun Sentry",
+    "name": "Machine Gun Sentry",
+    "model": "A/MG-43",
+    "description": "An agile automated machine gun turret. Will fire at targets even if Helldivers will be caught in the crossfire.",
     "code": [
       "D",
       "U",
@@ -628,10 +727,35 @@
   },
   {
     "permitTypes": [
+      "supply"
+    ],
+    "traits": [
+      "explosive",
+      "vehicle"
+    ],
+    "category": "Robotic Workshop",
+    "icon": "EXO45icon.png",
+    "name": "Patriot Exosuit",
+    "model": "EXO-45",
+    "description": "A heavily-armored walking exosuit equipped with a rocket launcher and a heavy machine gun.",
+    "code": ["L","D","R","U","L","D","D"],
+    "cooldown": 600,
+    "uses": 2,
+    "activation": 0
+  },
+  {
+    "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "sentry"
+    ],
+    "category": "Robotic Workshop",
     "icon": "Gatlingsentryicon.png",
-    "name": "A/G-16 Gatling Sentry",
+    "name": "Gatling Sentry",
+    "model": "A/G-16",
+    "description": "An automated turret with an extremely high rate of fire. Caution: does not check if friendly units are in line of fire.",
     "code": [
       "D",
       "U",
@@ -646,8 +770,15 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "sentry"
+    ],
+    "category": "Robotic Workshop",
     "icon": "Mortarsentryicon.png",
-    "name": "A/M-12 Mortar Sentry",
+    "name": "Mortar Sentry",
+    "model": "A/M-12",
+    "description": "A turret firing powerful shells in a high arc. Effective at long ranges, and able to strike at targets behind cover.",
     "code": [
       "D",
       "U",
@@ -663,8 +794,15 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "sentry"
+    ],
+    "category": "Robotic Workshop",
     "icon": "Autocannoasentryicon.png",
-    "name": "A/AC-8 Autocannon Sentry",
+    "name": "Autocannon Sentry",
+    "model": "A/AC-8",
+    "description": "An automated cannon turret firing anti-tank ammunition over long ranges. Sacrifices agility for range and power.",
     "code": [
       "D",
       "U",
@@ -681,8 +819,16 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "explosive",
+      "sentry"
+    ],
+    "category": "Robotic Workshop",
     "icon": "Missilesentryicon.png",
-    "name": "A/MLS-4X Rocket Sentry",
+    "name": "Rocket Sentry",
+    "model": "A/MLS-4X",
+    "description": "A powerful automated turret, effective against armored targets. The turret will primarily aim at larger enemies.",
     "code": [
       "D",
       "U",
@@ -698,8 +844,16 @@
     "permitTypes": [
       "defensive"
     ],
+    "traits": [
+      "hellpod",
+      "explosive",
+      "sentry"
+    ],
+    "category": "Robotic Workshop",
     "icon": "EMSmortaricon.png",
-    "name": "A/M-23 EMS Mortar Sentry",
+    "name": "EMS Mortar Sentry",
+    "model": "A/M-23",
+    "description": "A turret firing static field generators that slow the advance of enemies.",
     "code": [
       "D",
       "U",
@@ -715,9 +869,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Orbital Cannons",
     "icon": "OrbitalGatlingicon.png",
     "name": "Orbital Gatling Barrage",
+    "description": "A barrage of high explosive rounds, fired from the Destroyer's high speed rotary autocannons.",
     "code": [
       "R",
       "D",
@@ -733,9 +889,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Orbital Cannons",
     "icon": "OrbitalAirbursticon.png",
     "name": "Orbital Airburst Strike",
+    "description": "A projectile which explodes while airborne, creating a deadly rain of shrapnel. Not effective against heavy armor.",
     "code": [
       "R",
       "R",
@@ -749,9 +907,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Orbital Cannons",
     "icon": "Orbital120icon.png",
     "name": "Orbital 120MM HE Barrage",
+    "description": "A precision artillery salvo over a small area, perfect for taking out concentrated enemy units.",
     "code": [
       "R",
       "R",
@@ -768,9 +928,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Orbital Cannons",
     "icon": "Orbital380icon.png",
     "name": "Orbital 380MM HE Barrage",
+    "description": "A prolonged barrage, wreaking extended destruction over a large area. Communication with teammates is advised.",
     "code": [
       "R",
       "D",
@@ -788,9 +950,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Orbital Cannons",
     "icon": "OrbitalWalkingicon.png",
     "name": "Orbital Walking Barrage",
+    "description": "A linear artillery barrage which moves at intervals, driving the enemy out from cover while allowing an advance.",
     "code": [
       "R",
       "D",
@@ -808,8 +972,10 @@
       "offensive"
     ],
     "traits": ["orbital"],
+    "category": "Orbital Cannons",
     "icon": "OrbitalLasericon.png",
     "name": "Orbital Laser",
+    "description": "The Destroyer's laser cannon will sweep over the designated area, vaporizing all targets within the effective radius.",
     "code": [
       "R",
       "D",
@@ -826,8 +992,10 @@
       "offensive"
     ],
     "traits": ["orbital"],
+    "category": "Orbital Cannons",
     "icon": "OrbitalRailcannonicon.png",
     "name": "Orbital Railcannon Strike",
+    "description": "A high-velocity railcannon round fired at the largest target in close proximity to the beacon. Targeting is automatic.",
     "code": [
       "R",
       "U",
@@ -843,9 +1011,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Bridge",
     "icon": "OrbitalPrecisionicon.png",
     "name": "Orbital Precision Strike",
+    "description": "A single precision shot from the Destoryer's 'ATLAS' cannon.",
     "code": [
       "R",
       "R",
@@ -859,9 +1029,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Bridge",
     "icon": "OrbitalGasicon.png",
     "name": "Orbital Gas Strike",
+    "description": "A projectile which releases a cloud of corrosive gas, harmful to both organic and robotic lifeforms.",
     "code": [
       "R",
       "R",
@@ -877,8 +1049,10 @@
       "offensive"
     ],
     "traits": ["orbital"],
+    "category": "Bridge",
     "icon": "OrbitalEMSicon.png",
     "name": "Orbital EMS Strike",
+    "description": "A \"compliance weapon\" to modify enemy behavior. The projectile temporarily stuns all targets within the strike radius.",
     "code": [
       "R",
       "R",
@@ -893,9 +1067,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["orbital"],
+    "traits": ["orbital", "explosive"],
+    "category": "Bridge",
     "icon": "OrbitalSmokeicon.png",
     "name": "Orbital Smoke Strike",
+    "description": "Creates a large, thick smoke screen to block targets' line of sight.",
     "code": [
       "R",
       "R",
@@ -911,8 +1087,10 @@
       "offensive"
     ],
     "traits": ["eagle"],
+    "category": "Hangar",
     "icon": "EagleStrafingicon.png",
     "name": "Eagle Strafing Run",
+    "description": "A strafing run of the battlefield to clear small targets, delivered almost instantaneously.",
     "code": [
       "U",
       "R",
@@ -926,9 +1104,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["eagle"],
+    "traits": ["eagle", "explosive"],
+    "category": "Hangar",
     "icon": "EagleAirstrikeicon.png",
     "name": "Eagle Airstrike",
+    "description": "A barrage of bombs creating a non-targeted carpet of explosions.",
     "code": [
       "U",
       "R",
@@ -943,9 +1123,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["eagle"],
+    "traits": ["eagle", "explosive"],
+    "category": "Hangar",
     "icon": "EagleClusterbombicon.png",
     "name": "Eagle Cluster Bomb",
+    "description": "A targeted air strike unable to destroy buildings, but efficient at clearing smaller targets.",
     "code": [
       "U",
       "R",
@@ -961,10 +1143,12 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["eagle"],
+    "traits": ["eagle", "explosive"],
+    "category": "Hangar",
     "icon": "EagleNapalmicon.png",
     "name": "Eagle Napalm Airstrike",
     "altName": "Eagle Napalm Strike",
+    "description": "A barrage of napalm bombs, creating a wall of fire which will stop the enemy in their tracks.",
     "code": [
       "U",
       "R",
@@ -979,9 +1163,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["eagle"],
+    "traits": ["eagle", "explosive"],
+    "category": "Hangar",
     "icon": "EagleSmokeicon.png",
     "name": "Eagle Smoke Strike",
+    "description": "A barrage of smoke grenades, creating a thick smoke screen to block enemies' line of sight.",
     "code": [
       "U",
       "R",
@@ -996,9 +1182,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["eagle"],
+    "traits": ["eagle", "explosive"],
+    "category": "Hangar",
     "icon": "EagleRocketpodicon.png",
     "name": "Eagle 110MM Rocket Pods",
+    "description": "A barrage of rocket pods, which the Eagle pilot will release on the largest target near the stratagem beacon.",
     "code": [
       "U",
       "R",
@@ -1013,9 +1201,11 @@
     "permitTypes": [
       "offensive"
     ],
-    "traits": ["eagle"],
+    "traits": ["eagle", "explosive"],
+    "category": "Hangar",
     "icon": "Eagle500icon.png",
     "name": "Eagle 500kg Bomb",
+    "description": "A large bomb obliterating almost any target close to impact. Make sure to clear the area.",
     "code": [
       "U",
       "R",

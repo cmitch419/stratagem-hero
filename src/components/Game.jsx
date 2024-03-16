@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Stratagem, { StratagemInfo } from "./components/Stratagem";
-import stratagemsData from "./stratagemsData.json";
-import { KEY_TO_ALPHA } from "./constants";
-import useGamepad from "./hooks/useGamepad";
+import Stratagem, { StratagemInfo } from "./Stratagem";
+import stratagemsData from "../data/stratagemsData.json";
+import { KEY_TO_ALPHA } from "../constants";
+import useGamepad from "../hooks/useGamepad";
 
 const Game = () => {
     const [inputSequence, setInputSequence] = useState('');
