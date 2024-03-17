@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { Box, Divider, Stack, Typography } from "@mui/material"
+import { Box, Stack, Typography } from "@mui/material"
 import { Forward } from "@mui/icons-material";
-import { ALPHA_TO_ROTATION } from "../constants";
+import { DIRECTION_TO_ROTATION } from "../constants";
 
 
 const STRATAGEM_INFO_BASE = {
@@ -44,7 +44,6 @@ function Stratagem({
     matched,
 }) {
     const {
-        icon,
         name,
         code,
     } = stratagem;
@@ -74,15 +73,15 @@ export function ArrowCombo({ code, valid, inputSequence, matched }) {
                 let arrowColor = 'grey';
                 if (valid) {
                     if (length < i + 1) {
-                        arrowColor = 'darkgrey';
+                        arrowColor = 'lightgray';
                     } else if (length === i + 1) {
-                        arrowColor = 'greenyellow';
-                    } else {
                         arrowColor = 'yellow';
+                    } else {
+                        arrowColor = 'gray';
                     }
                 }
                 if (matched) {
-                    arrowColor = 'yellow';
+                    arrowColor = 'white';
                 }
                 return (<Arrow key={i} alpha={c} color={arrowColor} />)
 
@@ -93,7 +92,7 @@ export function ArrowCombo({ code, valid, inputSequence, matched }) {
 
 function Arrow({ alpha, color }) {
     return <Box component={Forward} sx={{
-        transform: `rotate(${ALPHA_TO_ROTATION[alpha]}deg)`,
+        transform: `rotate(${DIRECTION_TO_ROTATION[alpha]}deg)`,
         color,
     }} />
 }
@@ -101,9 +100,7 @@ function Arrow({ alpha, color }) {
 export function StratagemLine({ stratagem }) {
     if (!stratagem) return <></>;
     const {
-        icon,
         name,
-        permitType,
     } = stratagem;
 
     return (
@@ -144,7 +141,7 @@ export function StratagemInfo({ stratagem }) {
             ...STRATAGEM_INFO_1
         }}>
             <Box sx={{ gridArea: 'vert', width: '20px', borderLeft: "6px solid yellow"}}></Box>
-            <Box sx={{ gridArea: 'category' }}>
+            <Box flex={1}sx={{ gridArea: 'category' }}>
                 <Typography flex={1} variant="h6">{permitType ? `${permitType} ` : ''}Stratagem Permit</Typography>
             </Box>
             <Box sx={{ gridArea: 'name' }}>
@@ -213,53 +210,3 @@ const StratagemIcon = ({ icon, permitType }) => {
 }
 
 export default Stratagem;
-
-/**
- * 
-        <Stack flex={1}>
-            <Typography flex={1} variant="h6">{permitType.length > 0 ? `${permitType.join(' ')} ` : ''}Stratagem Permit</Typography>
-            <Typography flex={1} variant="h4">{model ? `${model} ` : ''}{name}</Typography>
-            <Typography flex={1}>{description}</Typography>
-
-            <Stack direction="row" flex={1} spacing={1} alignItems="flex-start" justifyContent="space-between">
-                <Box border="2px solid white" p={1} flex={1}>
-                    <Stack alignItems="flex-start">
-                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
-                            <Typography>
-                                Call-in time:
-                            </Typography>
-                            <Typography>
-                                {activation}
-                            </Typography>
-                        </Stack>
-                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
-                            <Typography>
-                                Uses:
-                            </Typography>
-                            <Typography>
-                                {uses === -1 ? 'Unlimited' : uses}
-                            </Typography>
-                        </Stack>
-                        <Stack width="100%" direction="row" alignItems="center" justifyContent="space-between">
-                            <Typography>
-                                Cooldown Time:
-                            </Typography>
-                            <Typography>
-                                {cooldown} sec
-                            </Typography>
-                        </Stack>
-                    </Stack>
-
-                </Box>
-
-                <Box flex={1} p={1} border="2px solid white">
-                    <Stack>
-                        {traits && traits.map((trait, i) =>
-                            <Typography key={i}>
-                                | {trait}
-                            </Typography>)}
-                    </Stack>
-                </Box>
-            </Stack>
-        </Stack>
-*/

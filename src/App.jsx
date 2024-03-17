@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Game from './components/Game';
@@ -13,7 +13,10 @@ const App = () => {
     backgroundAttachment: 'fixed',
   }}>
       <Game />
-      <ToastContainer position='bottom-left' />
+      <Box position="fixed" right="1rem" bottom="1rem">
+        <Typography>Hold SHIFT and press W-A-S-D</Typography>
+      </Box>
+      <ToastContainer position='bottom-right' />
   </Box>);
 };
 
