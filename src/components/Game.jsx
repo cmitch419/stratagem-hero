@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Stratagem, { StratagemInfo } from "./Stratagem";
 import stratagemsData from "../data/stratagemsData.json";
-import { DPAD_TO_DIRECTION, INPUT_RESET_TIME, KEY_TO_DIRECTION } from "../constants";
+import { INPUT_RESET_TIME } from "../constants";
 import useGamepad from "../hooks/useGamepad";
-import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import useKeyboard from "../hooks/useKeyboard";
 import StratagemDrawer from "./StratagemDrawer";
 

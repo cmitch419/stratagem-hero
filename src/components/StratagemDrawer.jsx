@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Box, Stack } from "@mui/material";
 import { StratagemIcon } from "./Stratagem";
-import { useState } from "react";
 
 function StratagemDrawer({ stratagems, selectedIndex, setSelectedIndex }) {
     return (

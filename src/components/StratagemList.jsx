@@ -2,7 +2,7 @@
 import { List } from "@mui/material";
 import { StratagemLine } from "./Stratagem";
 
-function StratagemList({ stratagems=[] }) {
+function StratagemList({ stratagems=[], }) {
     return (<List>
         {stratagems && stratagems.map((stratagem)=>{
             <StratagemLine stratagem={stratagem} />
