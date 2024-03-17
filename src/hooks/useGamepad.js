@@ -1,9 +1,42 @@
 import { useEffect, useState } from "react";
-import { DPAD_TO_DIRECTION } from "../constants";
+
 
 function useGamepad() {
+    const DIRECTIONS = ['U','D','L','R'];
+
+    const DEFAULT_BUTTON_MAPPING = [
+        {
+            id: 'HOLD',
+            name: 'Stratagem hold button',
+            value: 4, // Left Bumper
+        },
+        {
+            id: 'U',
+            name: 'Up',
+            value: 12, // D-pad up
+        },
+        {
+            id: 'D',
+            name: 'Down',
+            value: 13, // D-pad down
+        },
+        {
+            id: 'L',
+            name: 'Left',
+            value: 14, // D-pad left
+        },
+        {
+            id: 'R',
+            name: 'Right',
+            value: 15, // D-pad right
+        },
+    ];
+    const [mapping,setMapping] = useState(DEFAULT_BUTTON_MAPPING);
     const [gamepad, setGamepad] = useState(null);
     const [direction, setDirection] = useState(null);
+    const [hold, setHold] = useState(false);
+
+    const HOLD = () => mapping.find(b=>b.id==='HOLD').value;
 
     useEffect(() => {
         const updateGamepad = () => {
@@ -24,18 +57,35 @@ function useGamepad() {
         };
     }, []);
 
+    const getDirection = () => {
+        
+    }
+
     useEffect(() => {
-        const dpad = Object.keys(DPAD_TO_DIRECTION);
         setDirection(null);
-        dpad.forEach(d=>{
-          if (gamepad?.buttons[d]?.pressed) {
-            setDirection(DPAD_TO_DIRECTION[d]);
+        mapping.forEach(({ id, name, value })=>{
+          if (gamepad?.buttons[value]?.pressed) {
+            console.debug(`${name}!`);
+            if (DIRECTIONS.some(d=>d===id)) {
+                setDirection(id);
+                return;
+            }
           }
         });
-    }, [gamepad]);
+        console.log(gamepad?.buttons[HOLD()]);
+        if (gamepad?.buttons[HOLD()]?.pressed && !hold) {
+            setHold(true);
+            console.debug('HOLD!');
+        } 
+        if (!gamepad?.buttons[HOLD()]?.pressed) {
+            console.debug('UNHOLD!');
+            setHold(false);
+        }
+    }, [gamepad, mapping]);
 
     return {
         direction,
+        hold,
     };
 }
 

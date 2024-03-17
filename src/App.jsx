@@ -4,7 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Game from './components/Game';
 import BackgroundImage from '/img/bg01.jpg'
-import Stratagems from './pages/Stratagems';
 
 const App = () => {
   return (<Box className="App" sx={{
