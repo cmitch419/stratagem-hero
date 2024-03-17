@@ -13,7 +13,7 @@ const STRATAGEM_INFO = {
     ...STRATAGEM_INFO_BASE,
     gap: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
-    gridTemplateColumns: 'repeat(1, 1fr)',
+    gridTemplateColumns: '1fr',
     gridTemplateAreas:
         `"stratagemInfo1"
         "stratagemInfo2"`
@@ -21,7 +21,7 @@ const STRATAGEM_INFO = {
 
 const STRATAGEM_INFO_1 = {
     ...STRATAGEM_INFO_BASE,
-    gridTemplateColumns: '1rem, repeat(4, 1fr)',
+    gridTemplateColumns: '1rem repeat(4, 1fr)',
     gridTemplateAreas:
         `"vert  category  category    category    category"
         "vert   name      name        name        name"
@@ -49,12 +49,10 @@ function Stratagem({
     } = stratagem;
 
     return (
-        <Box padding={1} border="2px solid white" sx={{
-            backgroundColor: "rgba(0,0,0,0.5)"
-        }}>
-            <Stack direction="row" spacing={1} alignItems="center">
+        <Box minWidth="450px">
+            <Stack direction="row" alignItems="center">
                 <StratagemIcon {...stratagem} />
-                <Stack flex={1}>
+                <Stack flex={1} pl="1rem">
                     <Typography variant="h6">
                         {name?.toUpperCase()}
                     </Typography>
@@ -197,15 +195,16 @@ export function StratagemInfo({ stratagem }) {
     </Box>);
 }
 
-const StratagemIcon = ({ icon, permitType }) => {
+export const StratagemIcon = ({ icon, permitType, showBorder=true }) => {
     const ICON_COLOR = {
         "supply": "#4eb3cf",
         "offensive": "#c94b3d",
         "defensive": "#52823e",
         "mission": "#bfa355",
     };
-    return (<Box border={`2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}`} height="3rem" width="3rem">
-    {icon && <Box display="block" height="inherit" maxWidth="100%" component="img" src={`./img/${icon}`} />}
+    const iconUrl = `${import.meta.env.BASE_URL}/img/${icon}`;
+    return (<Box border={showBorder ? `2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}` : ''} height="3rem" width="3rem">
+    {icon && <Box display="block" height="inherit" maxWidth="100%" component="img" src={iconUrl} />}
 </Box>)
 }
 

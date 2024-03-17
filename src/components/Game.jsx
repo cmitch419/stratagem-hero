@@ -4,10 +4,35 @@ import Stratagem, { StratagemInfo } from "./Stratagem";
 import stratagemsData from "../data/stratagemsData.json";
 import { DPAD_TO_DIRECTION, INPUT_RESET_TIME, KEY_TO_DIRECTION } from "../constants";
 import useGamepad from "../hooks/useGamepad";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
 import useKeyboard from "../hooks/useKeyboard";
+import StratagemDrawer from "./StratagemDrawer";
+
+const LAYOUT_SMOL = {
+  display: 'grid',
+  gridTemplateRows: '4fr 1fr',
+  gap: 1,
+  gridTemplateColumns: '1fr',
+  height: '100vh',
+  gridTemplateAreas:
+  `"list"
+   "info"`
+}
+
+const LAYOUT_LARGE = {
+  display: 'grid',
+  gridTemplateRows: 'auto',
+  gap: 1,
+  gridTemplateColumns: '2fr 3fr',
+  height: '100vh',
+  gridTemplateAreas:
+  `"list info"`
+}
 
 const Game = () => {
+  const theme = useTheme();
+  const isBigBoi = useMediaQuery(theme.breakpoints.up('md'));
+
   const [inputSequence, setInputSequence] = useState('');
   const [matchingStratagems, setMatchingStratagems] = useState([]);
   const [exactMatchIndex, setExactMatchIndex] = useState(-1);
@@ -15,9 +40,24 @@ const Game = () => {
   const [shouldReset, setShouldReset] = useState(false);
   const [gameInProgress, setGameInProgress] = useState(false);
   const [controllerMode, setControllerMode] = useState(false);
+  const [layout, setLayout] = useState(LAYOUT_SMOL);
+  const [selectedDrawerIndex,setSelectedDrawerIndex] = useState(0);
+  const [activeStratagems,setActiveStratagems] = useState([null,null,null,null]);
+  const [activeListView,setActiveListView] = useState(false);
 
   const gamepad = useGamepad();
   const keyboard = useKeyboard();
+
+  // useEffect(() => {
+  //   const n = stratagemsData.length - 1;
+  //   const arr = Array.from({ length: n + 1 }, (_, i) => i);
+  //   setActiveStratagems(arr);
+  //   console.log(arr)
+  // },[]);
+
+  useEffect(() => {
+    setLayout(isBigBoi ? LAYOUT_LARGE : LAYOUT_SMOL);
+  }, [isBigBoi])
 
   useEffect(() => {
     if (gamepad?.direction) {
@@ -64,55 +104,13 @@ const Game = () => {
   useEffect(() => {
     if (shouldReset) {
       setGameInProgress(false);
+      if (exactMatchIndex > -1) {
+        toast(stratagemsData[exactMatchIndex].name, { pauseOnFocusLoss: false })
+      }
       setInputSequence('');
       console.log('ending');
     }
-  }, [shouldReset]);
-
-  // useEffect(() => {
-  //   const handleShiftKeyDown = (event) => {
-  //     if (event.key === 'Shift') {
-  //       event.preventDefault();
-  //       resetGame();
-  //       setGameInProgress(true);
-  //     }
-  //   };
-  //   const handleShiftKeyUp = (event) => {
-  //     if (!event.shiftKey && event.key === 'Shift') {
-  //       event.preventDefault();
-  //       setGameInProgress(false);
-  //       if (exactMatchIndex > -1) {
-  //         toast(stratagemsData[exactMatchIndex].name, { pauseOnFocusLoss: false })
-  //       }
-  //     }
-  //   };
-  //   if (gameInProgress) {
-  //     const handleKeyPress = (event) => {
-  //       event.preventDefault();
-  //       const alpha = KEY_TO_DIRECTION[event.key.toLowerCase()];
-  //       alpha && setInputSequence((prev) => prev + alpha);
-  //     };
-
-  //     console.log('game started, recording input');
-  //     window.addEventListener('keyup', handleShiftKeyUp);
-  //     window.addEventListener('keypress', handleKeyPress);
-
-  //     return () => {
-  //       console.debug('removing Shift keyup and keypress');
-  //       window.removeEventListener('keyup', handleShiftKeyUp);
-  //       window.removeEventListener('keypress', handleKeyPress);
-  //     };
-
-  //   } else {
-  //     console.log('game ending');
-  //     setShouldReset(true);
-  //     window.addEventListener('keydown', handleShiftKeyDown);
-  //     return () => {
-  //       window.removeEventListener('keydown', handleShiftKeyDown);
-  //     };
-
-  //   }
-  // }, [exactMatchIndex, gameInProgress, inputSequence, matchingStratagems.length]);
+  }, [exactMatchIndex, shouldReset]);
 
   useEffect(() => {
     if (inputSequence && gameInProgress) {
@@ -143,21 +141,25 @@ const Game = () => {
     console.log('Game reset!');
   };
 
-  // useEffect(() => {
-  //   if (shouldReset) {
-  //     console.debug(`Resetting game in ${INPUT_RESET_TIME} seconds`);
-  //     const reset = setInterval(() => {
-  //       resetGame();
-  //     }, INPUT_RESET_TIME * 1000);
-  //     return () => clearInterval(reset);
-  //   }
-  // }, [shouldReset]);
-
-  return (
-    <Stack direction="row" justifyContent="space-between">
-      <Box>
-        <Box component="ul">
-          {stratagemsData?.map((stratagem, sgIndex) => {
+  return (<Box sx={{ ...layout }}>
+      <Box sx={{
+        gridArea: 'list',
+        overflowY: 'scroll',
+        backdropFilter: 'blur(1rem)',
+        background: 'rgba(0,0,0,0.5)',
+        padding: '1rem',
+        margin: 0,
+      }}>
+        <Box component="ul" p={0} m={0}>
+          <Box sx={{
+            position: "sticky",
+            top: 0,
+            width: "max-content",
+            marginLeft: "auto",
+          }} onClick={()=>setActiveListView(!activeListView)}>
+            {activeListView ? 'SHOW ALL' : 'SHOW ACTIVE ONLY'}
+          </Box>
+          {stratagemsData.filter((s,i) => activeListView ? activeStratagems.indexOf(i) > -1 : true).map((stratagem, sgIndex) => {
             const stratagemStr = stratagem?.code?.join('');
             const isStillValid = stratagemStr && stratagemStr.indexOf(inputSequence) === 0;
             const isExactMatch = sgIndex === exactMatchIndex;
@@ -165,7 +167,14 @@ const Game = () => {
             return (
               <li
                 key={sgIndex}
-                onClick={() => setSelectedIndex(sgIndex)}
+                onClick={() => {
+                  console.log(sgIndex,activeStratagems)
+                  setSelectedIndex(sgIndex)
+                  setActiveStratagems(prev=>{
+                    prev[selectedDrawerIndex] = sgIndex;
+                    return prev;
+                  });
+                }}
               >
                 <Stratagem
                   inputSequence={inputSequence}
@@ -180,15 +189,19 @@ const Game = () => {
         </Box>
       </Box>
       <Box sx={{
-        position: 'fixed',
-        right: 0,
-        marginRight: '1rem',
-        marginTop: '1rem',
-        width: '50%'
+        gridArea: 'info',
       }}>
+        <Box flex={1} position="fixed" bottom={0}>
+          <StratagemDrawer
+            stratagems={activeStratagems.map(i=>stratagemsData[i])}
+            setSelectedIndex={setSelectedDrawerIndex}
+            selectedIndex={selectedDrawerIndex}
+          />
+        </Box>
         <StratagemInfo stratagem={stratagemsData[selectedIndex]} />
       </Box>
-    </Stack>
+    
+    </Box>
   );
 }
 

@@ -24,20 +24,11 @@ function useKeyboard() {
             }
         }
 
-        function pressHandler({ key }) {
-            if (holdKey) {
-                setPressedKey(key);
-            } else {
-                setPressedKey(null);
-            }
-        }
         window.addEventListener('keydown', downHandler);
         window.addEventListener('keyup', upHandler);
-        window.addEventListener('keypress', pressHandler);
         return () => {
             window.removeEventListener('keydown', downHandler);
             window.removeEventListener('keyup', upHandler);
-            window.removeEventListener('keypress', pressHandler);
         };
     }, [holdKey]);
 
