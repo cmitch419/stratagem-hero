@@ -37,35 +37,43 @@ function Stratagem({
     );
 }
 
-function ArrowCombo({ code, valid, inputSequence, matched, activation }) {
-    const length = inputSequence?.length;
-    const [timer, setTimer] = useState();
-    
+function DeploymentTimer ({ activation, cooldown }) {
+    const [mode, setMode] = useState(0);
+    const [timer, setTimer] = useState(activation);
+    const MODES = [
+        'DEPLOYING',
+        'COOLDOWN',
+    ];
+
     useEffect(() => {
-        if (matched) {
-            // console.log(timer,activation)
-            setTimer(activation);
-            const deployTimer = setInterval(() => { if (timer > 0) setTimer(prev => prev - 1); },1000);
+        if (timer > 0) {
+            const deployTimer = setInterval(() => { if (timer >= 0) setTimer(prev => prev - 1); },1000);
             return () => {
-                setTimer(activation);
                 clearInterval(deployTimer);
             };
+        } else {
+            setTimer(cooldown)
         }
-    }, [activation, matched]);
+    },[timer]);
+    return <Typography>{timer >= 0 ? `DEPLOYING T-${formatSeconds(timer)}` : 'COOLDOWN'}</Typography>;
+}
 
+function ArrowCombo({ code, valid, inputSequence, matched, activation, cooldown }) {
+    const length = inputSequence?.length;
+    
     return (
         <Stack direction="row">
-            { matched && timer >= 0
-                ? <Typography>Inbound T-{formatSeconds(timer)}</Typography>
+            { matched
+                ? <DeploymentTimer activation={activation} cooldown={cooldown} />
                 : code.map((c, i) => {
                     let arrowColor = 'grey';
                     if (valid) {
                         if (length < i + 1) {
-                            arrowColor = 'white';
+                            arrowColor = 'rgba(255,255,255,1)';
                         } else if (length === i + 1) {
-                            arrowColor = 'grey';
+                            arrowColor = 'rgba(255,255,255,0.5)';
                         } else {
-                            arrowColor = 'grey';
+                            arrowColor = 'rgba(255,255,255,0.5)';
                         }
                     }
                     if (matched) {
@@ -78,9 +86,16 @@ function ArrowCombo({ code, valid, inputSequence, matched, activation }) {
 }
 
 function Arrow({ alpha, color }) {
+    const SHADOW_OFFSETS = {
+        'R': "1px 1px",
+        'D': "1px -1px",
+        'L': "-1px -1px",
+        'U': "-1px 1px",
+    }
     return <Box component={Forward} sx={{
         transform: `rotate(${DIRECTION_TO_ROTATION[alpha]}deg)`,
         color,
+        filter: `drop-shadow(${SHADOW_OFFSETS[alpha]} 0 rgba(0,0,0,0.5))`
     }} />
 }
 

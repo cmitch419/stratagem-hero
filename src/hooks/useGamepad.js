@@ -31,7 +31,7 @@ function useGamepad() {
             value: 15, // D-pad right
         },
     ];
-    const [mapping,setMapping] = useState(DEFAULT_BUTTON_MAPPING);
+    const [mapping, setMapping] = useState(DEFAULT_BUTTON_MAPPING);
     const [gamepad, setGamepad] = useState(null);
     const [direction, setDirection] = useState(null);
     const [hold, setHold] = useState(false);
