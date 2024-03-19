@@ -73,12 +73,15 @@ export function ArrowCombo({ code, valid, inputSequence, matched, activation, co
     colorUpcoming='rgba(255,255,255,1)',
     colorInvalid='rgba(255,0,0,1)',
     colorMatched='rgba(255,255,0,1)',
+    scale=1,
 }) {
     if (!code || code?.length < 0) return <></>; 
     const length = inputSequence?.length;
     
     return (
-        <Stack direction="row">
+        <Stack direction="row" sx={{
+            transform: `scale(${scale})`
+        }}>
             { matched
                 ? <DeploymentTimer activation={activation} cooldown={cooldown} />
                 : code.map((c, i) => {
@@ -113,7 +116,7 @@ function Arrow({ alpha, color }) {
         'U': "-1px 1px",
     }
     return <Box component={Forward} sx={{
-        transform: `rotate(${DIRECTION_TO_ROTATION[alpha]}deg)`,
+        transform: `rotate(${DIRECTION_TO_ROTATION[alpha]}deg) `,
         color,
         filter: `drop-shadow(${SHADOW_OFFSETS[alpha]} 0 rgba(0,0,0,0.5))`
     }} />

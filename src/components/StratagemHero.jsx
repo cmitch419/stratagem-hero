@@ -4,7 +4,7 @@ import { ArrowBack, ArrowDownward, ArrowForward, ArrowUpward } from '@mui/icons-
 import useKeyboard from '../hooks/useKeyboard';
 import Stratagem, { ArrowCombo } from './Stratagem';
 import { StratagemIcon } from './StratagemIcon';
-import { Box, LinearProgress, Stack, Typography } from '@mui/material';
+import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material';
 import { Events, GameStates, useGameFSM } from '../hooks/gameFSM';
 
 const stratagemHeroConfig = {
@@ -45,6 +45,8 @@ function StratagemHero() {
     const [roundState, setRoundState] = useState(initialRoundState);
 
     const [roundTimerId, setRoundTimerId] = useState(null);
+
+    const theme = useTheme();
 
     window.cs = currentState;
     window.gs = gameState;
@@ -93,22 +95,22 @@ function StratagemHero() {
     }
 
     const startRound = () => {
-        const id = setInterval(() => {
-            if (currentState === GameStates.ROUND_IN_PROGRESS) {
-                let newTime = 0
-                setRoundState((prevState) => {
-                    // Game over, ran out of time
-                    if (prevState.timeRemaining <= 0) {
-                        endRound(false);
-                        clearInterval(roundTimerId);
-                    } else {
-                        newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
-                    }
-                    return { ...prevState, timeRemaining: newTime }
-                });
-            }
-        }, stratagemHeroConfig.updateIntervalMs);
-        setRoundTimerId(id);
+        // const id = setInterval(() => {
+        //     if (currentState === GameStates.ROUND_IN_PROGRESS) {
+        //         let newTime = 0
+        //         setRoundState((prevState) => {
+        //             // Game over, ran out of time
+        //             if (prevState.timeRemaining <= 0) {
+        //                 endRound(false);
+        //                 clearInterval(roundTimerId);
+        //             } else {
+        //                 newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
+        //             }
+        //             return { ...prevState, timeRemaining: newTime }
+        //         });
+        //     }
+        // }, stratagemHeroConfig.updateIntervalMs);
+        // setRoundTimerId(id);
     };
 
     const getStratagems = (round) => {
@@ -282,7 +284,7 @@ function StratagemHero() {
                 </Typography>
                 <Stack justifyContent="center" alignItems="center">
                     <Typography variant="h6">Round</Typography>
-                    <Typography variant="h3">{round}</Typography>
+                    <Typography variant="h3" color='primary'>{round}</Typography>
                 </Stack>
             </Stack>
             : <></>
@@ -308,7 +310,7 @@ function StratagemHero() {
                     <Typography>
                         Round Bonus
                     </Typography>
-                    <Typography color="yellow">
+                    <Typography color={roundState.valid ? 'primary' : 'error'}>
                         {roundBonus}
                     </Typography>
                 </Stack>
@@ -316,7 +318,7 @@ function StratagemHero() {
                     <Typography>
                         Time Bonus
                     </Typography>
-                    <Typography color="yellow">
+                    <Typography color={roundState.valid ? 'primary' : 'error'}>
                         {timeBonus}
                     </Typography>
                 </Stack>
@@ -324,7 +326,7 @@ function StratagemHero() {
                         <Typography>
                             Perfect Bonus
                         </Typography>
-                        <Typography color="yellow">
+                        <Typography color={roundState.valid ? 'primary' : 'error'}>
                             {perfectRoundBonus}
                         </Typography>
                     </Stack>
@@ -332,7 +334,7 @@ function StratagemHero() {
                         <Typography>
                             Total Score
                         </Typography>
-                        <Typography color="yellow">
+                        <Typography color={roundState.valid ? 'primary' : 'error'}>
                             {score}
                         </Typography>
                     </Stack>
@@ -356,7 +358,7 @@ function StratagemHero() {
                     gridArea: 'round',
                 }}>
                     <Typography variant="h6">Round</Typography>
-                    <Typography variant="h5" color="yellow">{round}</Typography>
+                    <Typography variant="h5" color={roundState.valid ? 'primary' : 'error'}>{round}</Typography>
                 </Box>
                 <Box sx={{
                     gridArea: 'game',
@@ -369,7 +371,7 @@ function StratagemHero() {
                         height: `${ICON_WIDTH * 2}rem`,
                     }}>
                         {stratagems.map((stratagem, i) =>
-                            <Box key={i} pl={i !== stratagemIndex ? `${1}rem` : 0}>
+                            <Box key={i} pl={i !== stratagemIndex ? `1rem` : 0}>
                                 <StratagemIcon {...stratagem}
                                     showBorder
                                     width={i === stratagemIndex ? '10rem' : '5rem'}
@@ -379,7 +381,8 @@ function StratagemHero() {
                         ).slice(stratagemIndex, stratagemIndex + 6)}
                     </Stack>
                     <Typography sx={{
-                        background: 'yellow',
+                        fontWeight: 900,
+                        backgroundColor: roundState.valid ? theme.palette.primary.main : theme.palette.error.main,
                         color: 'black'
                     }}>{stratagems[stratagemIndex]?.name}</Typography>
                     <Box sx={{
@@ -392,15 +395,18 @@ function StratagemHero() {
                     }}>
                         <ArrowCombo {...stratagems[stratagemIndex]}
                             valid={valid}
-                            colorCurrent='yellow'
+                            colorCurrent={theme.palette.primary.main}
                             colorUpcoming='white'
-                            colorInvalid='red'
-                            colorEntered='yellow'
+                            colorInvalid={theme.palette.error.main}
+                            colorEntered={theme.palette.primary.main}
                             inputSequence={inputSequence}
+                            scale={2}
                         />
                     </Box>
                     <LinearProgress
                         variant='determinate'
+                        
+                        color={roundState.valid ? 'primary' : 'error'}
                         value={100 * timeRemaining / (stratagemHeroConfig.timePerRound * 1000)}
                         sx={{
                             height: '1rem',
@@ -414,7 +420,7 @@ function StratagemHero() {
                     flexDirection: 'column',
                     alignItems: 'flex-end',
                 }}>
-                    <Typography variant="h5" color="yellow">{score}</Typography>
+                    <Typography variant="h5" color={roundState.valid ? 'primary' : 'error'}>{score}</Typography>
                     <Typography variant="h6">Score</Typography>
                 </Box>
             </Box>

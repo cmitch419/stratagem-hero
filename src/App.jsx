@@ -8,10 +8,11 @@ import StratagemHero from './components/StratagemHero';
 
 const App = () => {
   return (<Box className="App" sx={{
-    backgroundImage: `url(${BackgroundImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundAttachment: 'fixed',
+    // backgroundImage: `url(${BackgroundImage})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
+    // backgroundAttachment: 'fixed',
+    backgroundColor: '#292929',
   }}>
       <StratagemHero />
       {/* <Stratagems /> */}
