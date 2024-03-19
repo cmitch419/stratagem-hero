@@ -37,39 +37,66 @@ function Stratagem({
     );
 }
 
-function ArrowCombo({ code, valid, inputSequence, matched, activation }) {
-    const length = inputSequence?.length;
-    const [timer, setTimer] = useState();
-    
+function DeploymentTimer ({ activation, cooldown }) {
+    const [mode, setMode] = useState(0);
+    const [timer, setTimer] = useState(activation);
+    const MODES = [
+        'DEPLOYING',
+        'COOLDOWN',
+    ];
+
     useEffect(() => {
-        if (matched) {
-            // console.log(timer,activation)
-            setTimer(activation);
-            const deployTimer = setInterval(() => { if (timer > 0) setTimer(prev => prev - 1); },1000);
+        if (timer > 0) {
+            const deployTimer = setInterval(() => {
+                if (timer >= 0) setTimer(prev => prev - 1);
+                else setMode(prev => {
+                    if (prev >= MODES.length) {
+                        return -1;
+                    } else {
+                        return prev+1
+                    }
+                })
+            },1000);
             return () => {
-                setTimer(activation);
                 clearInterval(deployTimer);
             };
+        } else {
+            setTimer(cooldown)
         }
-    }, [activation, matched]);
+    },[timer]);
+    return <Typography>{mode >= 0 && timer >= 0 ? `${MODES[mode]} T-${formatSeconds(timer)}` : ''}</Typography>;
+}
 
+export function ArrowCombo({ code, valid, inputSequence, matched, activation, cooldown,
+    colorEntered='rgba(255,255,255,0.5)',
+    colorCurrent='rgba(255,255,255,0.5)',
+    colorUpcoming='rgba(255,255,255,1)',
+    colorInvalid='rgba(255,0,0,1)',
+    colorMatched='rgba(255,255,0,1)',
+}) {
+    if (!code || code?.length < 0) return <></>; 
+    const length = inputSequence?.length;
+    
     return (
         <Stack direction="row">
-            { matched && timer >= 0
-                ? <Typography>Inbound T-{formatSeconds(timer)}</Typography>
+            { matched
+                ? <DeploymentTimer activation={activation} cooldown={cooldown} />
                 : code.map((c, i) => {
                     let arrowColor = 'grey';
                     if (valid) {
-                        if (length < i + 1) {
-                            arrowColor = 'white';
-                        } else if (length === i + 1) {
-                            arrowColor = 'grey';
+                        if (i > length-1) {
+                            arrowColor = colorUpcoming;
+                        } else if (i===length-1) {
+                            arrowColor = colorCurrent;
                         } else {
-                            arrowColor = 'grey';
+                            arrowColor = colorEntered;
                         }
                     }
                     if (matched) {
-                        arrowColor = 'yellow';
+                        arrowColor = colorMatched;
+                    }
+                    if (valid === false) {
+                        arrowColor = colorInvalid;
                     }
                     return (<Arrow key={i} alpha={c} color={arrowColor} />);
                 })}
@@ -78,9 +105,17 @@ function ArrowCombo({ code, valid, inputSequence, matched, activation }) {
 }
 
 function Arrow({ alpha, color }) {
+    if (!alpha) return <></>;
+    const SHADOW_OFFSETS = {
+        'R': "1px 1px",
+        'D': "1px -1px",
+        'L': "-1px -1px",
+        'U': "-1px 1px",
+    }
     return <Box component={Forward} sx={{
         transform: `rotate(${DIRECTION_TO_ROTATION[alpha]}deg)`,
         color,
+        filter: `drop-shadow(${SHADOW_OFFSETS[alpha]} 0 rgba(0,0,0,0.5))`
     }} />
 }
 

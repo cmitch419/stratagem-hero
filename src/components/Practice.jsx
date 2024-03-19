@@ -30,7 +30,7 @@ const LAYOUT_LARGE = {
   `"list info"`
 }
 
-const Game = () => {
+const Practice = () => {
   const theme = useTheme();
   const isBigBoi = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -82,13 +82,13 @@ const Game = () => {
 
   useEffect(() => {
     if (!controllerMode) {
-      if (keyboard.holdKey) {
+      if (keyboard.holdEngaged) {
         setShouldReset(false);
       } else {
         setShouldReset(true);
       }
     }
-  }, [controllerMode, keyboard.holdKey]);
+  }, [controllerMode, keyboard.holdEngaged]);
 
   useEffect(() => {
     if (inputSequence.length > 0) {
@@ -206,4 +206,4 @@ const Game = () => {
   );
 }
 
-export default Game;
+export default Practice;

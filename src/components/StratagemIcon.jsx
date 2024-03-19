@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-export const StratagemIcon = ({ icon, permitType, showBorder = true }) => {
+export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem', height='3rem' }) => {
     const ICON_COLOR = {
         "supply": "#4eb3cf",
         "offensive": "#c94b3d",
@@ -11,21 +11,24 @@ export const StratagemIcon = ({ icon, permitType, showBorder = true }) => {
     return (
         <Box
             sx={{
+                boxSizing: 'border-box',
                 border: showBorder
                     ? `2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}`
                     : '',
-                height: '3rem',
-                width: '3rem',
+                height,
+                width,
             }}
         >
             {icon &&
             <Box
                 sx={{
                     display: 'block',
-                    height: 'inherit',
-                    maxWidth: '100%',
-                    component: 'img',
-                    src: {iconUrl},
+                    height: '100%',
+                    backgroundImage: `url(${iconUrl})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+
                 }}
             />}
         </Box>

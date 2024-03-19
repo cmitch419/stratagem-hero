@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { INPUT_HOLD_KEY, KEY_TO_DIRECTION } from "../constants";
 
-function useKeyboard() {
-    const [holdKey, setHoldKey] = useState(false);
+function useKeyboard(holdKey) {
+    const [holdKeyEngaged, setHoldKeyEngaged] = useState(true);
     const [pressedKey, setPressedKey] = useState(null);
     const [direction, setDirection] = useState(null);
 
     useEffect(() => {
         function downHandler({ key }) {
             if (key === INPUT_HOLD_KEY) {
-                setHoldKey(true);
+                setHoldKeyEngaged(true);
             }
-            if (holdKey) {
+            if (holdKeyEngaged) {
                 setPressedKey(key);
             }
         }
     
         function upHandler({ key }) {
-            if (key === INPUT_HOLD_KEY) {
-                setHoldKey(false);
+            if (holdKey && key === INPUT_HOLD_KEY) {
+                setHoldKeyEngaged(false);
             } else {
                 setPressedKey(null);
             }
@@ -30,7 +30,7 @@ function useKeyboard() {
             window.removeEventListener('keydown', downHandler);
             window.removeEventListener('keyup', upHandler);
         };
-    }, [holdKey]);
+    }, [holdKey, holdKeyEngaged]);
 
     useEffect(() => {
         if (pressedKey) {
@@ -38,6 +38,7 @@ function useKeyboard() {
             const dirKeys = Object.keys(KEY_TO_DIRECTION);
             dirKeys.forEach(d=>{
                 if (pressedKey.toLowerCase() === d) {
+                    // console.debug(`${pressedKey} --> ${KEY_TO_DIRECTION[d]}`)
                     setDirection(KEY_TO_DIRECTION[d]);
                 }
             });
@@ -47,8 +48,9 @@ function useKeyboard() {
     }, [pressedKey])
 
     return {
+        pressed: pressedKey,
         direction,
-        holdKey,
+        holdEngaged: holdKeyEngaged,
     };
 }
 

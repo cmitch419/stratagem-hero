@@ -57,10 +57,6 @@ function useGamepad() {
         };
     }, []);
 
-    const getDirection = () => {
-        
-    }
-
     useEffect(() => {
         setDirection(null);
         mapping.forEach(({ id, name, value })=>{
