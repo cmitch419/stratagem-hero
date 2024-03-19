@@ -15,7 +15,7 @@ const stratagemHeroConfig = {
     perfectBonus: 100,
     roundBonusBase: 50,
     roundBonusMultiplier: 25,
-    timePerRound: 250,
+    timePerRound: 15,
     timeBonusPerGem: 1,
     timeBetweenGems: 0.25,
     updateIntervalMs: 100,
@@ -44,19 +44,16 @@ function StratagemHero() {
     const [gameState, setGameState] = useState(initialGameState);
     const [roundState, setRoundState] = useState(initialRoundState);
 
-    // const [gameScreen, setGameScreen] = useState(START_SCREEN);
-    // const [timeRemaining, setTimeRemaining] = useState(stratagemHeroConfig.timePerRound * 1000);
-    // const [stratagems, setStratagems] = useState([]);
-    // const [stratagemIndex, setStratagemIndex] = useState(0);
-    // const [perfectRoundBonus, setPerfectRoundBonus] = useState(stratagemHeroConfig.perfectBonus);
-    // const [roundBonus, setRoundBonus] = useState(0);
-    // const [timeBonus, setTimeBonus] = useState(0);
-    // const [round, setRound] = useState(0);
-    // const [score, setScore] = useState(0);
-    // const [inputSequence, setInputSequence] = useState([]);
-    // const [valid, setValid] = useState(true);
+    const [roundTimerId, setRoundTimerId] = useState(null);
 
+    window.cs = currentState;
+    window.gs = gameState;
+    window.rs = roundState;
+
+    // ------STATE CHANGES-----
     useEffect(() => {
+        // Any time there is a game state change, the round timer should be cleared
+        if (roundTimerId) clearInterval(roundTimerId);
         switch (currentState) {
             case GameStates.GAME_READY:
                 resetGame();
@@ -68,10 +65,6 @@ function StratagemHero() {
                 startRound();
                 break;
             case GameStates.ROUND_ENDING:
-                setTimeout(() => {
-                    handleNextRound();
-                }, 10000);
-                // endRound(true);
                 break;
             case GameStates.GAME_OVER:
                 setUpNewGame();
@@ -83,32 +76,9 @@ function StratagemHero() {
         setGameState(() => ({
             ...initialGameState
         }));
-
     }
 
     function setUpNewGame() {
-        setTimeout(() => {
-            handleNewGame();
-        }, 5000);
-    }
-
-    useEffect(() => {
-        if (input.direction) {
-            switch (currentState) {
-                case GameStates.GAME_READY:
-                    handleStartGame();
-                    break;
-                case GameStates.ROUND_IN_PROGRESS:
-                    setRoundState(prev => ({ ...prev, inputSequence: [...prev.inputSequence, input.direction] }));
-                    break;
-                default:
-                    break;
-            }
-        }
-    }, [input.direction]);
-
-    function handleStartGame() {
-        transition(Events.START_GAME);
     }
 
     function setUpNextRound() {
@@ -120,51 +90,25 @@ function StratagemHero() {
             ...prevState,
             round: prevState.round + 1,
         }));
-        setTimeout(() => {
-            handleBeginRound();
-        }, 2000);
     }
-
-    function handleBeginRound() {
-        transition(Events.BEGIN_ROUND);
-    }
-
-    function handleRoundCompleted() {
-        transition(Events.ROUND_COMPLETED);
-    }
-
-    function handleRoundFailed() {
-        transition(Events.ROUND_FAILED);
-    }
-
-    function handleNextRound() {
-        transition(Events.NEXT_ROUND);
-    }
-
-    function handleQuit() {
-        transition(Events.QUIT);
-    }
-
-    function handleNewGame() {
-        transition(Events.NEW_GAME);
-    };
 
     const startRound = () => {
-        const timerId = setInterval(() => {
+        const id = setInterval(() => {
             if (currentState === GameStates.ROUND_IN_PROGRESS) {
                 let newTime = 0
                 setRoundState((prevState) => {
                     // Game over, ran out of time
                     if (prevState.timeRemaining <= 0) {
                         endRound(false);
-                        clearInterval(timerId);
+                        clearInterval(roundTimerId);
                     } else {
                         newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
                     }
                     return { ...prevState, timeRemaining: newTime }
-                })
+                });
             }
         }, stratagemHeroConfig.updateIntervalMs);
+        setRoundTimerId(id);
     };
 
     const getStratagems = (round) => {
@@ -181,9 +125,9 @@ function StratagemHero() {
 
     const getStratagem = () => stratagemsData[Math.floor(Math.random() * stratagemsData.length)];
 
-
     const endRound = (success) => {
         if (success) {
+            // User beat the round!
             const newRoundBonus = 50 + gameState.round * 25;
             const newTimeBonus = Math.ceil(100 * roundState.timeRemaining / (stratagemHeroConfig.timePerRound * 1000));
             const totalBonus = newRoundBonus + newTimeBonus + roundState.perfectRoundBonus;
@@ -198,13 +142,58 @@ function StratagemHero() {
             }));
             handleRoundCompleted();
         } else {
+            // User lost the round :C
             handleRoundFailed();
         }
     };
 
+    // ---------User direction input handling---------
+    useEffect(() => {
+        if (input.direction) {
+            switch (currentState) {
+                case GameStates.GAME_READY:
+                    handleStartGame();
+                    break;
+                case GameStates.ROUND_IN_PROGRESS:
+                    setRoundState(prev => ({
+                        ...prev,
+                        inputSequence: [...prev.inputSequence, input.direction]
+                    }));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [input.direction]);
+
+
+    // EVENT HANDLERS
+    function handleStartGame() {
+        transition(Events.START_GAME);
+    }
+    function handleBeginRound() {
+        setUpNextRound();
+        // transition(Events.BEGIN_ROUND);
+    }
+    function handleRoundCompleted() {
+        transition(Events.ROUND_COMPLETED);
+    }
+    function handleRoundFailed() {
+        transition(Events.ROUND_FAILED);
+    }
+    function handleNextRound() {
+        transition(Events.NEXT_ROUND);
+    }
+    function handleQuit() {
+        transition(Events.QUIT);
+    }
+    function handleNewGame() {
+        transition(Events.NEW_GAME);
+    }
+
+
     useEffect(() => {
         if (roundState.inputSequence.length > 0) {
-
             const checkInputSequence = () => {
                 const { stratagems, stratagemIndex, inputSequence } = roundState;
                 const currentStratagem = stratagems[stratagemIndex];
@@ -355,6 +344,7 @@ function StratagemHero() {
     const RoundScreen = () => {
         const { round, score } = gameState;
         const { stratagems, stratagemIndex, valid, inputSequence, timeRemaining } = roundState;
+
         return currentState === GameStates.ROUND_IN_PROGRESS
             ? <Box sx={{
                 display: 'grid',

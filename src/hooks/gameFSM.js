@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const GameStates = {
     GAME_READY: 'GAME_READY',
@@ -42,16 +42,58 @@ const stateTransitions = {
 
 export function useGameFSM() {
     const [currentState, setCurrentState] = useState(initialState);
+    const [timeoutId, setTimeoutId] = useState(null);
 
-    const transition = (event) => {
+    // useEffect to watch current state and handle state transitions
+    useEffect(() => {
+        console.debug(`STATE: ${currentState}`);
+        switch(currentState) {
+            case GameStates.GAME_OVER:
+                    transitionWithTimeout(Events.NEW_GAME, 5000);
+                    break;
+                case GameStates.ROUND_STARTING:
+                    transitionWithTimeout(Events.BEGIN_ROUND, 3000);
+                    break;
+                case GameStates.ROUND_ENDING:
+                    transitionWithTimeout(Events.NEXT_ROUND, 3000);
+                    break;
+                case GameStates.GAME_READY:
+                case GameStates.ROUND_IN_PROGRESS:
+                    break;
+            }
+        return () => {
+            // Clear the previous timeout when the component unmounts or when currentState changes
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+        }
+    }, [currentState]);
+
+
+    function transition(event) {
         const nextState = stateTransitions[currentState][event];
+        console.debug(`Transition: ${currentState} <${event}> --> ${nextState}`)
         if (nextState) {
             setCurrentState(nextState);
         } else {
             console.error(`Invalid transition from state ${currentState} with event ${event}`);
         }
-    };
+    }
+    
+    function transitionWithTimeout(event, timeoutDuration) {
+        const nextState = stateTransitions[currentState][event];
+        console.debug(`Setting up transition with timeout: ${currentState} <${event}> ${timeoutDuration} --> ${nextState}`)
+        
+        if (timeoutId) clearTimeout(timeoutId);
+        
+        const id = setTimeout(() => {
+            // console.debug(`Transition with timeout: ${currentState} <${event}> ${timeoutDuration} --> ${nextState}`)
+            transition(event);
+        }, timeoutDuration);
 
-    return { currentState, transition };
+        setTimeoutId(id);
+    }
+
+    return { currentState, transition, transitionWithTimeout };
 }
 
