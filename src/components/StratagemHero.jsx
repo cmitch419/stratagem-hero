@@ -95,22 +95,22 @@ function StratagemHero() {
     }
 
     const startRound = () => {
-        // const id = setInterval(() => {
-        //     if (currentState === GameStates.ROUND_IN_PROGRESS) {
-        //         let newTime = 0
-        //         setRoundState((prevState) => {
-        //             // Game over, ran out of time
-        //             if (prevState.timeRemaining <= 0) {
-        //                 endRound(false);
-        //                 clearInterval(roundTimerId);
-        //             } else {
-        //                 newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
-        //             }
-        //             return { ...prevState, timeRemaining: newTime }
-        //         });
-        //     }
-        // }, stratagemHeroConfig.updateIntervalMs);
-        // setRoundTimerId(id);
+        const id = setInterval(() => {
+            if (currentState === GameStates.ROUND_IN_PROGRESS) {
+                let newTime = 0
+                setRoundState((prevState) => {
+                    // Game over, ran out of time
+                    if (prevState.timeRemaining <= 0) {
+                        endRound(false);
+                        clearInterval(roundTimerId);
+                    } else {
+                        newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
+                    }
+                    return { ...prevState, timeRemaining: newTime }
+                });
+            }
+        }, stratagemHeroConfig.updateIntervalMs);
+        setRoundTimerId(id);
     };
 
     const getStratagems = (round) => {
@@ -216,7 +216,7 @@ function StratagemHero() {
                             ...prevState,
                             score: prevState.score + currentStratagem.code.length * 5,
                         }));
-                    setRoundState(prevState=>({
+                    setRoundState(prevState => ({
                         ...prevState,
                         timeRemaining: Math.min(prevState.timeRemaining + stratagemHeroConfig.timeBonusPerGem * 1000, stratagemHeroConfig.timePerRound * 1000)
                     }));
@@ -247,20 +247,6 @@ function StratagemHero() {
         }
     }, [currentState, roundState.inputSequence.length]);
 
-    // return (<>
-    //     <div>roundInProgress: { JSON.stringify(roundInProgress) } </div>
-    //     <div>timeRemaining: { JSON.stringify(timeRemaining) } </div>
-    //     {/* <div>stratagems: { JSON.stringify(stratagems.length) } </div> */}
-    //     {/* <div>stratagemIndex: { JSON.stringify(stratagemIndex) } </div> */}
-    //     <div>stratagem: { JSON.stringify(stratagems?.[stratagemIndex]?.code) } </div>
-    //     <div>perfectRoundBonus: { JSON.stringify(perfectRoundBonus) } </div>
-    //     <div>round: { JSON.stringify(round) } </div>
-    //     <div>score: { JSON.stringify(score) } </div>
-    //     <div>roundScore: { JSON.stringify(roundScore) } </div>
-    //     <div>inputSequence: { JSON.stringify(inputSequence) } </div>
-
-    // </>)
-
     const ICON_WIDTH = 5;
 
     const StartScreen = () => {
@@ -269,7 +255,7 @@ function StratagemHero() {
                 <Typography variant="h1">
                     STRATAGEM HERO
                 </Typography>
-                <Typography variant="h6">
+                <Typography variant="h6" sx={{ textTransform: 'none' }}>
                     Enter any Stratagem Input to Start!
                 </Typography>
             </Stack>
@@ -280,11 +266,11 @@ function StratagemHero() {
         return currentState === GameStates.ROUND_STARTING
             ? <Stack justifyContent="center" alignItems="center">
                 <Typography variant="h1">
-                    GET READY
+                    Get Ready
                 </Typography>
                 <Stack justifyContent="center" alignItems="center">
-                    <Typography variant="h6">Round</Typography>
-                    <Typography variant="h3" color='primary'>{round}</Typography>
+                    <Typography variant="h6" sx={{ textTransform: 'none' }}>Round</Typography>
+                    <Typography variant="h2" color='primary'>{round}</Typography>
                 </Stack>
             </Stack>
             : <></>
@@ -304,86 +290,120 @@ function StratagemHero() {
         const { roundBonus, timeBonus, perfectRoundBonus } = roundState;
         const { score } = gameState;
 
-        return (currentState === GameStates.ROUND_ENDING
-            ? <Stack>
-                <Stack direction="row" justifyContent="space-between">
-                    <Typography>
-                        Round Bonus
-                    </Typography>
-                    <Typography color={roundState.valid ? 'primary' : 'error'}>
-                        {roundBonus}
-                    </Typography>
-                </Stack>
-                <Stack direction="row" justifyContent="space-between">
-                    <Typography>
-                        Time Bonus
-                    </Typography>
-                    <Typography color={roundState.valid ? 'primary' : 'error'}>
-                        {timeBonus}
-                    </Typography>
-                </Stack>
-                    <Stack direction="row" justifyContent="space-between">
-                        <Typography>
-                            Perfect Bonus
-                        </Typography>
-                        <Typography color={roundState.valid ? 'primary' : 'error'}>
-                            {perfectRoundBonus}
-                        </Typography>
-                    </Stack>
-                    <Stack direction="row" justifyContent="space-between">
-                        <Typography>
-                            Total Score
-                        </Typography>
-                        <Typography color={roundState.valid ? 'primary' : 'error'}>
-                            {score}
-                        </Typography>
-                    </Stack>
+        const [show, setShow] = useState(1);
+
+        useEffect(() => {
+            const displayInterval = setInterval(() => {
+                if (show <= 4) {
+                    setShow(prev => prev + 1);
+                } else {
+                    clearInterval(displayInterval);
+                }
+            }, 600);
+            return () => clearInterval(displayInterval);
+        }, []);
+
+        return <Stack spacing={1} sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'space-evenly'
+        }}>
+            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{
+                visibility: show < 1 ? 'hidden' : 'unset'
+            }}>
+                <Typography variant="h5" sx={{ textTransform: 'none' }}>
+                    Round Bonus
+                </Typography>
+                <Typography variant="h3" color="primary">
+                    {roundBonus}
+                </Typography>
             </Stack>
-            : <></>
-        )
+            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{
+                visibility: show < 2 ? 'hidden' : 'unset'
+            }}>
+                <Typography variant="h5" sx={{ textTransform: 'none' }}>
+                    Time Bonus
+                </Typography>
+                <Typography variant="h3" color="primary">
+                    {timeBonus}
+                </Typography>
+            </Stack>
+            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{
+                visibility: show < 3 ? 'hidden' : 'unset'
+            }}>
+                <Typography variant="h5" sx={{ textTransform: 'none' }}>
+                    Perfect Bonus
+                </Typography>
+                <Typography variant="h3" color="primary">
+                    {perfectRoundBonus}
+                </Typography>
+            </Stack>
+            <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{
+                visibility: show < 4 ? 'hidden' : 'unset'
+            }}>
+                <Typography variant="h5" sx={{ textTransform: 'none' }}>
+                    Total Score
+                </Typography>
+                <Typography variant="h3" color="primary">
+                    {score}
+                </Typography>
+            </Stack>
+        </Stack>
     };
 
     const RoundScreen = () => {
         const { round, score } = gameState;
         const { stratagems, stratagemIndex, valid, inputSequence, timeRemaining } = roundState;
 
-        return currentState === GameStates.ROUND_IN_PROGRESS
-            ? <Box sx={{
-                display: 'grid',
-                gridTemplateRows: 'auto',
-                gridTemplateColumns: '0.1fr 1 0.1fr',
-                gridTemplateAreas: `"round game score"`,
+        return <Box sx={{
+            display: 'grid',
+            gridTemplateRows: 'auto',
+            gridTemplateColumns: '1fr 3fr 1fr',
+            gridTemplateAreas: `"round game score"`,
+        }}>
+            <Box sx={{
+                gridArea: 'round',
+                minWidth: '100px'
+            }}>
+                <Typography variant="h6" sx={{ textTransform: 'none' }}>Round</Typography>
+                <Typography variant="h3" color={roundState.valid ? 'primary' : 'error'}>{round}</Typography>
+            </Box>
+            <Box sx={{
+                gridArea: 'game',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
             }}>
                 <Box sx={{
-                    gridArea: 'round',
-                }}>
-                    <Typography variant="h6">Round</Typography>
-                    <Typography variant="h5" color={roundState.valid ? 'primary' : 'error'}>{round}</Typography>
-                </Box>
-                <Box sx={{
-                    gridArea: 'game',
+                    width: `${ICON_WIDTH * 2 + ICON_WIDTH * 5 + 6}rem`,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}>
                     <Stack direction="row" sx={{
-                        flex: 1,
                         justifyContent: 'flex-start',
                         alignItems: 'center',
-                        width: `${ICON_WIDTH * 2 + ICON_WIDTH * 5}rem`,
+                        width: `${ICON_WIDTH * 2 + ICON_WIDTH * 5 + 6}rem`,
                         height: `${ICON_WIDTH * 2}rem`,
                     }}>
                         {stratagems.map((stratagem, i) =>
                             <Box key={i} pl={i !== stratagemIndex ? `1rem` : 0}>
                                 <StratagemIcon {...stratagem}
-                                    showBorder
+                                    showBorder={i === stratagemIndex}
+                                    gameModeBorder={`4px solid ${valid ? theme.palette.primary.main : theme.palette.error.main}`}
                                     width={i === stratagemIndex ? '10rem' : '5rem'}
                                     height={i === stratagemIndex ? '10rem' : '5rem'}
                                 />
                             </Box>
                         ).slice(stratagemIndex, stratagemIndex + 6)}
                     </Stack>
-                    <Typography sx={{
-                        fontWeight: 900,
+                    <Typography variant="h6" sx={{
                         backgroundColor: roundState.valid ? theme.palette.primary.main : theme.palette.error.main,
-                        color: 'black'
+                        color: theme.palette.background.default,
+                        fontSynthesis: 'weight',
+                        fontWeight: 900,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        display: 'flex',
                     }}>{stratagems[stratagemIndex]?.name}</Typography>
                     <Box sx={{
                         width: '100%',
@@ -405,7 +425,6 @@ function StratagemHero() {
                     </Box>
                     <LinearProgress
                         variant='determinate'
-                        
                         color={roundState.valid ? 'primary' : 'error'}
                         value={100 * timeRemaining / (stratagemHeroConfig.timePerRound * 1000)}
                         sx={{
@@ -414,25 +433,34 @@ function StratagemHero() {
                         }} />
 
                 </Box>
-                <Box sx={{
-                    gridArea: 'score',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-end',
-                }}>
-                    <Typography variant="h5" color={roundState.valid ? 'primary' : 'error'}>{score}</Typography>
-                    <Typography variant="h6">Score</Typography>
-                </Box>
             </Box>
-            : <></>;
+
+            <Box sx={{
+                gridArea: 'score',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                flex: 1,
+                minWidth: '100px'
+            }}>
+                <Typography variant="h3" color={roundState.valid ? 'primary' : 'error'}>{score}</Typography>
+                <Typography variant="h6" >Score</Typography>
+            </Box>
+        </Box>
     };
 
-    return (<Box>
-        <StartScreen />
-        <RoundStartScreen />
-        <RoundScreen />
-        <RoundEndScreen />
-        <GameOverScreen />
+    return (<Box sx={{
+        flex: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '500px',
+    }}>
+        {currentState === GameStates.GAME_READY && <StartScreen />}
+        {currentState === GameStates.ROUND_STARTING && <RoundStartScreen />}
+        {currentState === GameStates.ROUND_IN_PROGRESS && <RoundScreen />}
+        {currentState === GameStates.ROUND_ENDING && <RoundEndScreen />}
+        {currentState === GameStates.GAME_OVER && <GameOverScreen />}
     </Box>);
 }
 

@@ -1,6 +1,7 @@
+import { useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
 
-export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem', height='3rem' }) => {
+export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem', height='3rem', gameModeBorder=false }) => {
     const ICON_COLOR = {
         "supply": "#4eb3cf",
         "offensive": "#c94b3d",
@@ -13,8 +14,11 @@ export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem
             sx={{
                 boxSizing: 'border-box',
                 border: showBorder
-                    ? `2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}`
+                    ? gameModeBorder
+                        ? gameModeBorder
+                        : `2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}`
                     : '',
+                borderBottom: gameModeBorder ? 'none' : '',
                 height,
                 width,
             }}

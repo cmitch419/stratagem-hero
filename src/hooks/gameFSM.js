@@ -55,7 +55,7 @@ export function useGameFSM() {
                     transitionWithTimeout(Events.BEGIN_ROUND, 3000);
                     break;
                 case GameStates.ROUND_ENDING:
-                    transitionWithTimeout(Events.NEXT_ROUND, 3000);
+                    transitionWithTimeout(Events.NEXT_ROUND, 5000);
                     break;
                 case GameStates.GAME_READY:
                 case GameStates.ROUND_IN_PROGRESS:
