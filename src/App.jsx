@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { Box } from '@mui/material';
 import './App.css';
-import BackgroundImage from '/img/console.png'
+import BackgroundImage from '/img/bg01.jpg'
+import ConsoleImage from '/img/console.png'
 import StratagemHero from './components/StratagemHero';
 import OnScreenDpad from './components/OnScreenButtons';
 
@@ -15,19 +16,20 @@ const App = () => {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    width: '100vw',
-    height: '48.2vw',
     display: 'flex',
-    overflow: 'hidden',
-    // backgroundColor: '#292929',
-  }}><Box sx={{
+    height: '-webkit-fill-available'
+  }}>
+    <Box sx={{
     // m: '13.5% 9.21% 13.5% 9.21%',
-    m: '13.5% 13.21% 13.5% 13.21%',
+    // m: '13.5% 13.21% 13.5% 13.21%',
+    backgroundImage: `url(${ConsoleImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    backgroundPosition: 'center',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    transform: `scale(100%)`
   }}>
       <StratagemHero />
     </Box>

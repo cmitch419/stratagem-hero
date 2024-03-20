@@ -10,7 +10,7 @@ const DpadButton = ({ kbKey, children, ...rest }) => {
     };
 
     return (
-        <IconButton {...rest} onClick={handleKeyPress}>
+        <IconButton disableTouchRipple {...rest} onClick={handleKeyPress}>
             {children}
         </IconButton>
     );

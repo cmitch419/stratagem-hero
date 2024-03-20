@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import stratagemsData from '../data/stratagemsData.json';
-import { ArrowBack, ArrowDownward, ArrowForward, ArrowUpward } from '@mui/icons-material';
 import useKeyboard from '../hooks/useKeyboard';
-import Stratagem, { ArrowCombo } from './Stratagem';
+import { ArrowCombo } from './Stratagem';
 import { StratagemIcon } from './StratagemIcon';
 import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material';
 import { Events, GameStates, useGameFSM } from '../hooks/gameFSM';
+
+const audioGameStart = new Audio(`${import.meta.env.BASE_URL}/sound/gamestart.mp3`);
+const audioRoundStart = new Audio(`${import.meta.env.BASE_URL}/sound/newround.mp3`);
+const audioRoundEnd = new Audio(`${import.meta.env.BASE_URL}/sound/scorescreen.mp3`);
+const audioInput = new Audio(`${import.meta.env.BASE_URL}/sound/inputdirection.mp3`);
 
 const stratagemHeroConfig = {
     pointsPerArrow: 5,
@@ -58,15 +62,18 @@ function StratagemHero() {
         if (roundTimerId) clearInterval(roundTimerId);
         switch (currentState) {
             case GameStates.GAME_READY:
+                audioGameStart.play();
                 resetGame();
                 break;
             case GameStates.ROUND_STARTING:
+                audioRoundStart.play();
                 setUpNextRound();
                 break;
             case GameStates.ROUND_IN_PROGRESS:
                 startRound();
                 break;
             case GameStates.ROUND_ENDING:
+                audioRoundEnd.play();
                 break;
             case GameStates.GAME_OVER:
                 setUpNewGame();
@@ -157,6 +164,8 @@ function StratagemHero() {
                     handleStartGame();
                     break;
                 case GameStates.ROUND_IN_PROGRESS:
+                    audioInput.currentTime = 0;
+                    audioInput.play();
                     setRoundState(prev => ({
                         ...prev,
                         inputSequence: [...prev.inputSequence, input.direction]
@@ -192,7 +201,6 @@ function StratagemHero() {
     function handleNewGame() {
         transition(Events.NEW_GAME);
     }
-
 
     useEffect(() => {
         if (roundState.inputSequence.length > 0) {
@@ -250,8 +258,7 @@ function StratagemHero() {
     const ICON_WIDTH = 5;
 
     const StartScreen = () => {
-        return currentState === GameStates.GAME_READY
-            ? <Stack justifyContent="center" alignItems="center">
+        return <Stack justifyContent="center" alignItems="center">
                 <Typography variant="h1">
                     STRATAGEM HERO
                 </Typography>
@@ -259,10 +266,10 @@ function StratagemHero() {
                     Enter any Stratagem Input to Start!
                 </Typography>
             </Stack>
-            : <></>
     };
     const RoundStartScreen = () => {
         const { round } = gameState;
+
         return currentState === GameStates.ROUND_STARTING
             ? <Stack justifyContent="center" alignItems="center">
                 <Typography variant="h1">
@@ -276,14 +283,18 @@ function StratagemHero() {
             : <></>
     };
     const GameOverScreen = () => {
-        const { round, score } = gameState;
-        return currentState === GameStates.GAME_OVER
-            ? <Stack justifyContent="center" alignItems="center">
+        const { score } = gameState;
+        return <Stack spacing={1} justifyContent="center" alignItems="center">
                 <Typography variant="h1">
                     GAME OVER
                 </Typography>
+                <Typography variant="h6">High scores</Typography>
+                <Typography>1. thyancey : 999999</Typography>
+                <Typography>2. cmitch419 : 999999</Typography>
+                <Typography>3. DefinitelyNotAnAutomaton : 999999</Typography>
+                <Typography variant="h6">Your final score</Typography>
+                <Typography variant="h3" color="primary">{score}</Typography>
             </Stack>
-            : <></>
     };
 
     const RoundEndScreen = () => {
@@ -304,7 +315,6 @@ function StratagemHero() {
         }, []);
 
         return <Stack spacing={1} sx={{
-            width: '100%',
             display: 'flex',
             justifyContent: 'space-evenly'
         }}>
