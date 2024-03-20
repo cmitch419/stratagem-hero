@@ -4,6 +4,9 @@ import { IconButton, Stack } from "@mui/material";
 const DpadButton = ({ kbKey, children, ...rest }) => {
     const handleKeyPress = () => {
         window.dispatchEvent(new KeyboardEvent("keydown", { key: kbKey }));
+        setTimeout(() => {
+            window.dispatchEvent(new KeyboardEvent("keyup", { key: kbKey }));
+        }, 50);
     };
 
     return (

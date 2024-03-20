@@ -1,13 +1,15 @@
-import { ToastContainer } from 'react-toastify';
-import { Box, Typography } from '@mui/material';
-import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { Box } from '@mui/material';
 import './App.css';
-// import Game from './components/Game';
 import BackgroundImage from '/img/console.png'
 import StratagemHero from './components/StratagemHero';
 import OnScreenDpad from './components/OnScreenButtons';
 
 const App = () => {
+  useEffect(() => {
+
+  },)
+
   return (<Box className="App" sx={{
     backgroundImage: `url(${BackgroundImage})`,
     backgroundRepeat: 'no-repeat',
@@ -20,12 +22,12 @@ const App = () => {
     // backgroundColor: '#292929',
   }}><Box sx={{
     // m: '13.5% 9.21% 13.5% 9.21%',
-    m: '13.5% 11.21% 13.5% 11.21%',
+    m: '13.5% 13.21% 13.5% 13.21%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    transform: 'scale(100%)'
+    transform: `scale(100%)`
   }}>
       <StratagemHero />
     </Box>
