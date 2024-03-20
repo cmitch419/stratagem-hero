@@ -1,7 +1,7 @@
-import { useTheme } from "@emotion/react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 
 export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem', height='3rem', gameModeBorder=false }) => {
+    const theme = useTheme();
     const ICON_COLOR = {
         "supply": "#4eb3cf",
         "offensive": "#c94b3d",
@@ -19,22 +19,28 @@ export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem
                         : `2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}`
                     : '',
                 borderBottom: gameModeBorder ? 'none' : '',
-                height,
-                width,
+                width: "100%"
             }}
         >
             {icon &&
             <Box
                 sx={{
-                    display: 'block',
-                    height: '100%',
-                    backgroundImage: `url(${iconUrl})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
+                    // backgroundImage: `url(${iconUrl})`,
+                    // backgroundRepeat: "no-repeat",
+                    // backgroundSize: 'cover',
+                    // backgroundPosition: 'center'
+                    backgroundColor: theme.palette.background.default,
+                    display: 'flex',
+                    alignItems: 'center'
 
                 }}
-            />}
+            >
+                <Box component="img" src={iconUrl} sx={{
+                    width,
+                    // height,
+                }} />
+            </Box>
+                }
         </Box>
     );
 }

@@ -1,8 +1,10 @@
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { useEffect, useState } from "react";
 import stratagemsData from '../data/stratagemsData.json';
-import { StratagemIcon, StratagemInfo } from "../components/Stratagem";
+
 import { getAllOfAttribute, getStratagemsByCategory } from "../functions/stratagem";
+import { StratagemIcon } from "../components/StratagemIcon";
+import StratagemInfo from "../components/StratagemInfo";
 
 function Stratagems() {
     const [selectedStratagem, setSelectedStratagem] = useState(null);

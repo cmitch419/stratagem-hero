@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import './App.css';
 import BackgroundImage from '/img/bg01.jpg'
 import ConsoleImage from '/img/console.png'
-import StratagemHero from './components/StratagemHero';
+import StratagemHeroGame from './pages/StratagemHero';
+import Stratagems from './pages/Stratagems';
 import OnScreenDpad from './components/OnScreenButtons';
 
 const App = () => {
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:960px)');
+  const isLargeScreen = useMediaQuery('(min-width:960px)');
   useEffect(() => {
 
   },)
@@ -20,18 +24,22 @@ const App = () => {
     height: '-webkit-fill-available'
   }}>
     <Box sx={{
-    // m: '13.5% 9.21% 13.5% 9.21%',
-    // m: '13.5% 13.21% 13.5% 13.21%',
-    backgroundImage: `url(${ConsoleImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
-    backgroundPosition: 'center',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  }}>
-      <StratagemHero />
+      // m: '13.5% 9.21% 13.5% 9.21%',
+      // m: '13.5% 13.21% 13.5% 13.21%',
+      backgroundImage: `url(${ConsoleImage})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'contain',
+      backgroundPosition: 'center',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+    }}>
+      <Box sx={{
+
+      }}>
+        <StratagemHeroGame />
+      </Box>
     </Box>
     <Box sx={{
       display: 'flex',
@@ -41,15 +49,14 @@ const App = () => {
       zIndex: 10000,
       alignContent: 'center',
       justifyContent: 'center',
-      transform: 'scale(200%) translate(50%,-50%)'
     }}>
       <OnScreenDpad />
     </Box>
-    {/* <Stratagems /> */}
-    {/* <Box position="fixed" right="1rem" bottom="1rem">
+    {/* <Stratagems />
+    <Box position="fixed" right="1rem" bottom="1rem">
         <Typography>Hold SHIFT and press W-A-S-D</Typography>
-      </Box>
-      <ToastContainer position='bottom-right' /> */}
+      </Box> */}
+      {/* <ToastContainer position='bottom-right' /> */}
   </Box>);
 };
 
