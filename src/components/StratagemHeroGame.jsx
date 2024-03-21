@@ -7,6 +7,8 @@ import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material'
 import { Events, GameStates, useGameFSM } from '../hooks/gameFSM';
 import useGamepad from '../hooks/useGamepad';
 
+// @TODO: MASSIVE TODO, this thing is too huge and too complex for what it does.
+
 // const WIDTH = 510;
 // const HEIGHT = 293;
 const WIDTH = 1000;
@@ -19,7 +21,7 @@ const audioRoundEnd = new Audio(`${soundPath}/scorescreen.mp3`);
 const audioInput = new Audio(`${soundPath}/inputdirection.mp3`);
 const audioGameOver = new Audio(`${soundPath}/gameover.mp3`);
 
-const stratagemHeroConfig = {
+const defaultStratagemHeroConfig = {
     pointsPerArrow: 5,
     minGemsPerRound: 6,
     maxGemsPerRound: 16,
@@ -29,28 +31,34 @@ const stratagemHeroConfig = {
     roundBonusMultiplier: 25,
     timePerRound: 10,
     timeBonusPerGem: 1,
-    timeBetweenGems: 0.25,
-    updateIntervalMs: 100,
+    timeBetweenGems: 0.1,
+    updateIntervalMs: 50,
 };
 
-const initialGameState = {
-    round: 0,
-    score: 0,
-};
-
-const initialRoundState = {
-    timeRemaining: stratagemHeroConfig.timePerRound * 1000,
-    stratagems: [],
-    stratagemIndex: 0,
-    perfectRoundBonus: stratagemHeroConfig.perfectBonus,
-    roundBonus: 0,
-    timeBonus: 0,
-    valid: true,
-    inputSequence: [],
-}
-
-function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disabledStratagems }) {
+function StratagemHeroGame({
+    stratagemHeroConfig=defaultStratagemHeroConfig,
+    scale,
+    screenWidth=WIDTH,
+    screenHeight=HEIGHT,
+    disabledStratagems 
+}) {
     const theme = useTheme();
+    
+    const initialGameState = {
+        round: 0,
+        score: 0,
+    };
+
+    const initialRoundState = {
+        timeRemaining: stratagemHeroConfig.timePerRound * 1000,
+        stratagems: [],
+        stratagemIndex: 0,
+        perfectRoundBonus: stratagemHeroConfig.perfectBonus,
+        roundBonus: 0,
+        timeBonus: 0,
+        valid: true,
+        inputSequence: [],
+    }
     const keyboardInput = useKeyboard();
     const gamepadInput = useGamepad();
 

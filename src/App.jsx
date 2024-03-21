@@ -67,7 +67,7 @@ const App = () => {
         </Zoom>
         <Zoom in={!showGame}>
             <Box sx={{
-                position: 'absolute',
+                position: 'fixed',
                 bottom: '1rem',
                 right: '1rem',
             }}>
@@ -78,7 +78,7 @@ const App = () => {
         </Zoom>
         <Zoom in={showGame}>
             <Box sx={{
-                position: 'absolute',
+                position: 'fixed',
                 bottom: '1rem',
                 right: '1rem',
                 zIndex: 10000,
