@@ -5,6 +5,7 @@ import { ArrowCombo } from './Stratagem';
 import { StratagemIcon } from './StratagemIcon';
 import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material';
 import { Events, GameStates, useGameFSM } from '../hooks/gameFSM';
+import useGamepad from '../hooks/useGamepad';
 
 // const WIDTH = 510;
 // const HEIGHT = 293;
@@ -50,7 +51,8 @@ const initialRoundState = {
 
 function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disabledStratagems }) {
     const theme = useTheme();
-    const input = useKeyboard();
+    const keyboardInput = useKeyboard();
+    const gamepadInput = useGamepad();
 
     const { currentState, transition } = useGameFSM();
 
@@ -167,7 +169,7 @@ function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disa
 
     // ---------User direction input handling---------
     useEffect(() => {
-        if (input.direction) {
+        if (keyboardInput.direction) {
             switch (currentState) {
                 case GameStates.GAME_READY:
                     handleStartGame();
@@ -177,14 +179,33 @@ function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disa
                     audioInput.play();
                     setRoundState(prev => ({
                         ...prev,
-                        inputSequence: [...prev.inputSequence, input.direction]
+                        inputSequence: [...prev.inputSequence, keyboardInput.direction]
                     }));
                     break;
                 default:
                     break;
             }
         }
-    }, [input.direction]);
+    }, [keyboardInput.direction]);
+    useEffect(() => {
+        if (gamepadInput.direction) {
+            switch (currentState) {
+                case GameStates.GAME_READY:
+                    handleStartGame();
+                    break;
+                case GameStates.ROUND_IN_PROGRESS:
+                    audioInput.currentTime = 0;
+                    audioInput.play();
+                    setRoundState(prev => ({
+                        ...prev,
+                        inputSequence: [...prev.inputSequence, gamepadInput.direction]
+                    }));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [gamepadInput.direction]);
 
 
     // EVENT HANDLERS
