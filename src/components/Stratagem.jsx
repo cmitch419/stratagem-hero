@@ -68,6 +68,7 @@ function DeploymentTimer ({ activation, cooldown }) {
 }
 
 export function ArrowCombo({ code, valid, inputSequence, matched, activation, cooldown,
+    height='inherit',
     colorEntered='rgba(255,255,255,0.5)',
     colorCurrent='rgba(255,255,255,0.5)',
     colorUpcoming='rgba(255,255,255,1)',
@@ -80,7 +81,9 @@ export function ArrowCombo({ code, valid, inputSequence, matched, activation, co
     
     return (
         <Stack direction="row" sx={{
-            transform: `scale(${scale})`
+            transform: `scale(${scale})`,
+            height: '100%',
+            // width: '100%',
         }}>
             { matched
                 ? <DeploymentTimer activation={activation} cooldown={cooldown} />
@@ -101,13 +104,13 @@ export function ArrowCombo({ code, valid, inputSequence, matched, activation, co
                     if (valid === false) {
                         arrowColor = colorInvalid;
                     }
-                    return (<Arrow key={i} alpha={c} color={arrowColor} />);
+                    return (<Arrow key={i} alpha={c} color={arrowColor} height={height} />);
                 })}
         </Stack>
     )
 }
 
-function Arrow({ alpha, color }) {
+function Arrow({ alpha, color, height }) {
     if (!alpha) return <></>;
     const SHADOW_OFFSETS = {
         'R': "1px 1px",
@@ -118,7 +121,9 @@ function Arrow({ alpha, color }) {
     return <Box component={Forward} sx={{
         transform: `rotate(${DIRECTION_TO_ROTATION[alpha]}deg) `,
         color,
-        filter: `drop-shadow(${SHADOW_OFFSETS[alpha]} 0 rgba(0,0,0,0.5))`
+        filter: `drop-shadow(${SHADOW_OFFSETS[alpha]} 0 rgba(0,0,0,0.5))`,
+        fontSize: height,
+        // width: '100cqh',
     }} />
 }
 

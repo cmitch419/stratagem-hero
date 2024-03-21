@@ -19,25 +19,26 @@ export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem
                         : `2px solid ${permitType ? ICON_COLOR[permitType] : 'white'}`
                     : '',
                 borderBottom: gameModeBorder ? 'none' : '',
-                width: "100%"
+                height: '100%',
+                maxHeight: '100%',
             }}
         >
-            {icon &&
+            {iconUrl &&
             <Box
                 sx={{
-                    // backgroundImage: `url(${iconUrl})`,
-                    // backgroundRepeat: "no-repeat",
-                    // backgroundSize: 'cover',
-                    // backgroundPosition: 'center'
+                    backgroundImage: `url(${iconUrl})`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                     backgroundColor: theme.palette.background.default,
                     display: 'flex',
                     alignItems: 'center'
 
                 }}
             >
-                <Box component="img" src={iconUrl} sx={{
+                <Box  src={iconUrl} sx={{
                     width,
-                    // height,
+                    height,
                 }} />
             </Box>
                 }

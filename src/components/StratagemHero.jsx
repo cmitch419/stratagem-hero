@@ -6,6 +6,11 @@ import { StratagemIcon } from './StratagemIcon';
 import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material';
 import { Events, GameStates, useGameFSM } from '../hooks/gameFSM';
 
+// const WIDTH = 510;
+// const HEIGHT = 293;
+const WIDTH = 1000;
+const HEIGHT = WIDTH * 0.575;
+
 const soundPath = `${import.meta.env.BASE_URL}/sound`;
 const audioGameStart = new Audio(`${soundPath}/gamestart.mp3`);
 const audioRoundStart = new Audio(`${soundPath}/newround.mp3`);
@@ -21,7 +26,7 @@ const stratagemHeroConfig = {
     perfectBonus: 100,
     roundBonusBase: 50,
     roundBonusMultiplier: 25,
-    timePerRound: 99999,
+    timePerRound: 10,
     timeBonusPerGem: 1,
     timeBetweenGems: 0.25,
     updateIntervalMs: 100,
@@ -43,10 +48,10 @@ const initialRoundState = {
     inputSequence: [],
 }
 
-function StratagemHero({ screenRef }) {
+function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT }) {
     const input = useKeyboard();
     const { currentState, transition } = useGameFSM();
-    window.screen = screenRef
+    window.scale = scale
 
     const [gameState, setGameState] = useState(initialGameState);
     const [roundState, setRoundState] = useState(initialRoundState);
@@ -106,22 +111,22 @@ function StratagemHero({ screenRef }) {
     }
 
     const startRound = () => {
-        // const id = setInterval(() => {
-        //     if (currentState === GameStates.ROUND_IN_PROGRESS) {
-        //         let newTime = 0
-        //         setRoundState((prevState) => {
-        //             // Game over, ran out of time
-        //             if (prevState.timeRemaining <= 0) {
-        //                 endRound(false);
-        //                 clearInterval(roundTimerId);
-        //             } else {
-        //                 newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
-        //             }
-        //             return { ...prevState, timeRemaining: newTime }
-        //         });
-        //     }
-        // }, stratagemHeroConfig.updateIntervalMs);
-        // setRoundTimerId(id);
+        const id = setInterval(() => {
+            if (currentState === GameStates.ROUND_IN_PROGRESS) {
+                let newTime = 0
+                setRoundState((prevState) => {
+                    // Game over, ran out of time
+                    if (prevState.timeRemaining <= 0) {
+                        endRound(false);
+                        clearInterval(roundTimerId);
+                    } else {
+                        newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
+                    }
+                    return { ...prevState, timeRemaining: newTime }
+                });
+            }
+        }, stratagemHeroConfig.updateIntervalMs);
+        setRoundTimerId(id);
     };
 
     const getStratagems = (round) => {
@@ -259,14 +264,16 @@ function StratagemHero({ screenRef }) {
         }
     }, [currentState, roundState.inputSequence.length]);
 
-    const ICON_WIDTH = 5;
-
     const StartScreen = () => {
-        return <Stack justifyContent="center" alignItems="center">
+        return <Stack sx={{
+            display: 'flex',
+            justifyContent: "center",
+            alignItems: "center",
+        }}>
             <Typography variant="h1">
-                STRATAGEM HERO
+                Stratagem Hero
             </Typography>
-            <Typography variant="h6" sx={{ textTransform: 'none' }}>
+            <Typography variant="h6" color='primary' sx={{ textTransform: 'none' }}>
                 Enter any Stratagem Input to Start!
             </Typography>
         </Stack>
@@ -320,7 +327,11 @@ function StratagemHero({ screenRef }) {
 
         return <Stack spacing={1} sx={{
             display: 'flex',
-            justifyContent: 'space-evenly'
+            justifyContent: 'space-evenly',
+            alignItems: 'space-between',
+            flexDirection: 'column',
+            width: '100%',
+            height: '80%',
         }}>
             <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{
                 visibility: show < 0 ? 'hidden' : 'unset'
@@ -369,20 +380,21 @@ function StratagemHero({ screenRef }) {
         const { round, score } = gameState;
         const { stratagems, stratagemIndex, valid, inputSequence, timeRemaining } = roundState;
 
+
         return <Box sx={{
             display: 'grid',
-            gridTemplateRows: '10% 40% 40% 10%',
-            gridTemplateColumns: '20% 60% 20%',
+            gridTemplateRows: [.116,.406,.27,.208].map(ratio=>`${ratio*screenHeight}px`).join(' '),
+            gridTemplateColumns: [.167, .629, .167].map(ratio=>`${ratio*screenWidth}px`).join(' '),
             gridTemplateAreas: `
             "blank1 blank1 blank1"
             "round game1 score"
             "round game2 score"
             "blank2 blank2 blank2"
             `,
-            width: '100cqw',
+            width: `${screenWidth}px`,
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100cqh',
+            height: `${screenHeight}px`,
         }}>
             <Box sx={{
                 gridArea: 'blank1',
@@ -390,83 +402,98 @@ function StratagemHero({ screenRef }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100%',
-                backgroundColor: 'red'
             }}>
-                poop
             </Box>
             <Box sx={{
                 gridArea: 'round',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
                 height: '100%',
-                width: '100%'
+                width: '100%',
             }}>
-                <Typography variant="h6" sx={{ textTransform: 'none' }}>Round</Typography>
-                <Typography variant="h3" color={roundState.valid ? 'primary' : 'error'}>{round}</Typography>
+                <Typography sx={{ height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: 'none' }}>Round</Typography>
+                <Typography sx={{ height: `${0.092*screenHeight}px`, fontSize: `${0.092*screenHeight}px` ,textTransform: 'none' }} color={roundState.valid ? 'primary' : 'error'}>{round}</Typography>
+                <Typography sx={{ pt: `${0.015*screenHeight}px`, height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: 'none', visibility: 'hidden' }}>Round</Typography>
+            </Box>
+            <Box sx={{
+                gridArea: 'score',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                justifyContent: 'flex-start',
+                height: '100%',
+                width: '100%',
+            }}>
+                <Typography sx={{ height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: '', visibility: 'hidden' }}>Score</Typography>
+                <Typography sx={{ height: `${0.092*screenHeight}px`, fontSize: `${0.092*screenHeight}px` ,textTransform: 'none' }} color={roundState.valid ? 'primary' : 'error'}>{score}</Typography>
+                <Typography sx={{ pt: `${0.015*screenHeight}px`, height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: '' }}>Score</Typography>
             </Box>
             <Box sx={{
                 gridArea: 'game1',
                 display: 'flex',
                 height: '100%',
-                backgroundColor: 'green',
+                width: '100%',
             }}>
                 <Box sx={{
                     width: `100%`,
                     height: `100%`,
+                    display: 'flex',
+                    flexDirection: 'column',
                     justifyContent: 'flex-end',
-                    alignItems: 'flex-end',
-                    backgroundColor: 'grey'
+                    alignItems: 'center',
                 }}>
                     <Box sx={{
                         display: 'flex',
-                        flex: 1,
                         justifyContent: 'center',
                         alignItems: 'flex-end',
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'brown',
                     }}>
                         <Stack direction="row" sx={{
-                            backgroundColor: 'pink',
+                            display: 'flex',
+                            height: '100%',
+                            width: '100%',
+                            justifyContent: 'center',
                             alignItems: 'center',
-                            width: '100%'
                         }}>
-                            <Box sx={{
-                                width: '25%'
-                            }}>
-                                <StratagemIcon {...stratagems[stratagemIndex]}
-                                    showBorder
-                                    gameModeBorder={`4px solid ${valid ? theme.palette.primary.main : theme.palette.error.main}`}
-                                    width="100%"
-                                    height="100%"
-                                />
-                            </Box>
+                            <StratagemIcon {...stratagems[stratagemIndex]}
+                                showBorder
+                                gameModeBorder={`4px solid ${valid ? theme.palette.primary.main : theme.palette.error.main}`}
+                                height={`${Math.min(0.15*screenWidth,0.26*screenHeight)}px`}
+                                width={`${Math.min(0.15*screenWidth,0.26*screenHeight)}px`}
+                            />
                             <Stack direction="row" sx={{
                                 display: 'flex',
-                                justifyContent: 'space-evenly',
-                                alignItems: 'flex-end',
-                                height: '80%',
-                                flex: 1,
-                                backgroundColor: 'purple'
+                                justifyContent: 'flex-start',
+                                alignItems: 'center',
+                                height: `${Math.min(0.15*screenWidth,0.26*screenHeight)}px`,
+                                width: `${0.461*screenWidth}px`,
                             }}>
                                 {[1, 2, 3, 4, 5].map((offset, i) => {
                                     const stratagem = stratagems[stratagemIndex + offset] || null;
                                     return <Box key={i} sx={{
-                                        ml: i !== stratagemIndex ? `1rem` : 0,
+                                        ml: i !== stratagemIndex - 1 ? `3px` : 0,
                                     }}>
-                                        {stratagem ? <StratagemIcon {...stratagem} /> : <Box sx={{
-                                            width: '50%'
-                                        }}></Box>}
+                                        {stratagem
+                                        ? <StratagemIcon {...stratagem}
+                                            width={`${Math.min(0.075*screenWidth,0.14*screenHeight)}px`}
+                                            height={`${Math.min(0.075*screenWidth,0.14*screenHeight)}px`}/>
+                                        : <Box sx={{
+                                            width: `${Math.min(0.075*screenWidth,0.14*screenHeight)}px`,
+                                            height: `${Math.min(0.075*screenWidth,0.14*screenHeight)}px`,}} />}
                                     </Box>
                                 })}
                             </Stack>
                         </Stack>
-
                     </Box>
-
-                    <Typography variant="h6" sx={{
+                    <Typography sx={{
+                        height: `${0.0683*screenHeight}px`,
                         backgroundColor: roundState.valid ? theme.palette.primary.main : theme.palette.error.main,
                         color: theme.palette.background.default,
                         fontSynthesis: 'weight',
                         fontWeight: 900,
+                        fontSize: `${0.05*screenHeight}px`,
+                        width: '100%',
                         alignItems: 'center',
                         justifyContent: 'center',
                         display: 'flex',
@@ -479,18 +506,18 @@ function StratagemHero({ screenRef }) {
             <Box sx={{
                 gridArea: 'game2',
                 display: 'flex',
-                justifyContent: 'center',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
                 alignItems: 'center',
                 height: '100%',
-                backgroundColor: 'blue'
             }}>
                 <Box sx={{
-                    width: '100%',
+                    // width: '100%',
                     flex: 1,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: '3rem',
+                    height: `${0.133*screenHeight}px`,
                 }}>
                     <ArrowCombo {...stratagems[stratagemIndex]}
                         valid={valid}
@@ -499,7 +526,7 @@ function StratagemHero({ screenRef }) {
                         colorInvalid={theme.palette.error.main}
                         colorEntered={theme.palette.primary.main}
                         inputSequence={inputSequence}
-                        scale={2}
+                        height={`${0.133*screenHeight}px`}
                     />
                 </Box>
                 <LinearProgress
@@ -507,28 +534,18 @@ function StratagemHero({ screenRef }) {
                     color={roundState.valid ? 'primary' : 'error'}
                     value={100 * timeRemaining / (stratagemHeroConfig.timePerRound * 1000)}
                     sx={{
-                        height: '1rem',
-                        mt: '1rem',
+                        height: `${0.051*screenHeight}px`,
+                        mt: `${0.085*screenHeight}px`,
+                        width: '100%'
                     }} />
             </Box>
 
-            <Box sx={{
-                gridArea: 'score',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-                height: '100%',
-                width: '100%',
-            }}>
-                <Typography variant="h3"  color={roundState.valid ? 'primary' : 'error'}>{score}</Typography>
-                <Typography variant="h6" >Score</Typography>
-            </Box>
             <Box sx={{
                 gridArea: 'blank2',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '100%',
+                // height: '100%',
                 backgroundColor: 'red'
             }}>
             </Box>
@@ -536,12 +553,13 @@ function StratagemHero({ screenRef }) {
     };
 
     return (<Box sx={{
-        flex: 1,
+        width: screenWidth,
+        height: screenHeight,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: screenRef?.current?.clientHeight || '100%',
-        width: screenRef?.current?.clientWidth || '100%',
+        transform: `scale(${scale},${scale})`,
+        // transformOrigin: 'top left',
     }}>
         {currentState === GameStates.GAME_READY && <StartScreen />}
         {currentState === GameStates.ROUND_STARTING && <RoundStartScreen />}
@@ -551,4 +569,4 @@ function StratagemHero({ screenRef }) {
     </Box>);
 }
 
-export default StratagemHero;
+export default StratagemHeroGame;

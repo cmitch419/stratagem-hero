@@ -6,6 +6,7 @@ import ConsoleImage from '/img/console.png'
 import StratagemHeroGame from './pages/StratagemHero';
 import Stratagems from './pages/Stratagems';
 import OnScreenDpad from './components/OnScreenButtons';
+import StratagemHeroConsole from './pages/StratagemHero';
 
 const App = () => {
   const isSmallScreen = useMediaQuery('(max-width:600px)');
@@ -38,7 +39,7 @@ const App = () => {
       <Box sx={{
 
       }}>
-        <StratagemHeroGame />
+        <StratagemHeroConsole />
       </Box>
     </Box>
     <Box sx={{
