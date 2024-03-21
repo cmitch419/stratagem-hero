@@ -1,64 +1,81 @@
-import { useEffect } from 'react';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { AppBar, Box, Drawer, IconButton, Toolbar, Zoom } from '@mui/material';
 import './App.css';
 import BackgroundImage from '/img/bg01.jpg'
-import ConsoleImage from '/img/console.png'
-import StratagemHeroGame from './pages/StratagemHero';
+import StratagemHeroConsole from './pages/StratagemHeroConsole';
 import Stratagems from './pages/Stratagems';
+import { Close, GamepadOutlined } from '@mui/icons-material';
 import OnScreenDpad from './components/OnScreenButtons';
-import StratagemHeroConsole from './pages/StratagemHero';
 
 const App = () => {
-  const isSmallScreen = useMediaQuery('(max-width:600px)');
-  const isMediumScreen = useMediaQuery('(min-width:600px) and (max-width:960px)');
-  const isLargeScreen = useMediaQuery('(min-width:960px)');
-  useEffect(() => {
+    const [showGame, setShowGame] = useState(false);
 
-  },)
+    const toggleGameDrawer = () => setShowGame(!showGame);
 
-  return (<Box className="App" sx={{
-    backgroundImage: `url(${BackgroundImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    display: 'flex',
-    height: '-webkit-fill-available'
-  }}>
-    <Box sx={{
-      // m: '13.5% 9.21% 13.5% 9.21%',
-      // m: '13.5% 13.21% 13.5% 13.21%',
-      backgroundImage: `url(${ConsoleImage})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'contain',
-      backgroundPosition: 'center',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
+    useEffect(() => {
+
+    },)
+
+    return (<Box className="App" sx={{
+        backgroundImage: `url(${BackgroundImage})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        display: 'flex',
+        overflowY: 'hidden',
     }}>
-      <Box sx={{
+        <Box sx={{
+            width: '100vw',
+            height: '100vh',
+            overflowY: 'hidden',
+        }}>
+            <Stratagems />
+        </Box>
+        <Box sx={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+        }}>
+            <IconButton onClick={toggleGameDrawer}>
+                <GamepadOutlined />
+            </IconButton>
+        </Box>
 
-      }}>
-        <StratagemHeroConsole />
-      </Box>
-    </Box>
-    <Box sx={{
-      display: 'flex',
-      position: 'fixed',
-      left: 0,
-      bottom: 0,
-      zIndex: 10000,
-      alignContent: 'center',
-      justifyContent: 'center',
-    }}>
-      <OnScreenDpad />
-    </Box>
-    {/* <Stratagems />
-    <Box position="fixed" right="1rem" bottom="1rem">
-        <Typography>Hold SHIFT and press W-A-S-D</Typography>
-      </Box> */}
-      {/* <ToastContainer position='bottom-right' /> */}
-  </Box>);
+        <Drawer
+            anchor="top"
+            open={showGame}
+            sx={{
+                width: '100%',
+                height: '100%'
+            }}
+        >
+            <StratagemHeroConsole />
+            <Box sx={{
+                position: 'fixed',
+                top: 0,
+                right: 0,
+            }}>
+                <IconButton onClick={() => setShowGame(false)}>
+                    <Close />
+                </IconButton>
+            </Box>
+
+        </Drawer>
+        <Zoom in={showGame}>
+            <Box sx={{
+                left: '1rem',
+                bottom: '1rem',
+                zIndex: 10000,
+                position: 'fixed',
+                boxShadow: '0.2rem 0.2rem 0.2rem rgba(0,0,0,0.7)',
+                borderRadius: '50%',
+            }}>
+                <OnScreenDpad />
+            </Box>
+        </Zoom>
+
+
+    </Box >);
 };
 
 export default App;

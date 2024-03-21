@@ -17,7 +17,7 @@ const STRATAGEM_INFO = {
 
 const STRATAGEM_INFO_1 = {
     ...STRATAGEM_INFO_BASE,
-    gridTemplateColumns: '1rem 4fr',
+    gridTemplateColumns: '1rem 1fr',
     gridTemplateAreas:
         `"vert  category"
         "vert   name"

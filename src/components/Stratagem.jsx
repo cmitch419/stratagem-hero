@@ -123,7 +123,6 @@ function Arrow({ alpha, color, height }) {
         color,
         filter: `drop-shadow(${SHADOW_OFFSETS[alpha]} 0 rgba(0,0,0,0.5))`,
         fontSize: height,
-        // width: '100cqh',
     }} />
 }
 

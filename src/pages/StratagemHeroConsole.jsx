@@ -1,23 +1,24 @@
-import { Box } from "@mui/material";
-import StratagemHeroGame from '../components/StratagemHero'
-import consoleImage01 from '/img/console_01.png?url'
-import consoleImage02 from '/img/console_02.png?url'
-import consoleImage03 from '/img/console_03.png?url'
-import consoleImage04 from '/img/console_04.png?url'
-import consoleImage05 from '/img/console_05.png?url'
-import consoleImage06 from '/img/console_06.png?url'
-import consoleImage07 from '/img/console_07.png?url'
-import consoleImage08 from '/img/console_08.png?url'
-import consoleImage09 from '/img/console_09.png?url'
-import { useCallback, useEffect, useRef, useState } from "react";
-import OnScreenDpad from "../components/OnScreenButtons";
+import { useEffect, useRef, useState } from "react";
 
-// const WIDTH = 510;
-// const HEIGHT = 293;
+import { Box } from "@mui/material";
+
+import StratagemHeroGame from '../components/StratagemHeroGame'
+
+import consoleBanner  from '/img/banner.png?url';
+import consoleImage01 from '/img/console_01.png?url';
+import consoleImage02 from '/img/console_02.png?url';
+import consoleImage03 from '/img/console_03.png?url';
+import consoleImage04 from '/img/console_04.png?url';
+import consoleImage05 from '/img/console_05.png?url';
+import consoleImage06 from '/img/console_06.png?url';
+import consoleImage07 from '/img/console_07.png?url';
+import consoleImage08 from '/img/console_08.png?url';
+import consoleImage09 from '/img/console_09.png?url';
+
 const WIDTH = 1000;
 const HEIGHT = WIDTH * 0.575;
 
-function StratagemHeroConsole({ children }) {
+function StratagemHeroConsole() {
     const screenRef = useRef();
     const [scaleFactor, setScaleFactor] = useState(1);
 
@@ -43,17 +44,24 @@ function StratagemHeroConsole({ children }) {
     return (<Box sx={{
         display: 'grid',
         gridTemplateColumns: "1fr 80cqw 1fr",
-        gridTemplateRows: "20px 80cqh 20px",
+        gridTemplateRows: "1fr 20px 60cqh 20px",
         gridTemplateAreas: `
+            "banner banner banner"
             "c01 c02 c03"
             "c04 c05 c06"
             "c07 c08 c09"
         `,
-        // height: '50cqw',
-        // width: '100cqw',
-        // minWidth: '400px',
-        // minHeight: '300px',
+        textTransform: 'uppercase',
+        textWrap: 'nowrap',
+        flexWrap: 'nowrap',
+        overflow: 'hidden',
+
     }}>
+        <Box component="img" src={consoleBanner} sx={{
+            gridArea: 'banner',
+            width: '100%',
+            height: '100%',
+        }} />
         <Box ref={screenRef} sx={{
             gridArea: 'c05',
             display: 'flex',
@@ -106,14 +114,6 @@ function StratagemHeroConsole({ children }) {
             backgroundImage: `url(${consoleImage09})`,
             backgroundSize: '100% 100%',
         }} />
-        <Box sx={{
-            left: 0,
-            bottom: 0,
-            zIndex: 10000,
-            position: 'fixed',
-        }}>
-          <OnScreenDpad />
-        </Box>
     </Box>
     );
 }
