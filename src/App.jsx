@@ -4,7 +4,7 @@ import './App.css';
 import BackgroundImage from '/img/bg01.jpg';
 import StratagemHeroConsole from './pages/StratagemHeroConsole';
 import Stratagems from './pages/Stratagems';
-import { SettingsOutlined, GamepadOutlined } from '@mui/icons-material';
+import { Checklist, GamepadOutlined } from '@mui/icons-material';
 import OnScreenDpad from './components/OnScreenButtons';
 import stratagemsDataV2 from './data/stratagemsData';
 
@@ -39,17 +39,6 @@ const App = () => {
                 setDisabledStratagems={setDisabledStratagems}
             />
         </Box>
-        <Zoom in={!showGame}>
-            <Box sx={{
-                position: 'fixed',
-                bottom: '1rem',
-                right: '1rem',
-            }}>
-                <IconButton onClick={toggleGameDrawer}>
-                    <GamepadOutlined />
-                </IconButton>
-            </Box>
-        </Zoom>
 
         <Drawer
             anchor="top"
@@ -76,6 +65,17 @@ const App = () => {
                 <OnScreenDpad />
             </Box>
         </Zoom>
+        <Zoom in={!showGame}>
+            <Box sx={{
+                position: 'absolute',
+                bottom: '1rem',
+                right: '1rem',
+            }}>
+                <IconButton onClick={toggleGameDrawer}>
+                    <GamepadOutlined />
+                </IconButton>
+            </Box>
+        </Zoom>
         <Zoom in={showGame}>
             <Box sx={{
                 position: 'absolute',
@@ -83,8 +83,8 @@ const App = () => {
                 right: '1rem',
                 zIndex: 10000,
             }}>
-                <IconButton onClick={() => setShowGame(false)}>
-                    <SettingsOutlined />
+                <IconButton onClick={toggleGameDrawer}>
+                    <Checklist />
                 </IconButton>
             </Box>
         </Zoom>

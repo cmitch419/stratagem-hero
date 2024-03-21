@@ -136,8 +136,10 @@ function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disa
         return stratagems;
     };
 
+    window.d = disabledStratagems;
+
     const getStratagem = () => {
-        const filteredStratagems = stratagemsData.filter((v)=>disabledStratagems.indexOf(v.id)===-1);
+        const filteredStratagems = stratagemsData.filter((v)=>!disabledStratagems.has(v.id));
         return filteredStratagems[Math.floor(Math.random() * filteredStratagems.length)];
     };
 
