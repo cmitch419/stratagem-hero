@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Stratagem from "./Stratagem";
-import stratagemsData from "../data/stratagemsData.json";
+import stratagemsData from "../data/stratagemsData";
 import { INPUT_RESET_TIME } from "../constants";
 import useGamepad from "../hooks/useGamepad";
 import { Box, useMediaQuery, useTheme } from "@mui/material";

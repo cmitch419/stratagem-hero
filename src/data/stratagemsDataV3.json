@@ -1,0 +1,1532 @@
+{
+    "sg-000": {
+        "permitType": "supply",
+        "traits": [
+            "hellpod",
+            "backpack"
+        ],
+        "category": "Hangar",
+        "icon": "LIFT-850icon.png",
+        "name": "Jump Pack",
+        "model": "LIFT-850",
+        "description": "Enables the user to jump higher than 'gravity' and 'safety' would normally allow. Must be charged before use.",
+        "code": [
+            "D",
+            "U",
+            "U",
+            "D",
+            "U"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 5,
+        "tags": [
+            "trait:hellpod",
+            "trait:backpack",
+            "cat:Hangar",
+            "permit:supply"
+        ],
+        "id": "sg-000"
+    },
+    "sg-001": {
+        "permitType": "supply",
+        "traits": [
+            "hellpod",
+            "backpack"
+        ],
+        "category": "Engineering Bay",
+        "icon": "B-1icon.png",
+        "name": "Supply Pack",
+        "model": "B-1",
+        "altName": "Resupply Pack",
+        "description": "Supply boxes containing ammunition, with a backpack that allows the user to distribute boxes to fellow Helldivers.",
+        "code": [
+            "D",
+            "L",
+            "D",
+            "U",
+            "U",
+            "D"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 5,
+        "tags": [
+            "trait:hellpod",
+            "trait:backpack",
+            "cat:Engineering Bay",
+            "permit:supply"
+        ],
+        "id": "sg-001"
+    },
+    "sg-002": {
+        "permitType": "supply",
+        "traits": [
+            "hellpod",
+            "backpack"
+        ],
+        "category": "Engineering Bay",
+        "icon": "AX-LAS-5icon.png",
+        "name": "\"Guard Dog\" Rover",
+        "model": "AX/LAS-5",
+        "description": "An autonomous drone equipped with a laser rifle, providing 360° cover. Returns to backpack to cool down.",
+        "code": [
+            "D",
+            "U",
+            "L",
+            "U",
+            "R",
+            "R"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 5,
+        "tags": [
+            "trait:hellpod",
+            "trait:backpack",
+            "cat:Engineering Bay",
+            "permit:supply"
+        ],
+        "id": "sg-002"
+    },
+    "sg-003": {
+        "permitType": "supply",
+        "traits": [
+            "hellpod",
+            "backpack"
+        ],
+        "category": "Engineering Bay",
+        "icon": "SH-20icon.png",
+        "name": "Ballistic Shield Backpack",
+        "model": "SH-20",
+        "description": "A backpack which can be wielded as a one-handed ballistic shield, protecting against small arms fire.",
+        "code": [
+            "D",
+            "L",
+            "D",
+            "D",
+            "U",
+            "L"
+        ],
+        "cooldown": 300,
+        "uses": -1,
+        "activation": 5,
+        "tags": [
+            "trait:hellpod",
+            "trait:backpack",
+            "cat:Engineering Bay",
+            "permit:supply"
+        ],
+        "id": "sg-003"
+    },
+    "sg-004": {
+        "permitType": "supply",
+        "traits": [
+            "hellpod",
+            "backpack"
+        ],
+        "category": "Engineering Bay",
+        "icon": "SH-32icon.png",
+        "name": "Shield Generator Pack",
+        "model": "SH-32",
+        "altName": "SH-20 Shield Generator Pack",
+        "description": "Encloses the wearer in a spherical shield which blocks high-speed projectiles. Has a limited lifetime once deployed.",
+        "code": [
+            "D",
+            "U",
+            "L",
+            "R",
+            "L",
+            "R"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 5,
+        "tags": [
+            "trait:hellpod",
+            "trait:backpack",
+            "cat:Engineering Bay",
+            "permit:supply"
+        ],
+        "id": "sg-004"
+    },
+    "sg-005": {
+        "permitType": "supply",
+        "traits": [
+            "hellpod",
+            "backpack"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "AX-AR-23icon.png",
+        "name": "\"Guard Dog\"",
+        "model": "AX/AR-23",
+        "altName": "AD-334 Guard Dog",
+        "description": "An autonomous drone equipped with a Liberator assault rifle, providing 360° cover. Returns to backpack to rearm.",
+        "code": [
+            "D",
+            "U",
+            "L",
+            "U",
+            "R",
+            "D"
+        ],
+        "cooldown": 300,
+        "uses": -1,
+        "activation": 5,
+        "tags": [
+            "trait:hellpod",
+            "trait:backpack",
+            "cat:Robotic Workshop",
+            "permit:supply"
+        ],
+        "id": "sg-005"
+    },
+    "sg-006": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "MG-43icon.png",
+        "name": "Machine Gun",
+        "model": "MG-43",
+        "description": "A machine gun designed for stationary use. Trades higher power for increased recoil and reduced accuracy.",
+        "code": [
+            "D",
+            "L",
+            "D",
+            "U",
+            "R"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-006"
+    },
+    "sg-007": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "APW-1icon.png",
+        "name": "Anti-Materiel Rifle",
+        "model": "APW-1",
+        "description": "A high-caliber sniper rifle effective over long distances against light vehicle armor. This rifle must be aimed downscope.",
+        "code": [
+            "D",
+            "L",
+            "R",
+            "U",
+            "D"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-007"
+    },
+    "sg-008": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "M-105icon.png",
+        "name": "Stalwart",
+        "model": "M-105",
+        "description": "A compact, low caliber machine gun. Trades power for ease of use, with faster reloading than heavier machine guns.",
+        "code": [
+            "D",
+            "L",
+            "D",
+            "U",
+            "U",
+            "L"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-008"
+    },
+    "sg-009": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "EAT-17icon.png",
+        "name": "Expendable Anti-tank",
+        "model": "EAT-17",
+        "description": "A single-use weapon specialized for damaging vehicle armor. Discarded after every use.",
+        "code": [
+            "D",
+            "D",
+            "L",
+            "U",
+            "R"
+        ],
+        "cooldown": 70,
+        "uses": -1,
+        "activation": 2,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-009"
+    },
+    "sg-010": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "GR-8icon.png",
+        "name": "Recoilless Rifle",
+        "model": "GR-8",
+        "description": "A recoilless rifle effective against vehicle armor. Includes support backpack required for reloading.",
+        "code": [
+            "D",
+            "L",
+            "R",
+            "R",
+            "L"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-010"
+    },
+    "sg-011": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "FLAM-40icon.png",
+        "name": "Flamethrower",
+        "model": "FLAM-40",
+        "altName": "Incinerator",
+        "description": "An incendiary weapon for close range. Will ignite targets, terrain, and any flammable teammates.",
+        "code": [
+            "D",
+            "L",
+            "U",
+            "D",
+            "U"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-011"
+    },
+    "sg-012": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "AC-8icon.png",
+        "name": "Autocannon",
+        "model": "AC-8",
+        "description": "A fully-automatic cannon effective against light vehicle armor. Includes support backpack required for reloading.",
+        "code": [
+            "D",
+            "L",
+            "D",
+            "U",
+            "U",
+            "R"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-012"
+    },
+    "sg-013": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "RS-422icon.png",
+        "name": "Railgun",
+        "model": "RS-422",
+        "description": "An experimental weapon which prioritizes armor penetration. Must be charged between shots - so choose targets carefully.",
+        "code": [
+            "D",
+            "R",
+            "D",
+            "U",
+            "L",
+            "R"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-013"
+    },
+    "sg-014": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
+        "icon": "FAF-14icon.png",
+        "name": "SPEAR Launcher",
+        "model": "FAF-14",
+        "description": "An anti-tank homing missile which must lock onto its target before launch. Effective against large and armored enemies.",
+        "code": [
+            "D",
+            "D",
+            "U",
+            "D",
+            "D"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-014"
+    },
+    "sg-015": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod",
+            "explosive"
+        ],
+        "category": "Engineering Bay",
+        "icon": "GL-21icon.png",
+        "name": "Grenade Launcher",
+        "model": "GL-21",
+        "description": "A grenade launcher effective against armored infantry. Not intended for use against vehicle armor or fortified buildings.",
+        "code": [
+            "D",
+            "L",
+            "U",
+            "L",
+            "D"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "trait:explosive",
+            "cat:Engineering Bay",
+            "permit:supply"
+        ],
+        "id": "sg-015"
+    },
+    "sg-016": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Engineering Bay",
+        "icon": "LAS-98icon.png",
+        "name": "Laser Cannon",
+        "model": "LAS-98",
+        "description": "A laser weapon firing a continuous beam. Doesn't require ammunition, but will need heat sink replaced if it overheats.",
+        "code": [
+            "D",
+            "L",
+            "D",
+            "U",
+            "L"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Engineering Bay",
+            "permit:supply"
+        ],
+        "id": "sg-016"
+    },
+    "sg-017": {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Engineering Bay",
+        "icon": "ARC-3icon.png",
+        "name": "Arc Thrower",
+        "model": "ARC-3",
+        "description": "Projects an arc of lightning at close range. Charges up to project bolts, and may discharge through multiple targets.",
+        "code": [
+            "D",
+            "R",
+            "D",
+            "U",
+            "L",
+            "L"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Engineering Bay",
+            "permit:supply"
+        ],
+        "id": "sg-017"
+    },
+    "sg-018": {
+        "permitType": "mission",
+        "icon": "Reinforceicon.png",
+        "name": "Reinforce",
+        "code": [
+            "U",
+            "D",
+            "R",
+            "L",
+            "U"
+        ],
+        "cooldown": 120,
+        "uses": "5 per Person",
+        "activation": 5,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-018"
+    },
+    "sg-019": {
+        "permitType": "mission",
+        "icon": "SOSicon.png",
+        "name": "SOS Beacon",
+        "code": [
+            "U",
+            "D",
+            "R",
+            "U"
+        ],
+        "cooldown": null,
+        "uses": 1,
+        "activation": 5,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-019"
+    },
+    "sg-020": {
+        "permitType": "mission",
+        "icon": "ResupplyIcon.png",
+        "name": "Resupply",
+        "code": [
+            "D",
+            "D",
+            "U",
+            "R"
+        ],
+        "cooldown": 160,
+        "uses": -1,
+        "activation": 12,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-020"
+    },
+    "sg-021": {
+        "permitType": "mission",
+        "icon": "",
+        "name": "Hellbomb",
+        "model": "NUX-223",
+        "code": [
+            "D",
+            "U",
+            "L",
+            "D",
+            "U",
+            "R",
+            "D",
+            "U"
+        ],
+        "cooldown": null,
+        "uses": -1,
+        "activation": null,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-021"
+    },
+    "sg-022": {
+        "permitType": "mission",
+        "icon": "DeliverSSSDicon.png",
+        "name": "SSSD Delivery",
+        "code": [
+            "D",
+            "D",
+            "D",
+            "U",
+            "U"
+        ],
+        "cooldown": null,
+        "uses": -1,
+        "activation": null,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-022"
+    },
+    "sg-023": {
+        "permitType": "mission",
+        "icon": "Seismic probe icon.png",
+        "name": "Seismic Probe",
+        "code": [
+            "U",
+            "U",
+            "L",
+            "R",
+            "D",
+            "D"
+        ],
+        "cooldown": null,
+        "uses": 1,
+        "activation": 9,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-023"
+    },
+    "sg-024": {
+        "permitType": "mission",
+        "icon": "DeliverSSSDicon.png",
+        "name": "Upload Data",
+        "code": [
+            "D",
+            "D",
+            "U",
+            "U",
+            "U"
+        ],
+        "cooldown": null,
+        "uses": -1,
+        "activation": null,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-024"
+    },
+    "sg-025": {
+        "permitType": "mission",
+        "icon": "HD2 Eagle Rearm Icon.jpg",
+        "name": "Eagle Rearm",
+        "code": [
+            "U",
+            "U",
+            "L",
+            "U",
+            "R"
+        ],
+        "cooldown": "2 minutes (rearms all Eagles)",
+        "uses": -1,
+        "activation": null,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-025"
+    },
+    "sg-026": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod"
+        ],
+        "category": "Bridge",
+        "icon": "HMGTurreticon.png",
+        "name": "HMG Emplacement",
+        "model": "E/MG-101",
+        "description": "A manned fortification offering superior firepower against lightly armored targets. Slow to turn, so place it wisely.",
+        "code": [
+            "D",
+            "U",
+            "L",
+            "R",
+            "R",
+            "L"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "cat:Bridge",
+            "permit:defensive"
+        ],
+        "id": "sg-026"
+    },
+    "sg-027": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod"
+        ],
+        "category": "Bridge",
+        "icon": "Shieldrelayicon.png",
+        "name": "Shield Generator Relay",
+        "model": "FX-12",
+        "code": [
+            "D",
+            "D",
+            "L",
+            "R",
+            "L",
+            "R"
+        ],
+        "cooldown": 90,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "cat:Bridge",
+            "permit:defensive"
+        ],
+        "id": "sg-027"
+    },
+    "sg-028": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "sentry"
+        ],
+        "category": "Bridge",
+        "icon": "Teslaicon.png",
+        "name": "Tesla Tower",
+        "model": "A/ARC-3",
+        "description": "A turret which fires electrical charges at targets in close range. To avoid friendly fire, remain prone.",
+        "code": [
+            "D",
+            "U",
+            "R",
+            "U",
+            "L",
+            "R"
+        ],
+        "cooldown": 150,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:sentry",
+            "cat:Bridge",
+            "permit:defensive"
+        ],
+        "id": "sg-028"
+    },
+    "sg-029": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "explosive"
+        ],
+        "category": "Engineering Bay",
+        "icon": "Minefieldicon.png",
+        "name": "Anti-Personnel Minefield",
+        "model": "MD-6",
+        "description": "Deploys a defensive anti-personnel minefield, to halt enemy advance.",
+        "code": [
+            "D",
+            "L",
+            "U",
+            "R"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:explosive",
+            "cat:Engineering Bay",
+            "permit:defensive"
+        ],
+        "id": "sg-029"
+    },
+    "sg-030": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "explosive"
+        ],
+        "category": "Engineering Bay",
+        "icon": "Fireminefieldicon.png",
+        "name": "Incendiary Mines",
+        "model": "MD-I4",
+        "description": "Deploys a defensive anti-personnel minefield, which will set both terrain and targets alight when triggered.",
+        "code": [
+            "D",
+            "L",
+            "L",
+            "D"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:explosive",
+            "cat:Engineering Bay",
+            "permit:defensive"
+        ],
+        "id": "sg-030"
+    },
+    "sg-031": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "sentry"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "MGsentryicon.png",
+        "name": "Machine Gun Sentry",
+        "model": "A/MG-43",
+        "description": "An agile automated machine gun turret. Will fire at targets even if Helldivers will be caught in the crossfire.",
+        "code": [
+            "D",
+            "U",
+            "R",
+            "R",
+            "U"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:sentry",
+            "cat:Robotic Workshop",
+            "permit:defensive"
+        ],
+        "id": "sg-031"
+    },
+    "sg-032": {
+        "permitType": "supply",
+        "traits": [
+            "explosive",
+            "vehicle"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "EXO45icon.png",
+        "name": "Patriot Exosuit",
+        "model": "EXO-45",
+        "description": "A heavily-armored walking exosuit equipped with a rocket launcher and a heavy machine gun.",
+        "code": [
+            "L",
+            "D",
+            "R",
+            "U",
+            "L",
+            "D",
+            "D"
+        ],
+        "cooldown": 600,
+        "uses": 2,
+        "activation": 0,
+        "tags": [
+            "trait:explosive",
+            "trait:vehicle",
+            "cat:Robotic Workshop",
+            "permit:supply"
+        ],
+        "id": "sg-032"
+    },
+    "sg-033": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "sentry"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "Gatlingsentryicon.png",
+        "name": "Gatling Sentry",
+        "model": "A/G-16",
+        "description": "An automated turret with an extremely high rate of fire. Caution: does not check if friendly units are in line of fire.",
+        "code": [
+            "D",
+            "U",
+            "R",
+            "L"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:sentry",
+            "cat:Robotic Workshop",
+            "permit:defensive"
+        ],
+        "id": "sg-033"
+    },
+    "sg-034": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "sentry"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "Mortarsentryicon.png",
+        "name": "Mortar Sentry",
+        "model": "A/M-12",
+        "description": "A turret firing powerful shells in a high arc. Effective at long ranges, and able to strike at targets behind cover.",
+        "code": [
+            "D",
+            "U",
+            "R",
+            "R",
+            "D"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:sentry",
+            "cat:Robotic Workshop",
+            "permit:defensive"
+        ],
+        "id": "sg-034"
+    },
+    "sg-035": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "sentry"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "Autocannoasentryicon.png",
+        "name": "Autocannon Sentry",
+        "model": "A/AC-8",
+        "description": "An automated cannon turret firing anti-tank ammunition over long ranges. Sacrifices agility for range and power.",
+        "code": [
+            "D",
+            "U",
+            "R",
+            "U",
+            "L",
+            "U"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:sentry",
+            "cat:Robotic Workshop",
+            "permit:defensive"
+        ],
+        "id": "sg-035"
+    },
+    "sg-036": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "explosive",
+            "sentry"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "Missilesentryicon.png",
+        "name": "Rocket Sentry",
+        "model": "A/MLS-4X",
+        "description": "A powerful automated turret, effective against armored targets. The turret will primarily aim at larger enemies.",
+        "code": [
+            "D",
+            "U",
+            "R",
+            "R",
+            "L"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:explosive",
+            "trait:sentry",
+            "cat:Robotic Workshop",
+            "permit:defensive"
+        ],
+        "id": "sg-036"
+    },
+    "sg-037": {
+        "permitType": "defensive",
+        "traits": [
+            "hellpod",
+            "explosive",
+            "sentry"
+        ],
+        "category": "Robotic Workshop",
+        "icon": "EMSmortaricon.png",
+        "name": "EMS Mortar Sentry",
+        "model": "A/M-23",
+        "description": "A turret firing static field generators that slow the advance of enemies.",
+        "code": [
+            "D",
+            "U",
+            "R",
+            "D",
+            "R"
+        ],
+        "cooldown": 180,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:hellpod",
+            "trait:explosive",
+            "trait:sentry",
+            "cat:Robotic Workshop",
+            "permit:defensive"
+        ],
+        "id": "sg-037"
+    },
+    "sg-038": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Orbital Cannons",
+        "icon": "OrbitalGatlingicon.png",
+        "name": "Orbital Gatling Barrage",
+        "description": "A barrage of high explosive rounds, fired from the Destroyer's high speed rotary autocannons.",
+        "code": [
+            "R",
+            "D",
+            "L",
+            "U",
+            "U"
+        ],
+        "cooldown": 80,
+        "uses": -1,
+        "activation": 1,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Orbital Cannons",
+            "permit:offensive"
+        ],
+        "id": "sg-038"
+    },
+    "sg-039": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Orbital Cannons",
+        "icon": "OrbitalAirbursticon.png",
+        "name": "Orbital Airburst Strike",
+        "description": "A projectile which explodes while airborne, creating a deadly rain of shrapnel. Not effective against heavy armor.",
+        "code": [
+            "R",
+            "R",
+            "R"
+        ],
+        "cooldown": 120,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Orbital Cannons",
+            "permit:offensive"
+        ],
+        "id": "sg-039"
+    },
+    "sg-040": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Orbital Cannons",
+        "icon": "Orbital120icon.png",
+        "name": "Orbital 120MM HE Barrage",
+        "description": "A precision artillery salvo over a small area, perfect for taking out concentrated enemy units.",
+        "code": [
+            "R",
+            "R",
+            "D",
+            "L",
+            "R",
+            "D"
+        ],
+        "cooldown": 240,
+        "uses": -1,
+        "activation": 4,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Orbital Cannons",
+            "permit:offensive"
+        ],
+        "id": "sg-040"
+    },
+    "sg-041": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Orbital Cannons",
+        "icon": "Orbital380icon.png",
+        "name": "Orbital 380MM HE Barrage",
+        "description": "A prolonged barrage, wreaking extended destruction over a large area. Communication with teammates is advised.",
+        "code": [
+            "R",
+            "D",
+            "U",
+            "U",
+            "L",
+            "D",
+            "D"
+        ],
+        "cooldown": 240,
+        "uses": -1,
+        "activation": 5,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Orbital Cannons",
+            "permit:offensive"
+        ],
+        "id": "sg-041"
+    },
+    "sg-042": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Orbital Cannons",
+        "icon": "OrbitalWalkingicon.png",
+        "name": "Orbital Walking Barrage",
+        "description": "A linear artillery barrage which moves at intervals, driving the enemy out from cover while allowing an advance.",
+        "code": [
+            "R",
+            "D",
+            "R",
+            "D",
+            "R",
+            "D"
+        ],
+        "cooldown": 240,
+        "uses": -1,
+        "activation": 2,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Orbital Cannons",
+            "permit:offensive"
+        ],
+        "id": "sg-042"
+    },
+    "sg-043": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital"
+        ],
+        "category": "Orbital Cannons",
+        "icon": "OrbitalLasericon.png",
+        "name": "Orbital Laser",
+        "description": "The Destroyer's laser cannon will sweep over the designated area, vaporizing all targets within the effective radius.",
+        "code": [
+            "R",
+            "D",
+            "U",
+            "R",
+            "D"
+        ],
+        "cooldown": 300,
+        "uses": 3,
+        "activation": 1,
+        "tags": [
+            "trait:orbital",
+            "cat:Orbital Cannons",
+            "permit:offensive"
+        ],
+        "id": "sg-043"
+    },
+    "sg-044": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital"
+        ],
+        "category": "Orbital Cannons",
+        "icon": "OrbitalRailcannonicon.png",
+        "name": "Orbital Railcannon Strike",
+        "description": "A high-velocity railcannon round fired at the largest target in close proximity to the beacon. Targeting is automatic.",
+        "code": [
+            "R",
+            "U",
+            "D",
+            "D",
+            "R"
+        ],
+        "cooldown": 210,
+        "uses": -1,
+        "activation": 2,
+        "tags": [
+            "trait:orbital",
+            "cat:Orbital Cannons",
+            "permit:offensive"
+        ],
+        "id": "sg-044"
+    },
+    "sg-045": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Bridge",
+        "icon": "OrbitalPrecisionicon.png",
+        "name": "Orbital Precision Strike",
+        "description": "A single precision shot from the Destoryer's 'ATLAS' cannon.",
+        "code": [
+            "R",
+            "R",
+            "U"
+        ],
+        "cooldown": 100,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Bridge",
+            "permit:offensive"
+        ],
+        "id": "sg-045"
+    },
+    "sg-046": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Bridge",
+        "icon": "OrbitalGasicon.png",
+        "name": "Orbital Gas Strike",
+        "description": "A projectile which releases a cloud of corrosive gas, harmful to both organic and robotic lifeforms.",
+        "code": [
+            "R",
+            "R",
+            "D",
+            "R"
+        ],
+        "cooldown": 75,
+        "uses": -1,
+        "activation": 1,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Bridge",
+            "permit:offensive"
+        ],
+        "id": "sg-046"
+    },
+    "sg-047": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital"
+        ],
+        "category": "Bridge",
+        "icon": "OrbitalEMSicon.png",
+        "name": "Orbital EMS Strike",
+        "description": "A \"compliance weapon\" to modify enemy behavior. The projectile temporarily stuns all targets within the strike radius.",
+        "code": [
+            "R",
+            "R",
+            "L",
+            "D"
+        ],
+        "cooldown": 75,
+        "uses": -1,
+        "activation": 1,
+        "tags": [
+            "trait:orbital",
+            "cat:Bridge",
+            "permit:offensive"
+        ],
+        "id": "sg-047"
+    },
+    "sg-048": {
+        "permitType": "offensive",
+        "traits": [
+            "orbital",
+            "explosive"
+        ],
+        "category": "Bridge",
+        "icon": "OrbitalSmokeicon.png",
+        "name": "Orbital Smoke Strike",
+        "description": "Creates a large, thick smoke screen to block targets' line of sight.",
+        "code": [
+            "R",
+            "R",
+            "D",
+            "U"
+        ],
+        "cooldown": 100,
+        "uses": -1,
+        "activation": 1,
+        "tags": [
+            "trait:orbital",
+            "trait:explosive",
+            "cat:Bridge",
+            "permit:offensive"
+        ],
+        "id": "sg-048"
+    },
+    "sg-049": {
+        "permitType": "offensive",
+        "traits": [
+            "eagle"
+        ],
+        "category": "Hangar",
+        "icon": "EagleStrafingicon.png",
+        "name": "Eagle Strafing Run",
+        "description": "A strafing run of the battlefield to clear small targets, delivered almost instantaneously.",
+        "code": [
+            "U",
+            "R",
+            "R"
+        ],
+        "cooldown": 8,
+        "uses": 3,
+        "activation": 1,
+        "tags": [
+            "trait:eagle",
+            "cat:Hangar",
+            "permit:offensive"
+        ],
+        "id": "sg-049"
+    },
+    "sg-050": {
+        "permitType": "offensive",
+        "traits": [
+            "eagle",
+            "explosive"
+        ],
+        "category": "Hangar",
+        "icon": "EagleAirstrikeicon.png",
+        "name": "Eagle Airstrike",
+        "description": "A barrage of bombs creating a non-targeted carpet of explosions.",
+        "code": [
+            "U",
+            "R",
+            "D",
+            "R"
+        ],
+        "cooldown": 8,
+        "uses": 2,
+        "activation": 3,
+        "tags": [
+            "trait:eagle",
+            "trait:explosive",
+            "cat:Hangar",
+            "permit:offensive"
+        ],
+        "id": "sg-050"
+    },
+    "sg-051": {
+        "permitType": "offensive",
+        "traits": [
+            "eagle",
+            "explosive"
+        ],
+        "category": "Hangar",
+        "icon": "EagleClusterbombicon.png",
+        "name": "Eagle Cluster Bomb",
+        "description": "A targeted air strike unable to destroy buildings, but efficient at clearing smaller targets.",
+        "code": [
+            "U",
+            "R",
+            "D",
+            "D",
+            "R"
+        ],
+        "cooldown": 8,
+        "uses": 4,
+        "activation": 3,
+        "tags": [
+            "trait:eagle",
+            "trait:explosive",
+            "cat:Hangar",
+            "permit:offensive"
+        ],
+        "id": "sg-051"
+    },
+    "sg-052": {
+        "permitType": "offensive",
+        "traits": [
+            "eagle",
+            "explosive"
+        ],
+        "category": "Hangar",
+        "icon": "EagleNapalmicon.png",
+        "name": "Eagle Napalm Airstrike",
+        "altName": "Eagle Napalm Strike",
+        "description": "A barrage of napalm bombs, creating a wall of fire which will stop the enemy in their tracks.",
+        "code": [
+            "U",
+            "R",
+            "D",
+            "U"
+        ],
+        "cooldown": 8,
+        "uses": 2,
+        "activation": 3,
+        "tags": [
+            "trait:eagle",
+            "trait:explosive",
+            "cat:Hangar",
+            "permit:offensive"
+        ],
+        "id": "sg-052"
+    },
+    "sg-053": {
+        "permitType": "offensive",
+        "traits": [
+            "eagle",
+            "explosive"
+        ],
+        "category": "Hangar",
+        "icon": "EagleSmokeicon.png",
+        "name": "Eagle Smoke Strike",
+        "description": "A barrage of smoke grenades, creating a thick smoke screen to block enemies' line of sight.",
+        "code": [
+            "U",
+            "R",
+            "U",
+            "D"
+        ],
+        "cooldown": 8,
+        "uses": 2,
+        "activation": 3,
+        "tags": [
+            "trait:eagle",
+            "trait:explosive",
+            "cat:Hangar",
+            "permit:offensive"
+        ],
+        "id": "sg-053"
+    },
+    "sg-054": {
+        "permitType": "offensive",
+        "traits": [
+            "eagle",
+            "explosive"
+        ],
+        "category": "Hangar",
+        "icon": "EagleRocketpodicon.png",
+        "name": "Eagle 110MM Rocket Pods",
+        "description": "A barrage of rocket pods, which the Eagle pilot will release on the largest target near the stratagem beacon.",
+        "code": [
+            "U",
+            "R",
+            "U",
+            "L"
+        ],
+        "cooldown": 8,
+        "uses": 2,
+        "activation": 3,
+        "tags": [
+            "trait:eagle",
+            "trait:explosive",
+            "cat:Hangar",
+            "permit:offensive"
+        ],
+        "id": "sg-054"
+    },
+    "sg-055": {
+        "permitType": "offensive",
+        "traits": [
+            "eagle",
+            "explosive"
+        ],
+        "category": "Hangar",
+        "icon": "Eagle500icon.png",
+        "name": "Eagle 500kg Bomb",
+        "description": "A large bomb obliterating almost any target close to impact. Make sure to clear the area.",
+        "code": [
+            "U",
+            "R",
+            "D",
+            "D",
+            "D"
+        ],
+        "cooldown": 8,
+        "uses": 1,
+        "activation": 3,
+        "tags": [
+            "trait:eagle",
+            "trait:explosive",
+            "cat:Hangar",
+            "permit:offensive"
+        ],
+        "id": "sg-055"
+    }
+}

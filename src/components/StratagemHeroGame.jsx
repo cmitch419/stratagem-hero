@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import stratagemsData from '../data/stratagemsData.json';
+import stratagemsData from '../data/stratagemsData';
 import useKeyboard from '../hooks/useKeyboard';
 import { ArrowCombo } from './Stratagem';
 import { StratagemIcon } from './StratagemIcon';
@@ -49,20 +49,15 @@ const initialRoundState = {
 }
 
 function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disabledStratagems }) {
+    const theme = useTheme();
     const input = useKeyboard();
+
     const { currentState, transition } = useGameFSM();
-    window.scale = scale
 
     const [gameState, setGameState] = useState(initialGameState);
     const [roundState, setRoundState] = useState(initialRoundState);
-
     const [roundTimerId, setRoundTimerId] = useState(null);
 
-    const theme = useTheme();
-
-    window.cs = currentState;
-    window.gs = gameState;
-    window.rs = roundState;
 
     // ------STATE CHANGES-----
     useEffect(() => {
@@ -142,7 +137,7 @@ function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disa
     };
 
     const getStratagem = () => {
-        const filteredStratagems = stratagemsData.filter((v,i)=>disabledStratagems.indexOf(i)===-1);
+        const filteredStratagems = stratagemsData.filter((v)=>disabledStratagems.indexOf(v.id)===-1);
         return filteredStratagems[Math.floor(Math.random() * filteredStratagems.length)];
     };
 

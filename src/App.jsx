@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
-import { AppBar, Box, Drawer, IconButton, Toolbar, Zoom } from '@mui/material';
+import { Box, Drawer, IconButton, Zoom } from '@mui/material';
 import './App.css';
-import BackgroundImage from '/img/bg01.jpg'
+import BackgroundImage from '/img/bg01.jpg';
 import StratagemHeroConsole from './pages/StratagemHeroConsole';
 import Stratagems from './pages/Stratagems';
-import { Close, GamepadOutlined } from '@mui/icons-material';
+import { SettingsOutlined, GamepadOutlined } from '@mui/icons-material';
 import OnScreenDpad from './components/OnScreenButtons';
+import stratagemsDataV2 from './data/stratagemsData';
 
 const App = () => {
     const [showGame, setShowGame] = useState(true);
 
-    const [disabledStratagems, setDisabledStratagems] = useState([]);
+    const [disabledStratagems, setDisabledStratagems] = useState(new Set());
 
     const toggleGameDrawer = () => setShowGame(!showGame);
 
-    useEffect(()=>{
-        console.log(disabledStratagems);
-    },[disabledStratagems]);
+    // useEffect(()=>{
+    //     console.log(disabledStratagems);
+    // },[disabledStratagems]);
 
     // @TODO: Clean up and lift to components
     return (<Box className="App" sx={{
@@ -33,19 +34,22 @@ const App = () => {
             overflowY: 'hidden',
         }}>
             <Stratagems
+                stratagemsData={stratagemsDataV2}
                 disabledStratagems={disabledStratagems}
                 setDisabledStratagems={setDisabledStratagems}
             />
         </Box>
-        <Box sx={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-        }}>
-            <IconButton onClick={toggleGameDrawer}>
-                <GamepadOutlined />
-            </IconButton>
-        </Box>
+        <Zoom in={!showGame}>
+            <Box sx={{
+                position: 'fixed',
+                bottom: '1rem',
+                right: '1rem',
+            }}>
+                <IconButton onClick={toggleGameDrawer}>
+                    <GamepadOutlined />
+                </IconButton>
+            </Box>
+        </Zoom>
 
         <Drawer
             anchor="top"
@@ -58,15 +62,6 @@ const App = () => {
             <StratagemHeroConsole
                 disabledStratagems={disabledStratagems}
             />
-            <Box sx={{
-                position: 'fixed',
-                top: 0,
-                right: 0,
-            }}>
-                <IconButton onClick={() => setShowGame(false)}>
-                    <Close />
-                </IconButton>
-            </Box>
 
         </Drawer>
         <Zoom in={showGame}>
@@ -79,6 +74,18 @@ const App = () => {
                 borderRadius: '50%',
             }}>
                 <OnScreenDpad />
+            </Box>
+        </Zoom>
+        <Zoom in={showGame}>
+            <Box sx={{
+                position: 'absolute',
+                bottom: '1rem',
+                right: '1rem',
+                zIndex: 10000,
+            }}>
+                <IconButton onClick={() => setShowGame(false)}>
+                    <SettingsOutlined />
+                </IconButton>
             </Box>
         </Zoom>
 
