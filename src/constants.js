@@ -10,6 +10,10 @@ export const KEY_TO_DIRECTION = {
     'a': 'L',
     's': 'D',
     'd': 'R',
+    'arrowup': 'U',
+    'arrowleft': 'L',
+    'arrowdown': 'D',
+    'arrowright': 'R',
 };
 
 export const DPAD_TO_DIRECTION = {

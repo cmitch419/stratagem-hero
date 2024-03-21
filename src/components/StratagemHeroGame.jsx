@@ -294,9 +294,27 @@ function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disa
             <Typography variant="h1">
                 Stratagem Hero
             </Typography>
-            <Typography variant="h6" color='primary' sx={{ textTransform: 'none' }}>
+            <Typography variant="h4" color='primary' sx={{ textTransform: 'none' }}>
                 Enter any Stratagem Input to Start!
             </Typography>
+            <Box sx={{
+                width: '50%',
+                pt: '1rem',
+            }}>
+
+            <Stack direction="row" justifyContent="space-between" alignItems="center">
+                <Typography variant="h6" color="info">Mobile:</Typography>
+                <Typography component="span" sx={{ textTransform: 'none' }} >On-Screen D-Pad in lower left</Typography>
+            </Stack>
+            <Stack direction="row" justifyContent="space-between" alignItems="center">
+                <Typography variant="h6" color="info">Keyboard:</Typography>
+                <Typography component="span" sx={{ textTransform: 'none' }} >W A S D and Arrow Keys</Typography>
+            </Stack>
+            <Stack direction="row" justifyContent="space-between" alignItems="center">
+                <Typography variant="h6" color="info">Controller:</Typography>
+                <Typography component="span" sx={{ textTransform: 'none' }} >D-Pad</Typography>
+            </Stack>
+            </Box>
         </Stack>
     };
     const RoundStartScreen = () => {

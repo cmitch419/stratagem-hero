@@ -83,7 +83,6 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
                         </Stack>
                       </ListItemButton>
                     </ListItem>
-
                   </Stack>
                 )
               })}</>)
