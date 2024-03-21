@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "ghpages": "rm -rf ~/workspace/cmitch419.github.io/apps/stratagem-hero/* && cp -r ~/workspace/stratagem-hero/dist/* ~/workspace/cmitch419.github.io/apps/stratagem-hero/ && ( cd ~/workspace/cmitch419.github.io ; git add . ; git commit -m \"stratagem-hero: deploying build\" )"
+    "ghpages": "rm -rf ~/workspace/cmitch419.github.io/apps/stratagem-hero/* && cp -r ~/workspace/stratagem-hero/dist/* ~/workspace/cmitch419.github.io/apps/stratagem-hero/ && ( cd ~/workspace/cmitch419.github.io ; git add . ; git commit -m \"stratagem-hero: deploying build\" ; git push )"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
