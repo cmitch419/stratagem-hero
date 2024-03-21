@@ -18,7 +18,7 @@ import consoleImage09 from '/img/console_09.png?url';
 const WIDTH = 1000;
 const HEIGHT = WIDTH * 0.575;
 
-function StratagemHeroConsole() {
+function StratagemHeroConsole({ disabledStratagems }) {
     const screenRef = useRef();
     const [scaleFactor, setScaleFactor] = useState(1);
 
@@ -72,7 +72,7 @@ function StratagemHeroConsole() {
             width: '100%',
             height: '100%',
         }}>
-            <StratagemHeroGame scale={scaleFactor} />
+            <StratagemHeroGame scale={scaleFactor} disabledStratagems={disabledStratagems} />
         </Box>
         <Box sx={{
             gridArea: 'c01',

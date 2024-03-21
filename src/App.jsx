@@ -8,14 +8,17 @@ import { Close, GamepadOutlined } from '@mui/icons-material';
 import OnScreenDpad from './components/OnScreenButtons';
 
 const App = () => {
-    const [showGame, setShowGame] = useState(false);
+    const [showGame, setShowGame] = useState(true);
+
+    const [disabledStratagems, setDisabledStratagems] = useState([]);
 
     const toggleGameDrawer = () => setShowGame(!showGame);
 
-    useEffect(() => {
+    useEffect(()=>{
+        console.log(disabledStratagems);
+    },[disabledStratagems]);
 
-    },)
-
+    // @TODO: Clean up and lift to components
     return (<Box className="App" sx={{
         backgroundImage: `url(${BackgroundImage})`,
         backgroundRepeat: 'no-repeat',
@@ -29,7 +32,10 @@ const App = () => {
             height: '100vh',
             overflowY: 'hidden',
         }}>
-            <Stratagems />
+            <Stratagems
+                disabledStratagems={disabledStratagems}
+                setDisabledStratagems={setDisabledStratagems}
+            />
         </Box>
         <Box sx={{
             position: 'absolute',
@@ -49,7 +55,9 @@ const App = () => {
                 height: '100%'
             }}
         >
-            <StratagemHeroConsole />
+            <StratagemHeroConsole
+                disabledStratagems={disabledStratagems}
+            />
             <Box sx={{
                 position: 'fixed',
                 top: 0,

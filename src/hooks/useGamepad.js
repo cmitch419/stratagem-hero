@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 
-function useGamepad() {
+function useGamepad(holdButtonValue) {
     const DIRECTIONS = ['U','D','L','R'];
 
     const DEFAULT_BUTTON_MAPPING = [
         {
             id: 'HOLD',
             name: 'Stratagem hold button',
-            value: 4, // Left Bumper
+            value: holdButtonValue ?? 4, // default 4 - Left Bumper
         },
         {
             id: 'U',
@@ -31,10 +31,10 @@ function useGamepad() {
             value: 15, // D-pad right
         },
     ];
-    const [mapping,setMapping] = useState(DEFAULT_BUTTON_MAPPING);
+    const [mapping, setMapping] = useState(DEFAULT_BUTTON_MAPPING);
     const [gamepad, setGamepad] = useState(null);
     const [direction, setDirection] = useState(null);
-    const [hold, setHold] = useState(false);
+    const [hold, setHold] = useState(true);
 
     const HOLD = () => mapping.find(b=>b.id==='HOLD').value;
 

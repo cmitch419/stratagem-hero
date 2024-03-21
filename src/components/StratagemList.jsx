@@ -10,7 +10,7 @@ function StratagemList({ stratagems=[], }) {
     </List>);
 }
 
-function StratagemLine({ stratagem }) {
+export function StratagemLine({ stratagem }) {
     if (!stratagem) return <></>;
     const {
         name,

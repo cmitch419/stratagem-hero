@@ -48,7 +48,7 @@ const initialRoundState = {
     inputSequence: [],
 }
 
-function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT }) {
+function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT, disabledStratagems }) {
     const input = useKeyboard();
     const { currentState, transition } = useGameFSM();
     window.scale = scale
@@ -141,7 +141,10 @@ function StratagemHeroGame({ scale, screenWidth=WIDTH, screenHeight=HEIGHT }) {
         return stratagems;
     };
 
-    const getStratagem = () => stratagemsData[Math.floor(Math.random() * stratagemsData.length)];
+    const getStratagem = () => {
+        const filteredStratagems = stratagemsData.filter((v,i)=>disabledStratagems.indexOf(i)===-1);
+        return filteredStratagems[Math.floor(Math.random() * filteredStratagems.length)];
+    };
 
     const endRound = (success) => {
         if (success) {

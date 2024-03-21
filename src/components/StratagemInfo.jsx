@@ -3,13 +3,14 @@ import { Box, Stack, Typography } from "@mui/material";
 const STRATAGEM_INFO_BASE = {
     display: 'grid',
     gridTemplateRows: 'auto',
+    textWrap: 'wrap',
 };
 
 const STRATAGEM_INFO = {
     ...STRATAGEM_INFO_BASE,
     gap: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
-    gridTemplateColumns: '1fr',
+    gridTemplateColumns: '100%',
     gridTemplateAreas:
         `"stratagemInfo1"
         "stratagemInfo2"`
@@ -17,11 +18,12 @@ const STRATAGEM_INFO = {
 
 const STRATAGEM_INFO_1 = {
     ...STRATAGEM_INFO_BASE,
-    gridTemplateColumns: '1rem 1fr',
+    gridTemplateColumns: '1rem 1fr',    
     gridTemplateAreas:
         `"vert  category"
         "vert   name"
-        "vert   desc"`
+        "vert   desc"`,
+    
 };
 
 const STRATAGEM_INFO_2 = {

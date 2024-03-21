@@ -50,7 +50,7 @@ function useKeyboard(holdKey) {
     return {
         pressed: pressedKey,
         direction,
-        holdEngaged: holdKeyEngaged,
+        hold: holdKeyEngaged,
     };
 }
 
