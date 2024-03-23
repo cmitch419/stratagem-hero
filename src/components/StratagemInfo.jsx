@@ -13,7 +13,8 @@ const STRATAGEM_INFO = {
     gridTemplateColumns: '100%',
     gridTemplateAreas:
         `"stratagemInfo1"
-        "stratagemInfo2"`
+        "stratagemInfo2"`,
+    backdropFilter: 'blur(1rem)',
 };
 
 const STRATAGEM_INFO_1 = {
@@ -22,7 +23,7 @@ const STRATAGEM_INFO_1 = {
     gridTemplateAreas:
         `"vert  category"
         "vert   name"
-        "vert   desc"`,
+        "vert   desc"`
     
 };
 

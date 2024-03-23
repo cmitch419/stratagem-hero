@@ -18,7 +18,7 @@ const DpadButton = ({ kbKey, children, ...rest }) => {
 
 function OnScreenDpad() {
     return <Stack justifyContent="center" alignItems="center" sx={{
-        
+
     }}>
         <Box sx={{
             position: 'absolute',
@@ -28,6 +28,7 @@ function OnScreenDpad() {
             height: '100%',
             backgroundColor: 'rgba(0,0,0,0.65)',
             border: '2px solid white',
+            backdropFilter: 'blur(1rem)',
         }} />
         <DpadButton kbKey="w">
             <PlayArrowRounded sx={{ transform: 'rotate(270deg)' }} />
@@ -47,6 +48,39 @@ function OnScreenDpad() {
             <PlayArrowRounded sx={{ transform: 'rotate(90deg)' }} />
         </DpadButton>
     </Stack>
+}
+
+export function OnScreenDpad2() {
+    return <Stack justifyContent="center" alignItems="center" sx={{
+        transform: 'rotate(45deg)',
+    }}>
+        <Box sx={{
+            position: 'absolute',
+            boxSizing: 'border-box',
+            borderRadius: '50%',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,0.65)',
+            border: '2px solid white',
+            backdropFilter: 'blur(1rem)',
+        }} />
+        <Stack direction="row" justifyContent="center" alignItems="center">
+            <DpadButton kbKey="w">
+                <PlayArrowRounded sx={{ transform: 'rotate(-135deg)' }} />
+            </DpadButton>
+            <DpadButton kbKey="d">
+                <PlayArrowRounded sx={{ transform: 'rotate(-45deg)' }} />
+            </DpadButton>
+        </Stack>
+        <Stack direction="row" justifyContent="center" alignItems="center">
+            <DpadButton kbKey="a">
+                <PlayArrowRounded sx={{ transform: 'rotate(135deg)' }} />
+            </DpadButton>
+            <DpadButton kbKey="s">
+                <PlayArrowRounded sx={{ transform: 'rotate(45deg)' }} />
+            </DpadButton>
+        </Stack>
+    </Stack >
 }
 
 export default OnScreenDpad;

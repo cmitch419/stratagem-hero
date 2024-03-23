@@ -1,0 +1,13 @@
+{
+    "pointsPerArrow": 5,
+    "minGemsPerRound": 6,
+    "maxGemsPerRound": 16,
+    "incGemsPerRound": 1,
+    "perfectBonus": 100,
+    "roundBonusBase": 50,
+    "roundBonusMultiplier": 25,
+    "timePerRound": 10,
+    "timeBonusPerGem": 1,
+    "timeBetweenGems": 0.1,
+    "updateIntervalMs": 50
+}

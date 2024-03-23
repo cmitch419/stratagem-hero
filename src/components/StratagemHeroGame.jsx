@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
-import stratagemsData from '../data/stratagemsData';
+import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material';
+
+import useGamepad from '../hooks/useGamepad';
 import useKeyboard from '../hooks/useKeyboard';
+import stratagemsData from '../data/stratagemsData';
+import { Events, GameStates, useGameFSM } from '../hooks/gameFSM';
+
 import { ArrowCombo } from './Stratagem';
 import { StratagemIcon } from './StratagemIcon';
-import { Box, LinearProgress, Stack, Typography, useTheme } from '@mui/material';
-import { Events, GameStates, useGameFSM } from '../hooks/gameFSM';
-import useGamepad from '../hooks/useGamepad';
+import playSound from './Sounds';
+import useGameConfig from '../hooks/useGameConfig';
 
 // @TODO: MASSIVE TODO, this thing is too huge and too complex for what it does.
 
@@ -14,36 +18,17 @@ import useGamepad from '../hooks/useGamepad';
 const WIDTH = 1000;
 const HEIGHT = WIDTH * 0.575;
 
-const soundPath = `${import.meta.env.BASE_URL}/sound`;
-const audioGameStart = new Audio(`${soundPath}/gamestart.mp3`);
-const audioRoundStart = new Audio(`${soundPath}/newround.mp3`);
-const audioRoundEnd = new Audio(`${soundPath}/scorescreen.mp3`);
-const audioInput = new Audio(`${soundPath}/inputdirection.mp3`);
-const audioGameOver = new Audio(`${soundPath}/gameover.mp3`);
-
-const defaultStratagemHeroConfig = {
-    pointsPerArrow: 5,
-    minGemsPerRound: 6,
-    maxGemsPerRound: 16,
-    incGemsPerRound: 1,
-    perfectBonus: 100,
-    roundBonusBase: 50,
-    roundBonusMultiplier: 25,
-    timePerRound: 10,
-    timeBonusPerGem: 1,
-    timeBetweenGems: 0.1,
-    updateIntervalMs: 50,
-};
-
 function StratagemHeroGame({
-    stratagemHeroConfig=defaultStratagemHeroConfig,
     scale,
     screenWidth=WIDTH,
     screenHeight=HEIGHT,
     disabledStratagems 
 }) {
     const theme = useTheme();
-    
+    const {
+        gameConfig: stratagemHeroConfig
+     } = useGameConfig();
+
     const initialGameState = {
         round: 0,
         score: 0,
@@ -75,21 +60,21 @@ function StratagemHeroGame({
         if (roundTimerId) clearInterval(roundTimerId);
         switch (currentState) {
             case GameStates.GAME_READY:
-                audioGameStart.play();
+                playSound('gameStart');
                 resetGame();
                 break;
             case GameStates.ROUND_STARTING:
-                audioRoundStart.play();
+                playSound('roundStart');
                 setUpNextRound();
                 break;
             case GameStates.ROUND_IN_PROGRESS:
                 startRound();
                 break;
             case GameStates.ROUND_ENDING:
-                audioRoundEnd.play();
+                playSound('roundEnd');
                 break;
             case GameStates.GAME_OVER:
-                audioGameOver.play();
+                playSound('gameOver');
                 setUpNewGame();
                 break;
         }
@@ -183,8 +168,7 @@ function StratagemHeroGame({
                     handleStartGame();
                     break;
                 case GameStates.ROUND_IN_PROGRESS:
-                    audioInput.currentTime = 0;
-                    audioInput.play();
+                    playSound('directionInput');
                     setRoundState(prev => ({
                         ...prev,
                         inputSequence: [...prev.inputSequence, keyboardInput.direction]
@@ -202,8 +186,7 @@ function StratagemHeroGame({
                     handleStartGame();
                     break;
                 case GameStates.ROUND_IN_PROGRESS:
-                    audioInput.currentTime = 0;
-                    audioInput.play();
+                    playSound('directionInput');
                     setRoundState(prev => ({
                         ...prev,
                         inputSequence: [...prev.inputSequence, gamepadInput.direction]

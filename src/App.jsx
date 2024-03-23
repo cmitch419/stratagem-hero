@@ -5,19 +5,19 @@ import BackgroundImage from '/img/bg01.jpg';
 import StratagemHeroConsole from './pages/StratagemHeroConsole';
 import Stratagems from './pages/Stratagems';
 import { Checklist, GamepadOutlined } from '@mui/icons-material';
-import OnScreenDpad from './components/OnScreenButtons';
+import OnScreenDpad, { OnScreenDpad2 } from './components/OnScreenButtons';
 import stratagemsDataV2 from './data/stratagemsData';
 
 const App = () => {
-    const [showGame, setShowGame] = useState(true);
+    const [showGame, setShowGame] = useState(false);
 
     const [disabledStratagems, setDisabledStratagems] = useState(new Set());
 
     const toggleGameDrawer = () => setShowGame(!showGame);
 
-    // useEffect(()=>{
-    //     console.log(disabledStratagems);
-    // },[disabledStratagems]);
+    useEffect(()=>{
+        setShowGame(true);
+    },[]);
 
     // @TODO: Clean up and lift to components
     return (<Box className="App" sx={{
@@ -62,7 +62,7 @@ const App = () => {
                 boxShadow: '0.2rem 0.2rem 0.2rem rgba(0,0,0,0.7)',
                 borderRadius: '50%',
             }}>
-                <OnScreenDpad />
+                <OnScreenDpad2 />
             </Box>
         </Zoom>
         <Zoom in={!showGame}>

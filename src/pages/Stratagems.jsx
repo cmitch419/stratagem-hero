@@ -5,14 +5,14 @@ import defaultStratagemsData, { getAllCategories, stratagemsDataV3 as stratagems
 import { StratagemIcon } from "../components/StratagemIcon";
 import StratagemInfo from "../components/StratagemInfo";
 import { ArrowCombo } from "../components/Stratagem";
+import Configuration from "../components/Configuration";
 
 function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems }) {
   const stratagems = stratagemsData || defaultStratagemsData;
 
   const [selectedStratagem, setSelectedStratagem] = useState(null);
   const [categories, setCategories] = useState([]);
-  window.c = categories;
-  window.s = stratagems;
+
   const addToDisabledStratagems = (id) => {
     setDisabledStratagems((prevDisabledStratagems) => {
       const newDisabledStratagems = new Set(prevDisabledStratagems);
@@ -44,13 +44,20 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
   }
 
   useEffect(() => {
-    console.log('stratagems:', stratagemsData);
     if (stratagemsData) { setCategories(getAllCategories(stratagemsData)) }
   }, [stratagemsData]);
 
   return (
-    <Box sx={{ display: 'flex', background: "rgba(0,0,0,0.5)", height: '100%' }}>
-      <Box sx={{ width: '40%', overflowY: 'scroll' }}>
+    <Box sx={{
+      display: 'flex',
+      background: 'rgba(0,0,0,0.5)',
+      height: '100%',
+    }}>
+      <Box sx={{
+        width: '35%',
+        overflowY: 'scroll',
+        backdropFilter: 'blur(1rem)'
+      }}>
         <List subheader={<li />}>
           {categories.map((category, i) => {
             return (<>
@@ -89,17 +96,25 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
           })}
         </List>
       </Box>
-      <Box
-        sx={{ p: 0, width: '60%' }}
-      >
-        <StratagemInfo stratagem={stratagemsById[selectedStratagem]} />
-        {selectedStratagem !== null
-          ? <Stack direction="row" alignItems="center">
-            <EnabledCheckbox stratagemId={selectedStratagem} />
-            <Typography>Enabled in Stratagem Hero</Typography>
-          </Stack>
-          : <></>}
-      </Box>
+      <Stack sx={{
+        p: 1,
+        flex: 1,
+      }}>
+        <Box
+          sx={{ p: 1, width: '60%' }}
+        >
+          <StratagemInfo stratagem={stratagemsById[selectedStratagem]} />
+          {selectedStratagem !== null
+            ? <Stack direction="row" alignItems="center">
+              <EnabledCheckbox stratagemId={selectedStratagem} />
+              <Typography>Enabled in Stratagem Hero</Typography>
+            </Stack>
+            : <></>}
+        </Box>
+        <Box sx={{ overflowY: 'scroll' }}>
+          <Configuration />
+        </Box>
+      </Stack>
     </Box>
   );
 }
