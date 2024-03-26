@@ -16,7 +16,7 @@ const Configuration = ({ title = 'Configuration' }) => {
                 {Object.entries(gameConfig).map(([key, value]) => {
                     return (
                     <ListItem key={key}>
-                        <Typography variant="h6">{camelToSentenceCase(key)}: </Typography>
+                        <Typography variant="h6" color="secondary">{camelToSentenceCase(key)}: </Typography>
                         <TextField
                             type="text"
                             value={value}

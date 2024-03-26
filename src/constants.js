@@ -26,3 +26,10 @@ export const DPAD_TO_DIRECTION = {
 export const INPUT_RESET_TIME = 2;
 
 export const INPUT_HOLD_KEY = 'Shift';
+
+export const PAGES = {
+    GAME: 'GAME',
+    CONFIGURATION: 'CONFIGURATION',
+    STRATAGEM_LIST: 'STRATAGEM_LIST',
+};
+

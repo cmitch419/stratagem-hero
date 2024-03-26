@@ -1,17 +1,19 @@
-import { Box, Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Stack, Typography } from "@mui/material";
+import { Box, Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import defaultStratagemsData, { getAllCategories, stratagemsDataV3 as stratagemsById } from '../data/stratagemsData';
 
 import { StratagemIcon } from "../components/StratagemIcon";
 import StratagemInfo from "../components/StratagemInfo";
 import { ArrowCombo } from "../components/Stratagem";
-import Configuration from "../components/Configuration";
 
 function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems }) {
   const stratagems = stratagemsData || defaultStratagemsData;
+  const theme = useTheme();
 
   const [selectedStratagem, setSelectedStratagem] = useState(null);
   const [categories, setCategories] = useState([]);
+
+  const isBigBoi = useMediaQuery(theme.breakpoints.up('md'));
 
   const addToDisabledStratagems = (id) => {
     setDisabledStratagems((prevDisabledStratagems) => {
@@ -29,18 +31,63 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
     });
   };
 
+  const addAllToDisabledStratagems = (category) => {
+    stratagemsData
+      .filter(({category: cat='Uncategorized'})=>(!category || cat === category))
+      .forEach(({id})=>{addToDisabledStratagems(id)});
+  };
+
+  const removeAllFromDisabledStratagems = (category) => {
+    if (category) {
+      stratagemsData
+        .filter(({category: cat='Uncategorized'})=>(cat === category))
+        .forEach(({id})=>{removeFromDisabledStratagems(id)});
+    } else {
+      setDisabledStratagems(new Set());
+    }
+  };
+
+  const noneAreChecked = (category) => {
+    const result = stratagemsData
+      .filter(({category: cat='Uncategorized'})=>(cat === category))
+      .every(({id})=>disabledStratagems.has(id));
+
+    console.debug(result);
+
+    return result;
+  }
+  const allAreChecked = (category) =>
+    stratagemsData
+      .filter(({category: cat='Uncategorized'})=>(cat === category))
+      .every(({id})=>!disabledStratagems.has(id));
+
+
   function EnabledCheckbox({ stratagemId }) {
     return (<Checkbox
-      checked={!disabledStratagems.has(stratagemId)}
+    sx={{
+      pr: 0
+    }}
+        checked={!disabledStratagems.has(stratagemId)}
+        onChange={({ target: { checked } }) => {
+          if (!checked) {
+            addToDisabledStratagems(stratagemId);
+          } else {
+            removeFromDisabledStratagems(stratagemId);
+          }
+          setSelectedStratagem(stratagemId);
+        }} />);
+    }
+  function CategoryEnabledCheckbox({ category='Uncategorized' }) {
+    return (<Checkbox
+      checked={allAreChecked(category)}
+      indeterminate={!allAreChecked(category) && !noneAreChecked(category)}
       onChange={({ target: { checked } }) => {
         if (!checked) {
-          addToDisabledStratagems(stratagemId);
+          addAllToDisabledStratagems(category);
         } else {
-          removeFromDisabledStratagems(stratagemId);
+          removeAllFromDisabledStratagems(category);
         }
-        setSelectedStratagem(stratagemId);
-      }}
-    />);
+      }} />);
   }
 
   useEffect(() => {
@@ -48,30 +95,36 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
   }, [stratagemsData]);
 
   return (
-    <Box sx={{
-      display: 'flex',
-      background: 'rgba(0,0,0,0.5)',
-      height: '100%',
+    <Stack
+      direction={isBigBoi ? 'row' : 'column'}
+      sx={{
+        flex: 1,
+        width: '100cqw',
+        height: '100cqh',
     }}>
-      <Box sx={{
-        width: '35%',
-        overflowY: 'scroll',
-        backdropFilter: 'blur(1rem)'
-      }}>
-        <List subheader={<li />}>
+        <List subheader={<li />} sx={{
+          width: isBigBoi ? '35%' : '100%',
+          overflowY: 'scroll',
+          overflowX: 'hidden',
+          height: '100%',
+          // backdropFilter: 'blur(1rem)',
+          pb: 0,
+        }}>
           {categories.map((category, i) => {
             return (<>
               <ListSubheader disableGutters key={i} sx={{
-                display: 'flex',
-                flex: 1,
                 justifyContent: 'flex-start',
-                p: '0.25rem'
               }}>
-                <Typography color="primary" sx={{
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}>{category}</Typography>
+                <Stack direction="row" justifyContent="flex-start" alignItems="center" sx={{
+                    width: '100%'
+                  }}>
+                  <CategoryEnabledCheckbox category={category} />
+                  <Typography variant="h6" sx={{
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}>{category}</Typography>
+                </Stack>
               </ListSubheader>
               {stratagems.filter(stratagem => (stratagem.category ?? 'Uncategorized') === category).map((stratagem, index) => {
                 return (
@@ -95,27 +148,21 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
               })}</>)
           })}
         </List>
-      </Box>
-      <Stack sx={{
-        p: 1,
-        flex: 1,
-      }}>
-        <Box
-          sx={{ p: 1, width: '60%' }}
-        >
-          <StratagemInfo stratagem={stratagemsById[selectedStratagem]} />
-          {selectedStratagem !== null
-            ? <Stack direction="row" alignItems="center">
-              <EnabledCheckbox stratagemId={selectedStratagem} />
-              <Typography>Enabled in Stratagem Hero</Typography>
-            </Stack>
-            : <></>}
-        </Box>
-        <Box sx={{ overflowY: 'scroll' }}>
-          <Configuration />
-        </Box>
-      </Stack>
-    </Box>
+        {selectedStratagem &&
+      <Stack
+        sx={{
+          height: '100%',
+        }}
+      >
+        <StratagemInfo stratagem={stratagemsById[selectedStratagem]} />
+        {selectedStratagem !== null && isBigBoi
+          ? <Stack direction="row" alignItems="center">
+            <EnabledCheckbox stratagemId={selectedStratagem} />
+            <Typography>Enabled in Stratagem Hero</Typography>
+          </Stack>
+          : <></>}
+      </Stack> }
+    </Stack>
   );
 }
 

@@ -19,7 +19,7 @@ function playSound(audioName) {
         return;
     }
 
-    audioList[audioName].currentTime = 0;
+    if(audioName === 'directionInput') audioList[audioName].currentTime = 0;
     audioList[audioName].play();
 }
 
