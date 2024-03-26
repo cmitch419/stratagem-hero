@@ -1,9 +1,8 @@
 import { createTheme } from "@mui/material";
 
-export const hd2ThemeOptions = {
+let theme = createTheme({
     typography: {
         root: {
-            textTransform: "uppercase"
         },
         fontFamily: [
             'Armata',
@@ -22,10 +21,16 @@ export const hd2ThemeOptions = {
             main: '#d32f2f',
         },
     },
-};
-
-const theme = createTheme({
-    ...hd2ThemeOptions,
 });
+
+theme = createTheme(theme,{
+    typography: {
+        h3: {
+            color: theme.palette.primary.main,
+            textTransform: "uppercase",
+            textShadow: '2px 2px rgba(0,0,0,0.7)'
+        }
+    }
+})
 
 export default theme;
