@@ -1,19 +1,22 @@
-import { Box, Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+
 import defaultStratagemsData, { getAllCategories, stratagemsDataV3 as stratagemsById } from '../data/stratagemsData';
 
-import { StratagemIcon } from "../components/StratagemIcon";
 import StratagemInfo from "../components/StratagemInfo";
+
 import { ArrowCombo } from "../components/Stratagem";
+import { StratagemIcon } from "../components/StratagemIcon";
 
 function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems }) {
-  const stratagems = stratagemsData || defaultStratagemsData;
   const theme = useTheme();
+  const isBigBoi = useMediaQuery(theme.breakpoints.up('md'));
+  
+  const stratagems = stratagemsData || defaultStratagemsData;
 
   const [selectedStratagem, setSelectedStratagem] = useState(null);
   const [categories, setCategories] = useState([]);
 
-  const isBigBoi = useMediaQuery(theme.breakpoints.up('md'));
 
   const addToDisabledStratagems = (id) => {
     setDisabledStratagems((prevDisabledStratagems) => {
@@ -47,15 +50,11 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
     }
   };
 
-  const noneAreChecked = (category) => {
-    const result = stratagemsData
+  const noneAreChecked = (category) =>
+    stratagemsData
       .filter(({ category: cat = 'Uncategorized' }) => (cat === category))
       .every(({ id }) => disabledStratagems.has(id));
 
-    console.debug(result);
-
-    return result;
-  }
   const allAreChecked = (category) =>
     stratagemsData
       .filter(({ category: cat = 'Uncategorized' }) => (cat === category))
@@ -91,7 +90,9 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
   }
 
   useEffect(() => {
-    if (stratagemsData) { setCategories(getAllCategories(stratagemsData)) }
+    if (stratagemsData) {
+      setCategories(getAllCategories(stratagemsData))
+    }
   }, [stratagemsData]);
 
   return (

@@ -18,8 +18,10 @@ const defaultConfig = {
     "dpadPositionY": 1.0,
 };
 
+const LOCAL_STORAGE_CONFIG = 'stratagemHeroConfig';
+
 function getConfig() {
-    const storedConfig = localStorage.getItem('config');
+    const storedConfig = localStorage.getItem(LOCAL_STORAGE_CONFIG);
     return storedConfig ? JSON.parse(storedConfig) : defaultConfig;
 }
 
@@ -41,7 +43,7 @@ function useGameConfig() {
 
     // Save config to localStorage whenever it changes
     useEffect(() => {
-        localStorage.setItem('stratagemHeroConfig', JSON.stringify(gameConfig));
+        localStorage.setItem(LOCAL_STORAGE_CONFIG, JSON.stringify(gameConfig));
     }, [gameConfig]);
 
     return {

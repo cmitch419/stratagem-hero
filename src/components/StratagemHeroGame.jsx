@@ -20,14 +20,14 @@ const HEIGHT = WIDTH * 0.575;
 
 function StratagemHeroGame({
     scale,
-    screenWidth=WIDTH,
-    screenHeight=HEIGHT,
-    disabledStratagems 
+    screenWidth = WIDTH,
+    screenHeight = HEIGHT,
+    disabledStratagems
 }) {
     const theme = useTheme();
     const {
         gameConfig: stratagemHeroConfig
-     } = useGameConfig();
+    } = useGameConfig();
 
     const initialGameState = {
         round: 0,
@@ -131,10 +131,8 @@ function StratagemHeroGame({
         return stratagems;
     };
 
-    window.d = disabledStratagems;
-
     const getStratagem = () => {
-        const filteredStratagems = stratagemsData.filter((v)=>!disabledStratagems.has(v.id));
+        const filteredStratagems = stratagemsData.filter((v) => !disabledStratagems.has(v.id));
         return filteredStratagems[Math.floor(Math.random() * filteredStratagems.length)];
     };
 
@@ -277,52 +275,53 @@ function StratagemHeroGame({
     }, [currentState, roundState.inputSequence.length]);
 
     const StartScreen = () => {
-        return <Stack sx={{
-            display: 'flex',
-            justifyContent: "center",
-            alignItems: "center",
+        return <Stack justifyContent="center" alignItems="center" spacing={5} sx={{
+            height: '100%'
         }}>
             <Typography variant="h1">
                 Stratagem Hero
             </Typography>
-            <Typography variant="h4" color='primary' sx={{ textTransform: 'none' }}>
-                Enter any Stratagem Input to Start!
-            </Typography>
-            <Box sx={{
-                width: '50%',
-                pt: '1rem',
-            }}>
+            <Stack justifyContent="space-around" alignItems="center">
+                <Typography variant="h4" color='primary' sx={{ textTransform: 'none' }}>
+                    Enter any Stratagem Input to Start!
+                </Typography>
+                <Box sx={{
+                    width: '75%',
+                    pt: '1rem',
+                }}>
 
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-                <Typography variant="h6" color="info">Mobile:</Typography>
-                <Typography component="span" sx={{ textTransform: 'none' }} >On-Screen D-Pad in lower left</Typography>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <Typography variant="h6" color="secondary">Mobile:</Typography>
+                        <Typography component="span" sx={{ textTransform: 'none' }} >On-Screen D-Pad in lower left</Typography>
+                    </Stack>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <Typography variant="h6" color="secondary">Keyboard:</Typography>
+                        <Typography component="span" sx={{ textTransform: 'none' }} >W A S D and Arrow Keys</Typography>
+                    </Stack>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <Typography variant="h6" color="secondary">Controller:</Typography>
+                        <Typography component="span" sx={{ textTransform: 'none' }} >D-Pad</Typography>
+                    </Stack>
+                </Box>
             </Stack>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-                <Typography variant="h6" color="info">Keyboard:</Typography>
-                <Typography component="span" sx={{ textTransform: 'none' }} >W A S D and Arrow Keys</Typography>
-            </Stack>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
-                <Typography variant="h6" color="info">Controller:</Typography>
-                <Typography component="span" sx={{ textTransform: 'none' }} >D-Pad</Typography>
-            </Stack>
-            </Box>
         </Stack>
     };
     const RoundStartScreen = () => {
         const { round } = gameState;
 
         return currentState === GameStates.ROUND_STARTING
-            ? <Stack justifyContent="center" alignItems="center">
+            ? <Stack spacing={2} justifyContent="center" alignItems="center">
                 <Typography variant="h1">
                     Get Ready
                 </Typography>
                 <Stack justifyContent="center" alignItems="center">
-                    <Typography variant="h6" sx={{ textTransform: 'none' }}>Round</Typography>
+                    <Typography variant="h5" sx={{ textTransform: 'none' }}>Round</Typography>
                     <Typography variant="h2" color='primary'>{round}</Typography>
                 </Stack>
             </Stack>
             : <></>
     };
+
     const GameOverScreen = () => {
         const { score } = gameState;
         return <Stack spacing={1} justifyContent="center" alignItems="center">
@@ -413,8 +412,8 @@ function StratagemHeroGame({
 
         return <Box sx={{
             display: 'grid',
-            gridTemplateRows: [.116,.406,.27,.208].map(ratio=>`${ratio*screenHeight}px`).join(' '),
-            gridTemplateColumns: [.167, .629, .167].map(ratio=>`${ratio*screenWidth}px`).join(' '),
+            gridTemplateRows: [.116, .406, .27, .208].map(ratio => `${ratio * screenHeight}px`).join(' '),
+            gridTemplateColumns: [.167, .629, .167].map(ratio => `${ratio * screenWidth}px`).join(' '),
             gridTemplateAreas: `
             "blank1 blank1 blank1"
             "round game1 score"
@@ -443,9 +442,9 @@ function StratagemHeroGame({
                 height: '100%',
                 width: '100%',
             }}>
-                <Typography sx={{ height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: 'none' }}>Round</Typography>
-                <Typography sx={{ height: `${0.092*screenHeight}px`, fontSize: `${0.092*screenHeight}px` ,textTransform: 'none' }} color={roundState.valid ? 'primary' : 'error'}>{round}</Typography>
-                <Typography sx={{ pt: `${0.015*screenHeight}px`, height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: 'none', visibility: 'hidden' }}>Round</Typography>
+                <Typography sx={{ height: `${0.05 * screenHeight}px`, fontSize: `${0.05 * screenHeight}px`, textTransform: 'none' }}>Round</Typography>
+                <Typography sx={{ height: `${0.092 * screenHeight}px`, fontSize: `${0.092 * screenHeight}px`, textTransform: 'none' }} color={roundState.valid ? 'primary' : 'error'}>{round}</Typography>
+                <Typography sx={{ pt: `${0.015 * screenHeight}px`, height: `${0.05 * screenHeight}px`, fontSize: `${0.05 * screenHeight}px`, textTransform: 'none', visibility: 'hidden' }}>Round</Typography>
             </Box>
             <Box sx={{
                 gridArea: 'score',
@@ -456,9 +455,9 @@ function StratagemHeroGame({
                 height: '100%',
                 width: '100%',
             }}>
-                <Typography sx={{ height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: '', visibility: 'hidden' }}>Score</Typography>
-                <Typography sx={{ height: `${0.092*screenHeight}px`, fontSize: `${0.092*screenHeight}px` ,textTransform: 'none' }} color={roundState.valid ? 'primary' : 'error'}>{score}</Typography>
-                <Typography sx={{ pt: `${0.015*screenHeight}px`, height: `${0.05*screenHeight}px`, fontSize: `${0.05*screenHeight}px` ,textTransform: '' }}>Score</Typography>
+                <Typography sx={{ height: `${0.05 * screenHeight}px`, fontSize: `${0.05 * screenHeight}px`, textTransform: '', visibility: 'hidden' }}>Score</Typography>
+                <Typography sx={{ height: `${0.092 * screenHeight}px`, fontSize: `${0.092 * screenHeight}px`, textTransform: 'none' }} color={roundState.valid ? 'primary' : 'error'}>{score}</Typography>
+                <Typography sx={{ pt: `${0.015 * screenHeight}px`, height: `${0.05 * screenHeight}px`, fontSize: `${0.05 * screenHeight}px`, textTransform: '' }}>Score</Typography>
             </Box>
             <Box sx={{
                 gridArea: 'game1',
@@ -489,15 +488,15 @@ function StratagemHeroGame({
                             <StratagemIcon {...stratagems[stratagemIndex]}
                                 showBorder
                                 gameModeBorder={`4px solid ${valid ? theme.palette.primary.main : theme.palette.error.main}`}
-                                height={`${Math.min(0.15*screenWidth,0.26*screenHeight)}px`}
-                                width={`${Math.min(0.15*screenWidth,0.26*screenHeight)}px`}
+                                height={`${Math.min(0.15 * screenWidth, 0.26 * screenHeight)}px`}
+                                width={`${Math.min(0.15 * screenWidth, 0.26 * screenHeight)}px`}
                             />
                             <Stack direction="row" sx={{
                                 display: 'flex',
                                 justifyContent: 'flex-start',
                                 alignItems: 'center',
-                                height: `${Math.min(0.15*screenWidth,0.26*screenHeight)}px`,
-                                width: `${0.461*screenWidth}px`,
+                                height: `${Math.min(0.15 * screenWidth, 0.26 * screenHeight)}px`,
+                                width: `${0.461 * screenWidth}px`,
                             }}>
                                 {[1, 2, 3, 4, 5].map((offset, i) => {
                                     const stratagem = stratagems[stratagemIndex + offset] || null;
@@ -505,24 +504,25 @@ function StratagemHeroGame({
                                         ml: i !== stratagemIndex - 1 ? `3px` : 0,
                                     }}>
                                         {stratagem
-                                        ? <StratagemIcon {...stratagem}
-                                            width={`${Math.min(0.075*screenWidth,0.14*screenHeight)}px`}
-                                            height={`${Math.min(0.075*screenWidth,0.14*screenHeight)}px`}/>
-                                        : <Box sx={{
-                                            width: `${Math.min(0.075*screenWidth,0.14*screenHeight)}px`,
-                                            height: `${Math.min(0.075*screenWidth,0.14*screenHeight)}px`,}} />}
+                                            ? <StratagemIcon {...stratagem}
+                                                width={`${Math.min(0.075 * screenWidth, 0.14 * screenHeight)}px`}
+                                                height={`${Math.min(0.075 * screenWidth, 0.14 * screenHeight)}px`} />
+                                            : <Box sx={{
+                                                width: `${Math.min(0.075 * screenWidth, 0.14 * screenHeight)}px`,
+                                                height: `${Math.min(0.075 * screenWidth, 0.14 * screenHeight)}px`,
+                                            }} />}
                                     </Box>
                                 })}
                             </Stack>
                         </Stack>
                     </Box>
                     <Typography sx={{
-                        height: `${0.0683*screenHeight}px`,
+                        height: `${0.0683 * screenHeight}px`,
                         backgroundColor: roundState.valid ? theme.palette.primary.main : theme.palette.error.main,
                         color: theme.palette.background.default,
                         fontSynthesis: 'weight',
                         fontWeight: 900,
-                        fontSize: `${0.05*screenHeight}px`,
+                        fontSize: `${0.05 * screenHeight}px`,
                         width: '100%',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -547,7 +547,7 @@ function StratagemHeroGame({
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: `${0.133*screenHeight}px`,
+                    height: `${0.133 * screenHeight}px`,
                 }}>
                     <ArrowCombo {...stratagems[stratagemIndex]}
                         valid={valid}
@@ -556,7 +556,7 @@ function StratagemHeroGame({
                         colorInvalid={theme.palette.error.main}
                         colorEntered={theme.palette.primary.main}
                         inputSequence={inputSequence}
-                        height={`${0.133*screenHeight}px`}
+                        height={`${0.133 * screenHeight}px`}
                     />
                 </Box>
                 <LinearProgress
@@ -564,8 +564,8 @@ function StratagemHeroGame({
                     color={roundState.valid ? 'primary' : 'error'}
                     value={100 * timeRemaining / (stratagemHeroConfig.timePerRound * 1000)}
                     sx={{
-                        height: `${0.051*screenHeight}px`,
-                        mt: `${0.085*screenHeight}px`,
+                        height: `${0.051 * screenHeight}px`,
+                        mt: `${0.085 * screenHeight}px`,
                         width: '100%'
                     }} />
             </Box>
@@ -589,7 +589,6 @@ function StratagemHeroGame({
         justifyContent: 'center',
         alignItems: 'center',
         transform: `scale(${scale},${scale})`,
-        // transformOrigin: 'top left',
     }}>
         {currentState === GameStates.GAME_READY && <StartScreen />}
         {currentState === GameStates.ROUND_STARTING && <RoundStartScreen />}

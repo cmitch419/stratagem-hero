@@ -16,9 +16,10 @@ function Configuration({ title = 'Configuration' }) {
                 {Object.entries(gameConfig).map(([key, value]) => {
                     return (
                     <ListItem key={key}>
-                        <Stack flex="1" direction="row" justifyContent="flex-end" alignItems="center">
-                            <Typography variant="h6" color="white" pr={2}>{camelToSentenceCase(key)}: </Typography>
+                        <Stack flex="1" direction="row" justifyContent="space-between" alignItems="center">
+                            <Typography variant="h6" color="white">{camelToSentenceCase(key)}: </Typography>
                             <TextField
+                                color="secondary"
                                 type="text"
                                 value={value}
                                 onChange={e => handleConfigChange(key, e.target.value)}
