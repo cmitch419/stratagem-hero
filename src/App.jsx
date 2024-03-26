@@ -4,7 +4,7 @@ import './App.css';
 import BackgroundImage from '/img/bg01.jpg';
 import StratagemHeroConsole from './pages/StratagemHeroConsole';
 import Stratagems from './pages/Stratagems';
-import { OnScreenDpad2 } from './components/OnScreenButtons';
+import { OnScreenDpad } from './components/OnScreenButtons';
 import stratagemsDataV2 from './data/stratagemsData';
 import ButtonDrawer from './components/ButtonDrawer';
 import { PAGES } from './constants';
@@ -21,13 +21,10 @@ const App = () => {
 
     // @TODO: Clean up and lift to components
     return (<Box className="App" sx={{
-        width: '100cqw',
-        height: '100cqh',
         backgroundImage: `url(${BackgroundImage})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        display: 'flex',
     }}>
         <Drawer
             anchor="top"
@@ -72,14 +69,14 @@ const App = () => {
         </Drawer>
         <Zoom in={page === PAGES.GAME}>
             <Box sx={{
-                left: '1rem',
-                bottom: '1rem',
-                zIndex: 10000,
+                left: '1.5em',
+                bottom: '1.5em',
                 position: 'fixed',
                 boxShadow: '0.2rem 0.2rem 0.2rem rgba(0,0,0,0.7)',
                 borderRadius: '50%',
+                zIndex: 10000,
             }}>
-                <OnScreenDpad2 />
+                <OnScreenDpad />
             </Box>
         </Zoom>
         <ButtonDrawer page={page} setPage={setPage} />

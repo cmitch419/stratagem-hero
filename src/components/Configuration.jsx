@@ -1,8 +1,8 @@
-import { Box, IconButton, List, ListItem, Stack, TextField, Typography } from '@mui/material';
+import { IconButton, List, ListItem, Stack, TextField, Typography } from '@mui/material';
 import useGameConfig from '../hooks/useGameConfig';
 import { Restore } from '@mui/icons-material';
 
-const Configuration = ({ title = 'Configuration' }) => {
+function Configuration({ title = 'Configuration' }) {
     const { gameConfig, handleConfigChange, restoreDefaultConfig } = useGameConfig();
 
     return (<>
@@ -16,18 +16,23 @@ const Configuration = ({ title = 'Configuration' }) => {
                 {Object.entries(gameConfig).map(([key, value]) => {
                     return (
                     <ListItem key={key}>
-                        <Typography variant="h6" color="secondary">{camelToSentenceCase(key)}: </Typography>
-                        <TextField
-                            type="text"
-                            value={value}
-                            onChange={e => handleConfigChange(key, e.target.value)}
-                        />
+                        <Stack flex="1" direction="row" justifyContent="flex-end" alignItems="center">
+                            <Typography variant="h6" color="white" pr={2}>{camelToSentenceCase(key)}: </Typography>
+                            <TextField
+                                type="text"
+                                value={value}
+                                onChange={e => handleConfigChange(key, e.target.value)}
+                                sx={{
+                                    width: '35%'
+                                }}
+                            />
+                        </Stack>
                     </ListItem>
                 )})}
             </List>
         </>
     );
-};
+}
 
 function camelToSentenceCase(camelCaseString) {
     // Split the camelCase string into words.

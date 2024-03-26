@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 
 import StratagemHeroGame from '../components/StratagemHeroGame'
 
-import consoleBanner  from '/img/banner.png?url';
+import consoleBanner from '/img/banner.png?url';
 import consoleImage01 from '/img/console_01.png?url';
 import consoleImage02 from '/img/console_02.png?url';
 import consoleImage03 from '/img/console_03.png?url';
@@ -14,12 +14,15 @@ import consoleImage06 from '/img/console_06.png?url';
 import consoleImage07 from '/img/console_07.png?url';
 import consoleImage08 from '/img/console_08.png?url';
 import consoleImage09 from '/img/console_09.png?url';
+import { useTheme } from "@emotion/react";
 
 const WIDTH = 1000;
 const HEIGHT = WIDTH * 0.575;
 
 function StratagemHeroConsole({ disabledStratagems }) {
     const screenRef = useRef();
+    const theme = useTheme();
+    const isBigBoi = useMediaQuery(theme.breakpoints.up('md'));
     const [scaleFactor, setScaleFactor] = useState(1);
 
     useEffect(() => {
@@ -43,8 +46,9 @@ function StratagemHeroConsole({ disabledStratagems }) {
 
     return (<Box sx={{
         display: 'grid',
-        gridTemplateColumns: "1fr 80cqw 1fr",
-        gridTemplateRows: "1fr 20px 60cqh 20px",
+        height: '100%',
+        gridTemplateColumns: "2.5cqw 95cqw 2.5cqw",
+        gridTemplateRows: "10cqh 1cqh 80cqh 9cqh",
         gridTemplateAreas: `
             "banner banner banner"
             "c01 c02 c03"
@@ -57,11 +61,6 @@ function StratagemHeroConsole({ disabledStratagems }) {
         overflow: 'hidden',
 
     }}>
-        <Box component="img" src={consoleBanner} sx={{
-            gridArea: 'banner',
-            width: '100%',
-            height: '100%',
-        }} />
         <Box ref={screenRef} sx={{
             gridArea: 'c05',
             display: 'flex',
@@ -74,6 +73,14 @@ function StratagemHeroConsole({ disabledStratagems }) {
         }}>
             <StratagemHeroGame scale={scaleFactor} disabledStratagems={disabledStratagems} />
         </Box>
+        <Box sx={{
+            gridArea: 'banner',
+            width: '100%',
+            flex: 1,
+            background: `url(${consoleBanner})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }} />
         <Box sx={{
             gridArea: 'c01',
             backgroundImage: `url(${consoleImage01})`,
