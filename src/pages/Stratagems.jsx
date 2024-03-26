@@ -100,11 +100,11 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
       direction={isBigBoi ? 'row' : 'column'}
       sx={{
         flex: 1,
-        width: 'auto',
+        width: '100%',
         height: '100cqh',
       }}>
       <List subheader={<li />} sx={{
-        width: isBigBoi ? '50%' : '100%',
+        width: isBigBoi ? '40%' : '100%',
         overflowY: 'scroll',
         overflowX: 'hidden',
         height: '100%',
@@ -152,7 +152,7 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
       {selectedStratagem &&
         <Stack
           sx={{
-            width: 'auto',
+            width: isBigBoi ? '70%' : '100%',
             height: isBigBoi ? '100%' : 'auto',
           }}
         >

@@ -11,6 +11,15 @@ import { PAGES } from './constants';
 import Configuration from './components/Configuration';
 import useGameConfig from './hooks/useGameConfig';
 
+const TransparentDrawer = ({children, ...rest}) => <Drawer
+    PaperProps={{
+        sx: {
+            background: 'rgba(0,0,0,0.4)',
+            backdropFilter: 'blur(0.25rem)',
+        }
+    }}
+    {...rest}> {children} </Drawer>
+
 const App = () => {
     const { gameConfig } = useGameConfig();
 
@@ -22,17 +31,19 @@ const App = () => {
     },[]);
 
     // @TODO: Clean up and lift to components
-    return (<Box className="App" sx={{
+    return (<Box component="div" className="App" sx={{
         backgroundImage: `url(${BackgroundImage})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     }}>
-        <Drawer
+        <TransparentDrawer
             anchor="top"
             open={page === PAGES.STRATAGEM_LIST}
-            sx={{
-
+            PaperProps={{
+                sx: {
+                    background: 'rgba(0,0,0,0)'
+                }
             }}
         >
             <Box sx={{
@@ -43,9 +54,9 @@ const App = () => {
                     setDisabledStratagems={setDisabledStratagems}
                 />
             </Box>
-        </Drawer>
+        </TransparentDrawer>
 
-        <Drawer
+        <TransparentDrawer
             anchor="top"
             open={page === PAGES.GAME}
             sx={{
@@ -57,8 +68,8 @@ const App = () => {
                 disabledStratagems={disabledStratagems}
             />
 
-        </Drawer>
-        <Drawer
+        </TransparentDrawer>
+        <TransparentDrawer
             anchor="top"
             open={page === PAGES.CONFIGURATION}
             sx={{
@@ -68,7 +79,7 @@ const App = () => {
         >
             <Configuration />
 
-        </Drawer>
+        </TransparentDrawer>
         <Box sx={{
             left: '2.5em',
             bottom: '2.5em',

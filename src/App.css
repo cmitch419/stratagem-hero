@@ -5,7 +5,11 @@
   min-height: 100vh;
   padding: 0;
   margin: 0;
-  display: 'flex',
+  display: 'flex';
+  background-image: url(../public/img/bg01.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 fieldset {

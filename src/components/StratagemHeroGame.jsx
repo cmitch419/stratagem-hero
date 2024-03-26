@@ -241,7 +241,7 @@ function StratagemHeroGame({
                     setGameState(prevState => (
                         {
                             ...prevState,
-                            score: prevState.score + currentStratagem.code.length * 5,
+                            score: prevState.score + currentStratagem.code.length * stratagemHeroConfig.pointsPerArrow,
                         }));
                     setRoundState(prevState => ({
                         ...prevState,

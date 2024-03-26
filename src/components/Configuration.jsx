@@ -24,7 +24,8 @@ function Configuration({ title = 'Configuration' }) {
                                 value={value}
                                 onChange={e => handleConfigChange(key, e.target.value)}
                                 sx={{
-                                    width: '35%'
+                                    width: '35%',
+                                    backdropFilter: 'blur(0.5rem)'
                                 }}
                             />
                         </Stack>
