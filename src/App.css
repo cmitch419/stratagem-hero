@@ -10,6 +10,7 @@
 
 fieldset {
   font-family: 'Armata', 'sans-serif';
+  text-transform: uppercase;
   font-weight: 700;
 }
 

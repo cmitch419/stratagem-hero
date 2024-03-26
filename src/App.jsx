@@ -9,10 +9,12 @@ import stratagemsDataV2 from './data/stratagemsData';
 import ButtonDrawer from './components/ButtonDrawer';
 import { PAGES } from './constants';
 import Configuration from './components/Configuration';
+import useGameConfig from './hooks/useGameConfig';
 
 const App = () => {
-    const [page, setPage] = useState(PAGES.STRATAGEM_LIST);
+    const { gameConfig } = useGameConfig();
 
+    const [page, setPage] = useState(PAGES.STRATAGEM_LIST);
     const [disabledStratagems, setDisabledStratagems] = useState(new Set());
 
     useEffect(()=>{
@@ -67,18 +69,19 @@ const App = () => {
             <Configuration />
 
         </Drawer>
-        <Zoom in={page === PAGES.GAME}>
-            <Box sx={{
-                left: '1.5em',
-                bottom: '1.5em',
-                position: 'fixed',
-                boxShadow: '0.2rem 0.2rem 0.2rem rgba(0,0,0,0.7)',
-                borderRadius: '50%',
-                zIndex: 10000,
-            }}>
-                <OnScreenDpad />
-            </Box>
-        </Zoom>
+        <Box sx={{
+            left: '2.5em',
+            bottom: '2.5em',
+            position: 'absolute',
+            zIndex: 10000,
+            transform: `scale(${gameConfig.dpadScale})`
+        }}>
+            <Zoom in={page === PAGES.GAME}>
+                <Box>
+                    <OnScreenDpad />
+                </Box>
+            </Zoom>
+        </Box>
         <ButtonDrawer page={page} setPage={setPage} />
 
 

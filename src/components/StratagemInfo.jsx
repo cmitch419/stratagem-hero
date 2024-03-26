@@ -8,9 +8,10 @@ const STRATAGEM_INFO_BASE = {
 
 const STRATAGEM_INFO = {
     ...STRATAGEM_INFO_BASE,
-    gap: 1,
     backgroundColor: 'rgba(0,0,0,0.5)',
-    gridTemplateColumns: '100%',
+    width: 'auto',
+    m: 1,
+    gridTemplateColumns: 'auto',
     gridTemplateAreas:
         `"stratagemInfo1"
         "stratagemInfo2"`,
@@ -19,7 +20,7 @@ const STRATAGEM_INFO = {
 
 const STRATAGEM_INFO_1 = {
     ...STRATAGEM_INFO_BASE,
-    gridTemplateColumns: '1rem 1fr',    
+    gridTemplateColumns: '0.01fr 1fr',    
     gridTemplateAreas:
         `"vert  category"
         "vert   name"
@@ -50,7 +51,6 @@ export function StratagemInfo({ stratagem }) {
     } = stratagem;
 
     return (<Box sx={{
-        backgroundColor: "rgba(0,0,0,0.5)",
         padding: 1,
         border: "2px solid white",
         ...STRATAGEM_INFO,
@@ -99,7 +99,7 @@ export function StratagemInfo({ stratagem }) {
                             Cooldown Time:
                         </Typography>
                         <Typography>
-                            {cooldown !== null && `${cooldown} sec`}
+                            {cooldown === null ? '???' : `${cooldown} sec`}
                         </Typography>
                     </Stack>
                 </Stack>

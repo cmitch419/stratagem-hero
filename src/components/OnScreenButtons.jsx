@@ -1,5 +1,6 @@
 import { PlayArrowRounded } from "@mui/icons-material";
 import { Box, IconButton, Stack } from "@mui/material";
+import useGameConfig from "../hooks/useGameConfig";
 
 const DpadButton = ({ kbKey, rotate=0, children, ...rest }) => {
     const handleKeyPress = () => {
@@ -63,7 +64,9 @@ const DpadButton = ({ kbKey, rotate=0, children, ...rest }) => {
 
 export function OnScreenDpad() {
     return <Stack justifyContent="center" alignItems="center" sx={{
-        transform: 'scale(1.5) rotate(45deg)',
+        boxShadow: '0.2rem 0.2rem 0.2rem rgba(0,0,0,0.7)',
+        borderRadius: '50%',
+        transform: `rotate(45deg)`,
     }}>
         <Box sx={{
             position: 'absolute',

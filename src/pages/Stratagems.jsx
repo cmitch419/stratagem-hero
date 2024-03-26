@@ -99,20 +99,20 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
       direction={isBigBoi ? 'row' : 'column'}
       sx={{
         flex: 1,
-        width: '100cqw',
+        width: 'auto',
         height: '100cqh',
       }}>
       <List subheader={<li />} sx={{
-        width: isBigBoi ? '35%' : '100%',
+        width: isBigBoi ? '50%' : '100%',
         overflowY: 'scroll',
         overflowX: 'hidden',
         height: '100%',
-        // backdropFilter: 'blur(1rem)',
+        backdropFilter: 'blur(1rem)',
         pb: 0,
       }}>
         {categories.map((category, i) => {
-          return (<>
-            <ListSubheader disableGutters key={i} sx={{
+          return (<div key={i}>
+            <ListSubheader disableGutters sx={{
               justifyContent: 'flex-start',
             }}>
               <Stack direction="row" justifyContent="flex-start" alignItems="center" sx={{
@@ -145,13 +145,14 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
                   </ListItem>
                 </Stack>
               )
-            })}</>)
+            })}</div>)
         })}
       </List>
       {selectedStratagem &&
         <Stack
           sx={{
-            height: '100%',
+            width: 'auto',
+            height: isBigBoi ? '100%' : 'auto',
           }}
         >
           <StratagemInfo stratagem={stratagemsById[selectedStratagem]} />
@@ -160,7 +161,7 @@ function Stratagems({ stratagemsData, disabledStratagems, setDisabledStratagems 
               <EnabledCheckbox stratagemId={selectedStratagem} />
               <Typography>Enabled in Stratagem Hero</Typography>
             </Stack>
-            : <></>}
+            : null}
         </Stack>}
     </Stack>
   );
