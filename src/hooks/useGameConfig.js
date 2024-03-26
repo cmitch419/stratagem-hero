@@ -31,6 +31,7 @@ function useGameConfig() {
 
     const restoreDefaultConfig = () => {
         setGameConfig(defaultConfig);
+        localStorage.setItem(LOCAL_STORAGE_CONFIG, JSON.stringify(defaultConfig));
     }
 
     // Function to handle changes in config values
@@ -48,6 +49,7 @@ function useGameConfig() {
 
     return {
         gameConfig,
+        getConfig,
         handleConfigChange,
         restoreDefaultConfig,
     };

@@ -81,11 +81,13 @@ const App = () => {
 
         </TransparentDrawer>
         <Box sx={{
-            left: '2.5em',
-            bottom: '2.5em',
+            // left: `${gameConfig.dpadPositionX}rem`,
+            // bottom: `${gameConfig.dpadPositionY}rem`,
+            left: 0,
+            bottom: 0,
             position: 'absolute',
             zIndex: 10000,
-            transform: `scale(${gameConfig.dpadScale})`
+            transform: `scale(${gameConfig.dpadScale}) translate(50%,-50%)`
         }}>
             <Zoom in={page === PAGES.GAME}>
                 <Box>

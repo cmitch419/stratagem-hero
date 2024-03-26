@@ -39,9 +39,9 @@ export function OnScreenDpad() {
             borderRadius: '50%',
             width: '100%',
             height: '100%',
-            backgroundColor: 'rgba(0,0,0,0.65)',
+            backgroundColor: 'rgba(0,0,0,0.5)',
             border: '2px solid white',
-            backdropFilter: 'blur(1rem)'
+            backdropFilter: 'blur(1px)'
         }} />
         <Stack direction="row" justifyContent="center" alignItems="center">
             <DpadButton kbKey="w" rotate={3}/>
