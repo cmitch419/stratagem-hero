@@ -13,7 +13,7 @@ const defaultConfig = {
     "timeBonusPerGem": 1,
     "timeBetweenGems": 0.1,
     "updateIntervalMs": 50,
-    "dpadScale": 1.2,
+    "dpadScale": 1.5,
     "dpadPositionX": 1.0,
     "dpadPositionY": 1.0,
 };
