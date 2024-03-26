@@ -1,5 +1,5 @@
-import { Checklist, Gamepad, GamepadOutlined, List, Settings } from "@mui/icons-material";
-import { Box, IconButton, Stack, Zoom } from "@mui/material";
+import { Checklist, GamepadOutlined, Settings } from "@mui/icons-material";
+import { IconButton, Stack } from "@mui/material";
 import { PAGES } from "../constants";
 
 function ButtonDrawer({ page, setPage }) {

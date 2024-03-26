@@ -13,8 +13,6 @@ import useGameConfig from '../hooks/useGameConfig';
 
 // @TODO: MASSIVE TODO, this thing is too huge and too complex for what it does.
 
-// const WIDTH = 510;
-// const HEIGHT = 293;
 const WIDTH = 1000;
 const HEIGHT = WIDTH * 0.575;
 
@@ -201,24 +199,11 @@ function StratagemHeroGame({
     function handleStartGame() {
         transition(Events.START_GAME);
     }
-    function handleBeginRound() {
-        setUpNextRound();
-        // transition(Events.BEGIN_ROUND);
-    }
     function handleRoundCompleted() {
         transition(Events.ROUND_COMPLETED);
     }
     function handleRoundFailed() {
         transition(Events.ROUND_FAILED);
-    }
-    function handleNextRound() {
-        transition(Events.NEXT_ROUND);
-    }
-    function handleQuit() {
-        transition(Events.QUIT);
-    }
-    function handleNewGame() {
-        transition(Events.NEW_GAME);
     }
 
     useEffect(() => {

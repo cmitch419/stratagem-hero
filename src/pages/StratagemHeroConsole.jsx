@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 
 import StratagemHeroGame from '../components/StratagemHeroGame'
 
