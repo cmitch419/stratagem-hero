@@ -19,11 +19,14 @@ function v1ToV2(v1) {
             tags,
             id: `sg-${index.toString().padStart(3,'0')}`
         } )})
-};
+}
 
 function v2ToV3(v2) {
     return v2.reduce((a,c)=>({...a, [c.id]: c}),{});
 }
+
+window.v1ToV2 = v1ToV2;
+window.v2ToV3 = v2ToV3;
 
 export function getAllCategories(stratagems) {
     const categories = new Set();

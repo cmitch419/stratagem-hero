@@ -8,7 +8,7 @@ export const StratagemIcon = ({ icon, permitType, showBorder = true, width='3rem
         "defensive": "#52823e",
         "mission": "#bfa355",
     };
-    const iconUrl = `${import.meta.env.BASE_URL}/img/${icon}`;
+    const iconUrl = `${import.meta.env.BASE_URL}/img/icons/${icon}.png`;
     return (
         <Box
             sx={{
