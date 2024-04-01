@@ -121,35 +121,6 @@ export function useGameFSM(disabledStratagems) {
         }
     }, [gamepadInput.direction]);
 
-    // useEffect to watch current state and handle state transitions
-    useEffect(() => {
-        console.debug(`STATE: ${currentState}`);
-        switch(currentState) {
-            case GameStates.GAME_OVER:
-                if (isHighscoreEligible(disabledStratagems) && !userName) {
-                    transition(Events.NEW_HIGHSCORE);
-                } else {
-                    transitionWithTimeout(Events.NEW_GAME, 5000);
-                }
-                break;
-            case GameStates.ROUND_STARTING:
-                transitionWithTimeout(Events.BEGIN_ROUND, 2500);
-                break;
-            case GameStates.ROUND_ENDING:
-                transitionWithTimeout(Events.NEXT_ROUND, 4* 1000);
-                break;
-            case GameStates.GAME_READY:
-            case GameStates.ROUND_IN_PROGRESS:
-            case GameStates.USERNAME_ENTRY:
-                break;
-            }
-        return () => {
-            // Clear the previous timeout when the component unmounts or when currentState changes
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-            }
-        }
-    }, [currentState]);
 
 
     function resetGame() {
@@ -236,22 +207,36 @@ export function useGameFSM(disabledStratagems) {
         if (roundTimerId) clearInterval(roundTimerId);
         switch (currentState) {
             case GameStates.GAME_READY:
-                handleStartGame();
                 break;
             case GameStates.ROUND_STARTING:
                 playSound('roundStart');
                 setUpNextRound();
+                transitionWithTimeout(Events.BEGIN_ROUND, 2500);
                 break;
             case GameStates.ROUND_IN_PROGRESS:
                 startRound();
                 break;
             case GameStates.ROUND_ENDING:
                 playSound('roundEnd');
+                transitionWithTimeout(Events.NEXT_ROUND, 4* 1000);
                 break;
             case GameStates.GAME_OVER:
                 playSound('gameOver');
+                if (isHighscoreEligible(disabledStratagems) && !userName) {
+                    transition(Events.NEW_HIGHSCORE);
+                } else {
+                    transitionWithTimeout(Events.NEW_GAME, 5000);
+                }
                 setUpNewGame();
                 break;
+            case GameStates.USERNAME_ENTRY:
+                break;
+        }
+        return () => {
+            // Clear the previous timeout when the component unmounts or when currentState changes
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
         }
     }, [currentState]);
 

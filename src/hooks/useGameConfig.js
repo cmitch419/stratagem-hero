@@ -56,12 +56,15 @@ function useGameConfig() {
     };
 
     const testConfigEligibility = () => {
-        highscoreAttributes.forEach(key=>console.debug(`Key [${key}] defined? ${gameConfig?.[key] !== undefined}, Matches? ${gameConfig?.[key] === defaultConfig?.[key]}`));
+        highscoreAttributes.forEach(key=>{
+            const diffValue = gameConfig?.[key] !== defaultConfig?.[key];
+            if (diffValue) console.debug(`Key [${key}] defined? ${gameConfig?.[key] != undefined}, Matches? ${gameConfig?.[key] == defaultConfig?.[key]}`);
+        });
     }
 
     const isHighscoreEligible = (disabledStratagems=[]) => {
-        // testConfigEligibility();
-        const scoreConfigHasChanged = highscoreAttributes.some(key=>gameConfig?.[key] !== defaultConfig?.[key]);
+        testConfigEligibility();
+        const scoreConfigHasChanged = highscoreAttributes.some(key=>gameConfig?.[key] != defaultConfig?.[key]);
         const hasDisabledStratagems = disabledStratagems.length > 0;
         const isEligible = !scoreConfigHasChanged && !hasDisabledStratagems;
         console.debug(`High score elgible: Score config changed? ${scoreConfigHasChanged}, Has disabled stratagems? ${hasDisabledStratagems} --> ${isEligible}`);

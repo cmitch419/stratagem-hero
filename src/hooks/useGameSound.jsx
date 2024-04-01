@@ -15,11 +15,12 @@ const audioList = {
 }
 
 function useGameSound() {
-    const [isMuted,setIsMuted] = useState(true);
-    
+    const [isMuted,setIsMuted] = useState();
+
     useEffect(() => {
-        handleChangeMute(isMuted);
-    },[]);
+        // default mute
+        handleChangeMute(true);
+    }, []);
 
     function playSound(audioName) {
         if (!audioList[audioName]) {
@@ -40,7 +41,7 @@ function useGameSound() {
         handleChangeMute(!isMuted);
     }
 
-    return { isMuted, handleToggleMute, playSound }
+    return { isMuted, handleToggleMute, playSound };
 }
 
 
