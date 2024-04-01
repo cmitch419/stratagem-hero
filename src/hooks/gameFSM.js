@@ -3,6 +3,7 @@ import useKeyboard from './useKeyboard';
 import useGameConfig from './useGameConfig';
 import stratagemsData from '../data/stratagemsData';
 import useGameSound from './useGameSound';
+import useGamepad from './useGamepad';
 
 export const GameStates = {
     GAME_READY: 'GAME_READY',
@@ -52,11 +53,11 @@ const stateTransitions = {
 
 
 export function useGameFSM(disabledStratagems) {
-    const input = useKeyboard();
+    const keyboardInput = useKeyboard();
+    const gamepadInput = useGamepad();
     const {
         gameConfig: stratagemHeroConfig
     } = useGameConfig();
-    
 
     const initialGameState = {
         round: 0,
@@ -79,9 +80,46 @@ export function useGameFSM(disabledStratagems) {
     const [gameState, setGameState] = useState(initialGameState);
     const [roundState, setRoundState] = useState(initialRoundState);
     const [timeoutId, setTimeoutId] = useState(null);
-    const [userName,setUserName] = useState(null);
+    const [userName, setUserName] = useState(null);
     const [roundTimerId, setRoundTimerId] = useState(null);
 
+    // ---------User direction input handling---------
+    useEffect(() => {
+        if (keyboardInput.direction) {
+            switch (currentState) {
+                case GameStates.GAME_READY:
+                    handleStartGame();
+                    break;
+                case GameStates.ROUND_IN_PROGRESS:
+                    playSound('directionInput');
+                    setRoundState(prev => ({
+                        ...prev,
+                        inputSequence: [...prev.inputSequence, keyboardInput.direction]
+                    }));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [keyboardInput.direction]);
+    useEffect(() => {
+        if (gamepadInput.direction) {
+            switch (currentState) {
+                case GameStates.GAME_READY:
+                    handleStartGame();
+                    break;
+                case GameStates.ROUND_IN_PROGRESS:
+                    playSound('directionInput');
+                    setRoundState(prev => ({
+                        ...prev,
+                        inputSequence: [...prev.inputSequence, gamepadInput.direction]
+                    }));
+                    break;
+                default:
+                    break;
+            }
+        }
+    }, [gamepadInput.direction]);
 
     // useEffect to watch current state and handle state transitions
     useEffect(() => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const soundPath = `${import.meta.env.BASE_URL}/sound`;
 const audioGameStart = new Audio(`${soundPath}/gamestart.mp3`);
 const audioRoundStart = new Audio(`${soundPath}/newround.mp3`);
@@ -17,6 +17,10 @@ const audioList = {
 function useGameSound() {
     const [isMuted,setIsMuted] = useState(true);
     
+    useEffect(() => {
+        handleChangeMute(isMuted);
+    },[]);
+
     function playSound(audioName) {
         if (!audioList[audioName]) {
             console.error(`audioName must be one of the following: "${Object.keys(audioList).join('", "')}"`);
@@ -26,11 +30,14 @@ function useGameSound() {
         audioList[audioName].play();
     }
 
-    const handleToggleMute = () => {
-        let newState = !isMuted;
+    const handleChangeMute = (newState) => {
         console.debug('Muting? ', newState);
         Object.keys(audioList).forEach(key=>audioList[key].muted=newState);
         setIsMuted(newState);
+    }
+
+    const handleToggleMute = () => {
+        handleChangeMute(!isMuted);
     }
 
     return { isMuted, handleToggleMute, playSound }
