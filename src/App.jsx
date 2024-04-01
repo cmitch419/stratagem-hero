@@ -21,7 +21,7 @@ const TransparentDrawer = ({children, ...rest}) => <Drawer
     {...rest}> {children} </Drawer>
 
 const App = () => {
-    const { gameConfig } = useGameConfig();
+    const { getConfig } = useGameConfig();
 
     const [page, setPage] = useState(PAGES.STRATAGEM_LIST);
     const [disabledStratagems, setDisabledStratagems] = useState(new Set());
@@ -87,7 +87,7 @@ const App = () => {
             bottom: 0,
             position: 'absolute',
             zIndex: 10000,
-            transform: `scale(${gameConfig.dpadScale}) translate(50%,-50%)`
+            transform: `scale(${getConfig().dpadScale}) translate(50%,-50%)`
         }}>
             <Zoom in={page === PAGES.GAME}>
                 <Box>

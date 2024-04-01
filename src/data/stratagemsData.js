@@ -36,6 +36,8 @@ export function getAllCategories(stratagems) {
     return Array.from(categories).sort();
 }
 
+const objToImageName = (obj) => (`${obj.category ? obj.category : 'Mission'}_${obj?.name}`.replace(/[^0-9a-zA-Z_]/g,''))
+
 export {
     stratagemsDataV1,
     stratagemsDataV2,

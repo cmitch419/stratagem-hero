@@ -1,8 +1,10 @@
-import { Checklist, GamepadOutlined, Settings } from "@mui/icons-material";
-import { IconButton, Stack } from "@mui/material";
+import { Checklist, GamepadOutlined, Settings, VolumeMute, VolumeOff, VolumeUp } from "@mui/icons-material";
+import { Divider, IconButton, Stack } from "@mui/material";
 import { PAGES } from "../constants";
+import useGameSound from "../hooks/useGameSound";
 
 function ButtonDrawer({ page, setPage }) {
+    const { isMuted, handleToggleMute } = useGameSound();
     return (
         <Stack
             sx={{
@@ -13,6 +15,13 @@ function ButtonDrawer({ page, setPage }) {
                 background: 'rgba(0,0,0,0.5)',
                 backdropFilter: 'blur(3px)',
             }}>
+            <IconButton onClick={handleToggleMute} sx={{ border: 'none' }} >
+                { isMuted
+                    ? <VolumeOff color="secondary" />
+                    : <VolumeUp color="secondary" />
+                }
+            </IconButton>
+            <Divider />
             <IconButton onClick={() => setPage(PAGES.CONFIGURATION)} sx={{ border: 'none' }} >
                 <Settings color={page===PAGES.CONFIGURATION ? 'primary': ''}/>
             </IconButton>

@@ -14,12 +14,14 @@ import consoleImage06 from '/img/console_06.png?url';
 import consoleImage07 from '/img/console_07.png?url';
 import consoleImage08 from '/img/console_08.png?url';
 import consoleImage09 from '/img/console_09.png?url';
+import { useGameFSM } from "../hooks/gameFSM";
 
 const WIDTH = 1000;
 const HEIGHT = WIDTH * 0.575;
 
 function StratagemHeroConsole({ disabledStratagems }) {
     const screenRef = useRef();
+    const gameFSM = useGameFSM(disabledStratagems);
 
     const [scaleFactor, setScaleFactor] = useState({
         heightFactor: 1,
@@ -76,7 +78,7 @@ function StratagemHeroConsole({ disabledStratagems }) {
             width: '100%',
             height: '100%',
         }}>
-            <StratagemHeroGame scale={scaleFactor.min} disabledStratagems={disabledStratagems} />
+            <StratagemHeroGame scale={scaleFactor.min} disabledStratagems={disabledStratagems} {...gameFSM} />
             <Box sx={{
                 position: 'fixed',
                 height: '65%',
