@@ -25,6 +25,7 @@ function v2ToV3(v2) {
     return v2.reduce((a,c)=>({...a, [c.id]: c}),{});
 }
 
+window.v1 = stratagemsDataV1;
 window.v1ToV2 = v1ToV2;
 window.v2ToV3 = v2ToV3;
 
@@ -36,7 +37,7 @@ export function getAllCategories(stratagems) {
     return Array.from(categories).sort();
 }
 
-const objToImageName = (obj) => (`${obj.category ? obj.category : 'Mission'}_${obj?.name}`.replace(/[^0-9a-zA-Z_]/g,''))
+export const objToImageName = (obj) => (`${obj.category ? obj.category : 'Mission'}_${obj?.name}`.replace(/[^0-9a-zA-Z_]/g,''))
 
 export {
     stratagemsDataV1,

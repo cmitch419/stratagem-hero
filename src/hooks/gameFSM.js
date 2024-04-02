@@ -56,7 +56,8 @@ export function useGameFSM(disabledStratagems) {
     const keyboardInput = useKeyboard();
     const gamepadInput = useGamepad();
     const {
-        gameConfig: stratagemHeroConfig
+        gameConfig: stratagemHeroConfig,
+        isHighscoreEligible
     } = useGameConfig();
 
     const initialGameState = {
@@ -73,15 +74,31 @@ export function useGameFSM(disabledStratagems) {
         valid: true,
         inputSequence: [],
     };
-    const { isHighscoreEligible } = useGameConfig();
+    const initialEntryState = [
+        // {
+        //     stratagem: null,
+        //     mistakes: 0,
+        //     inputs: 0,
+        //     time: 0,
+        //     round: null,
+        // }
+    ];
+
     const { playSound } = useGameSound();
 
+    const [userName, setUserName] = useState(null);
+    
     const [currentState, setCurrentState] = useState(initialState);
+    
     const [gameState, setGameState] = useState(initialGameState);
     const [roundState, setRoundState] = useState(initialRoundState);
+    
+
     const [timeoutId, setTimeoutId] = useState(null);
-    const [userName, setUserName] = useState(null);
     const [roundTimerId, setRoundTimerId] = useState(null);
+
+    // per stratagem
+    const [gemStartTime, setGemStartTime] = useState(null);
 
     // ---------User direction input handling---------
     useEffect(() => {
@@ -144,6 +161,7 @@ export function useGameFSM(disabledStratagems) {
     }
 
     const startRound = () => {
+        setGemStartTime(new Date());
         const id = setInterval(() => {
             if (currentState === GameStates.ROUND_IN_PROGRESS) {
                 let newTime = 0
@@ -155,7 +173,7 @@ export function useGameFSM(disabledStratagems) {
                     } else {
                         newTime = prevState.timeRemaining - stratagemHeroConfig.updateIntervalMs;
                     }
-                    return { ...prevState, timeRemaining: newTime }
+                    return { ...prevState, timeRemaining: newTime };
                 });
             }
         }, stratagemHeroConfig.updateIntervalMs);
@@ -180,10 +198,11 @@ export function useGameFSM(disabledStratagems) {
     };
 
     const endRound = (success) => {
+
         if (success) {
             // User beat the round!
-            const newRoundBonus = 50 + gameState.round * 25;
-            const newTimeBonus = Math.ceil(100 * roundState.timeRemaining / (stratagemHeroConfig.timePerRound * 1000));
+            const newRoundBonus = stratagemHeroConfig.roundBonusBase + gameState.round * stratagemHeroConfig.roundBonusMultiplier;
+            const newTimeBonus = Math.ceil(100 * roundState.timeRemaining / (stratagemHeroConfig.timePerRound) * 1000);
             const totalBonus = newRoundBonus + newTimeBonus + roundState.perfectRoundBonus;
             setRoundState(prevState => ({
                 ...prevState,
@@ -233,7 +252,6 @@ export function useGameFSM(disabledStratagems) {
                 break;
         }
         return () => {
-            // Clear the previous timeout when the component unmounts or when currentState changes
             if (timeoutId) {
                 clearTimeout(timeoutId);
             }

@@ -28,8 +28,7 @@ const highscoreAttributes = [
     'timePerRound',
     'timeBonusPerGem',
     'timeBetweenGems',
-
-]
+];
 
 const LOCAL_STORAGE_CONFIG = 'stratagemHeroConfig';
 
