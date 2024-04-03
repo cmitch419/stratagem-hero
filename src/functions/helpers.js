@@ -10,3 +10,11 @@ export function formatSeconds(seconds) {
     // Return the formatted time string.
     return `${formattedMinutes}:${formattedSeconds}`;
   }
+
+export function sortObjArray(array,attr) {
+  if (array && attr && !array.some(obj=>!obj[attr])) {
+    return array.sort((a, b) => (a[attr] < b[attr]) ? -1 : (a[attr] > b[attr]) ? 1 : 0)
+  } else {
+    return array;
+  }
+}

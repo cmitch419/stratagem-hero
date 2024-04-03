@@ -4,6 +4,7 @@ import useGameConfig from './useGameConfig';
 import stratagemsData from '../data/stratagemsData';
 import useGameSound from './useGameSound';
 import useGamepad from './useGamepad';
+import useHighscores from './useHighscores';
 
 export const GameStates = {
     GAME_READY: 'GAME_READY',
@@ -86,12 +87,14 @@ export function useGameFSM(disabledStratagems) {
 
     const { playSound } = useGameSound();
 
-    const [userName, setUserName] = useState(null);
+    const [username, setUsername] = useState('You');
     
     const [currentState, setCurrentState] = useState(initialState);
     
     const [gameState, setGameState] = useState(initialGameState);
     const [roundState, setRoundState] = useState(initialRoundState);
+
+    const { highscores, addScore } = useHighscores();
     
 
     const [timeoutId, setTimeoutId] = useState(null);
@@ -119,6 +122,7 @@ export function useGameFSM(disabledStratagems) {
             }
         }
     }, [keyboardInput.direction]);
+
     useEffect(() => {
         if (gamepadInput.direction) {
             switch (currentState) {
@@ -137,8 +141,6 @@ export function useGameFSM(disabledStratagems) {
             }
         }
     }, [gamepadInput.direction]);
-
-
 
     function resetGame() {
         setGameState(() => ({
@@ -202,7 +204,7 @@ export function useGameFSM(disabledStratagems) {
         if (success) {
             // User beat the round!
             const newRoundBonus = stratagemHeroConfig.roundBonusBase + gameState.round * stratagemHeroConfig.roundBonusMultiplier;
-            const newTimeBonus = Math.ceil(100 * roundState.timeRemaining / (stratagemHeroConfig.timePerRound) * 1000);
+            const newTimeBonus = Math.ceil(100 * roundState.timeRemaining / ((stratagemHeroConfig.timePerRound) * 1000));
             const totalBonus = newRoundBonus + newTimeBonus + roundState.perfectRoundBonus;
             setRoundState(prevState => ({
                 ...prevState,
@@ -220,12 +222,15 @@ export function useGameFSM(disabledStratagems) {
         }
     };
 
+
+
     // ------STATE CHANGES-----
     useEffect(() => {
         // Any time there is a game state change, the round timer should be cleared
         if (roundTimerId) clearInterval(roundTimerId);
         switch (currentState) {
             case GameStates.GAME_READY:
+                resetGame();
                 break;
             case GameStates.ROUND_STARTING:
                 playSound('roundStart');
@@ -241,7 +246,8 @@ export function useGameFSM(disabledStratagems) {
                 break;
             case GameStates.GAME_OVER:
                 playSound('gameOver');
-                if (isHighscoreEligible(disabledStratagems) && !userName) {
+                addScore({ username, score: gameState.score });
+                if (isHighscoreEligible(disabledStratagems) && !username) {
                     transition(Events.NEW_HIGHSCORE);
                 } else {
                     transitionWithTimeout(Events.NEW_GAME, 5000);
@@ -309,7 +315,6 @@ export function useGameFSM(disabledStratagems) {
                     if (stratagemIndex === stratagems.length - 1) {
                         // Round completed
                         endRound(true);
-                        // handleRoundCompleted();
                     } else {
                         // Move to the next stratagem
                         setTimeout(() => {

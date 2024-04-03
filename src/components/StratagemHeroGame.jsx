@@ -5,6 +5,7 @@ import { GameStates } from '../hooks/gameFSM';
 
 import { ArrowCombo } from './Stratagem';
 import { StratagemIcon } from './StratagemIcon';
+import useHighscores from '../hooks/useHighscores';
 
 // @TODO: MASSIVE TODO, this thing is too huge and too complex for what it does.
 
@@ -21,6 +22,7 @@ function StratagemHeroGame({
     stratagemHeroConfig,
 }) {
     const theme = useTheme();
+    const { getHighscores } = useHighscores();
 
     const StartScreen = () => {
         return <Stack justifyContent="center" alignItems="center" spacing={5} sx={{
@@ -70,14 +72,16 @@ function StratagemHeroGame({
 
     const GameOverScreen = () => {
         const { score } = gameState;
+
         return <Stack spacing={1} justifyContent="center" alignItems="center">
             <Typography variant="h1">
                 GAME OVER
             </Typography>
             <Typography variant="h6">High scores</Typography>
-            <Typography>1. thyancey : 999999</Typography>
-            <Typography>2. cmitch419 : 999999</Typography>
-            <Typography>3. DefinitelyNotAnAutomaton : 999999</Typography>
+            { getHighscores(5).sort((a,b)=>b.score-a.score).map((scoreObj,i) => {
+                const { username, score } = scoreObj;
+                return <Typography key={i}>{i+1}. {username}: {score}</Typography>
+            })}
             <Typography variant="h6">Your final score</Typography>
             <Typography variant="h3" color="primary">{score}</Typography>
         </Stack>

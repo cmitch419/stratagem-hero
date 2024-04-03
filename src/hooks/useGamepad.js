@@ -34,9 +34,6 @@ function useGamepad(holdButtonValue) {
     const [mapping, setMapping] = useState(DEFAULT_BUTTON_MAPPING);
     const [gamepad, setGamepad] = useState(null);
     const [direction, setDirection] = useState(null);
-    const [hold, setHold] = useState(true);
-
-    const HOLD = () => mapping.find(b=>b.id==='HOLD').value;
 
     useEffect(() => {
         const updateGamepad = () => {
@@ -59,29 +56,18 @@ function useGamepad(holdButtonValue) {
 
     useEffect(() => {
         setDirection(null);
-        mapping.forEach(({ id, name, value })=>{
+        mapping.forEach(({ id, value })=>{
           if (gamepad?.buttons[value]?.pressed) {
-            console.debug(`${name}!`);
             if (DIRECTIONS.some(d=>d===id)) {
                 setDirection(id);
                 return;
             }
           }
         });
-        console.log(gamepad?.buttons[HOLD()]);
-        if (gamepad?.buttons[HOLD()]?.pressed && !hold) {
-            setHold(true);
-            console.debug('HOLD!');
-        } 
-        if (!gamepad?.buttons[HOLD()]?.pressed) {
-            console.debug('UNHOLD!');
-            setHold(false);
-        }
     }, [gamepad, mapping]);
 
     return {
         direction,
-        hold,
     };
 }
 
