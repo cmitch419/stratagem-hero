@@ -1052,6 +1052,35 @@
             "hellpod"
         ],
         "category": "Patriotic Administration Center",
+        "icon": "PatrioticAdministrationCenter_AirburstRocketLauncher",
+        "name": "Airburst Rocket Launcher",
+        "model": "RL-77",
+        "description": "Fires a rocket that detonates within proximity of a target, and deploys a cluster of explosive bomblets.",
+        "code": [
+            "D",
+            "U",
+            "U",
+            "L",
+            "R"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3,
+        "tags": [
+            "trait:support weapon",
+            "trait:hellpod",
+            "cat:Patriotic Administration Center",
+            "permit:supply"
+        ],
+        "id": "sg-037"
+    },
+    {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
         "icon": "PatrioticAdministrationCenter_Flamethrower",
         "name": "Flamethrower",
         "model": "FLAM-40",
@@ -1073,7 +1102,7 @@
             "cat:Patriotic Administration Center",
             "permit:supply"
         ],
-        "id": "sg-037"
+        "id": "sg-038"
     },
     {
         "permitType": "supply",
@@ -1103,7 +1132,7 @@
             "cat:Patriotic Administration Center",
             "permit:supply"
         ],
-        "id": "sg-038"
+        "id": "sg-039"
     },
     {
         "permitType": "supply",
@@ -1133,7 +1162,7 @@
             "cat:Patriotic Administration Center",
             "permit:supply"
         ],
-        "id": "sg-039"
+        "id": "sg-040"
     },
     {
         "permitType": "supply",
@@ -1162,7 +1191,7 @@
             "cat:Patriotic Administration Center",
             "permit:supply"
         ],
-        "id": "sg-040"
+        "id": "sg-041"
     },
     {
         "permitType": "supply",
@@ -1193,7 +1222,7 @@
             "cat:Robotic Workshop",
             "permit:supply"
         ],
-        "id": "sg-041"
+        "id": "sg-042"
     },
     {
         "permitType": "mission",
@@ -1212,7 +1241,25 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-042"
+        "id": "sg-043"
+    },
+    {
+        "permitType": "mission",
+        "icon": "Mission_SuperEarthFlag",
+        "name": "Super Earth Flag",
+        "code": [
+            "D",
+            "U",
+            "D",
+            "U"
+        ],
+        "cooldown": 120,
+        "uses": "5 per Person",
+        "activation": 5,
+        "tags": [
+            "permit:mission"
+        ],
+        "id": "sg-044"
     },
     {
         "permitType": "mission",
@@ -1230,7 +1277,7 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-043"
+        "id": "sg-045"
     },
     {
         "permitType": "mission",
@@ -1248,7 +1295,7 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-044"
+        "id": "sg-046"
     },
     {
         "permitType": "mission",
@@ -1271,7 +1318,7 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-045"
+        "id": "sg-047"
     },
     {
         "permitType": "mission",
@@ -1290,7 +1337,7 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-046"
+        "id": "sg-048"
     },
     {
         "permitType": "mission",
@@ -1310,7 +1357,7 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-047"
+        "id": "sg-049"
     },
     {
         "permitType": "mission",
@@ -1329,7 +1376,7 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-048"
+        "id": "sg-050"
     },
     {
         "permitType": "mission",
@@ -1348,7 +1395,7 @@
         "tags": [
             "permit:mission"
         ],
-        "id": "sg-049"
+        "id": "sg-051"
     },
     {
         "permitType": "defensive",
@@ -1377,7 +1424,7 @@
             "cat:Robotic Workshop",
             "permit:defensive"
         ],
-        "id": "sg-050"
+        "id": "sg-052"
     },
     {
         "permitType": "supply",
@@ -1408,7 +1455,7 @@
             "cat:Robotic Workshop",
             "permit:supply"
         ],
-        "id": "sg-051"
+        "id": "sg-053"
     },
     {
         "permitType": "defensive",
@@ -1436,7 +1483,7 @@
             "cat:Robotic Workshop",
             "permit:defensive"
         ],
-        "id": "sg-052"
+        "id": "sg-054"
     },
     {
         "permitType": "defensive",
@@ -1465,7 +1512,7 @@
             "cat:Robotic Workshop",
             "permit:defensive"
         ],
-        "id": "sg-053"
+        "id": "sg-055"
     },
     {
         "permitType": "defensive",
@@ -1495,7 +1542,7 @@
             "cat:Robotic Workshop",
             "permit:defensive"
         ],
-        "id": "sg-054"
+        "id": "sg-056"
     },
     {
         "permitType": "defensive",
@@ -1526,7 +1573,7 @@
             "cat:Robotic Workshop",
             "permit:defensive"
         ],
-        "id": "sg-055"
+        "id": "sg-057"
     },
     {
         "permitType": "defensive",
@@ -1557,6 +1604,6 @@
             "cat:Robotic Workshop",
             "permit:defensive"
         ],
-        "id": "sg-056"
+        "id": "sg-058"
     }
 ]

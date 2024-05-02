@@ -85,7 +85,7 @@ export function useGameFSM(disabledStratagems) {
         // }
     ];
 
-    const { playSound } = useGameSound();
+    const { playSound, stopSound } = useGameSound();
 
     const [username, setUsername] = useState('You');
     
@@ -164,6 +164,7 @@ export function useGameFSM(disabledStratagems) {
 
     const startRound = () => {
         setGemStartTime(new Date());
+        playSound('bgMusic');
         const id = setInterval(() => {
             if (currentState === GameStates.ROUND_IN_PROGRESS) {
                 let newTime = 0
@@ -200,7 +201,7 @@ export function useGameFSM(disabledStratagems) {
     };
 
     const endRound = (success) => {
-
+        stopSound('bgMusic');
         if (success) {
             // User beat the round!
             const newRoundBonus = stratagemHeroConfig.roundBonusBase + gameState.round * stratagemHeroConfig.roundBonusMultiplier;

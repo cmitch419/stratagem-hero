@@ -5,6 +5,7 @@ const audioRoundStart = new Audio(`${soundPath}/newround.mp3`);
 const audioRoundEnd = new Audio(`${soundPath}/scorescreen.mp3`);
 const audioDirectionInput = new Audio(`${soundPath}/inputdirection.mp3`);
 const audioGameOver = new Audio(`${soundPath}/gameover.mp3`);
+const audioBgMusic = new Audio(`${soundPath}/sgbg.mp3`);
 
 const audioList = {
     'gameStart': audioGameStart,
@@ -12,7 +13,8 @@ const audioList = {
     'roundStart': audioRoundStart,
     'roundEnd': audioRoundEnd,
     'directionInput': audioDirectionInput,
-}
+    'bgMusic': audioBgMusic,
+};
 
 function useGameSound() {
     const [isMuted,setIsMuted] = useState();
@@ -29,6 +31,18 @@ function useGameSound() {
         }
         if(audioName === 'directionInput') audioList[audioName].currentTime = 0;
         audioList[audioName].play();
+        if (audioName === 'bgMusic') {
+            audioList[audioName].loop = true;
+        }
+    }
+
+    function stopSound(audioName) {
+        if (!audioList[audioName]) {
+            console.error(`audioName must be one of the following: "${Object.keys(audioList).join('", "')}"`);
+            return;
+        }
+        audioList[audioName].pause();
+        audioList[audioName].currentTime = 0;
     }
 
     const handleChangeMute = (newState) => {
@@ -41,7 +55,7 @@ function useGameSound() {
         handleChangeMute(!isMuted);
     }
 
-    return { isMuted, handleToggleMute, playSound };
+    return { isMuted, handleToggleMute, playSound, stopSound };
 }
 
 

@@ -798,6 +798,28 @@
             "hellpod"
         ],
         "category": "Patriotic Administration Center",
+        "icon": "PatrioticAdministrationCenter_AirburstRocketLauncher",
+        "name": "Airburst Rocket Launcher",
+        "model": "RL-77",
+        "description": "Fires a rocket that detonates within proximity of a target, and deploys a cluster of explosive bomblets.",
+        "code": [
+            "D",
+            "U",
+            "U",
+            "L",
+            "R"
+        ],
+        "cooldown": 480,
+        "uses": -1,
+        "activation": 3
+    },
+    {
+        "permitType": "supply",
+        "traits": [
+            "support weapon",
+            "hellpod"
+        ],
+        "category": "Patriotic Administration Center",
         "icon": "PatrioticAdministrationCenter_Flamethrower",
         "name": "Flamethrower",
         "model": "FLAM-40",
@@ -915,6 +937,20 @@
             "D",
             "R",
             "L",
+            "U"
+        ],
+        "cooldown": 120,
+        "uses": "5 per Person",
+        "activation": 5
+    },
+    {
+        "permitType": "mission",
+        "icon": "Mission_SuperEarthFlag",
+        "name": "Super Earth Flag",
+        "code": [
+            "D",
+            "U",
+            "D",
             "U"
         ],
         "cooldown": 120,
